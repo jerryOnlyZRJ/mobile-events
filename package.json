@@ -1,0 +1,23 @@
+{
+  "name": "mobile-events",
+  "version": "1.0.0",
+  "description": "Make mobile events user-friendly.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jerryOnlyZRJ/mobile-events.git"
+  },
+  "keywords": [
+    "mobile",
+    "events"
+  ],
+  "author": ["ranjayzheng", "joyfang"],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jerryOnlyZRJ/mobile-events/issues"
+  },
+  "homepage": "https://github.com/jerryOnlyZRJ/mobile-events#readme"
+}
