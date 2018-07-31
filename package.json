@@ -5,8 +5,15 @@
   "main": "core/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint core/index.js --fix",
-    "precommit": "npm run lint"
+    "lint": "eslint core/*.js --fix",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "core/*.js": [
+      "prettier-eslint --write",
+      "eslint",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -30,6 +37,7 @@
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
     "husky": "^0.14.3",
-    "jest": "^23.4.2"
+    "jest": "^23.4.2",
+    "lint-staged": "^7.2.0"
   }
 }
