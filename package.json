@@ -4,9 +4,9 @@
   "description": "Make mobile events user-friendly.",
   "main": "core/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
     "lint": "eslint core/*.js --fix",
-    "precommit": "lint-staged"
+    "precommit": "npm run test && lint-staged"
   },
   "lint-staged": {
     "core/*.js": [
