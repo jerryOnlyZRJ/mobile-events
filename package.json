@@ -1,6 +1,6 @@
 {
   "name": "mt-events",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Make mobile events user-friendly.",
   "main": "core/index.js",
   "scripts": {
@@ -14,7 +14,10 @@
     "mobile",
     "events"
   ],
-  "author": ["ranjayzheng", "joyfang"],
+  "author": [
+    "ranjayzheng",
+    "joyfang"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jerryOnlyZRJ/mobile-events/issues"
