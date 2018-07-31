@@ -1,10 +1,19 @@
 {
   "name": "mt-events",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Make mobile events user-friendly.",
   "main": "core/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --coverage",
+    "lint": "eslint core/*.js --fix",
+    "precommit": "npm run test && lint-staged"
+  },
+  "lint-staged": {
+    "core/*.js": [
+      "prettier-eslint --write",
+      "eslint",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -14,13 +23,21 @@
     "mobile",
     "events"
   ],
-  "author": [
-    "ranjayzheng",
-    "joyfang"
-  ],
+  "author": "ranjayzheng",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jerryOnlyZRJ/mobile-events/issues"
   },
-  "homepage": "https://github.com/jerryOnlyZRJ/mobile-events#readme"
+  "homepage": "https://github.com/jerryOnlyZRJ/mobile-events#readme",
+  "devDependencies": {
+    "eslint": "^5.2.0",
+    "eslint-config-standard": "^12.0.0-alpha.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "husky": "^0.14.3",
+    "jest": "^23.4.2",
+    "lint-staged": "^7.2.0"
+  }
 }
