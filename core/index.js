@@ -15,33 +15,34 @@ class MEvents {
    * }
    * @return {HTMLDivElement}                  bindTarget                         事件绑定DOM对象
    */
-  mEvents(bindTarget, delegateTarget, event, callback, data, options = {
+  mEvents (bindTarget, delegateTarget, event, callback, data, options = {
     isPreventDefault: false,
     isStopPropagation: false
   }) {
-    //arrange user input
-    if (typeof delegateTarget === "object") {
-      //mEvents(node, {event: {handler, data, options}})
+    // arrange user input
+    if (typeof delegateTarget === 'object') {
+      // mEvents(node, {event: {handler, data, options}})
       return this._handleEventObj(bindTarget, undefined, delegateTarget)
-    } else if (typeof event === "object") {
-      //mEvents(node, selector, {event: {handler, data, options}})
+    } else if (typeof event === 'object') {
+      // mEvents(node, selector, {event: {handler, data, options}})
       return this._handleEventObj(bindTarget, delegateTarget, event)
     }
     const _events = new Set(Object.keys(events))
-    typeof bindTarget === "string" && bindTarget = document.querySelector(bindTarget)
+    if (typeof bindTarget === 'string') {
+      bindTarget = document.querySelector(bindTarget)
+    }
     if (!_events.has(event)) {
 
     }
     events[event](callback, options)
-
   }
 
-  _delegateEvent(bindTarget, delegateTarget, event, callback) {
+  _delegateEvent (bindTarget, delegateTarget, event, callback) {
     if (delegateTarget) {
       const delegateTargets = new Set(document.querySelectorAll(delegateTarget))
       bindTarget.addEventListener(event, (e) => {
-        target = e.target
-        while (target != bindTarget) {
+        let target = e.target
+        while (target !== bindTarget) {
           if (delegateTargets.has(target)) {
             callback(e)
           } else {
@@ -57,12 +58,12 @@ class MEvents {
     return bindTarget
   }
 
-  _handleEventObj(bindTarget, delegateTarget, eventObj) {
+  _handleEventObj (bindTarget, delegateTarget, eventObj) {
     Object.entries(eventObj).map(bindTargetItem => {
-      if (typeof bindTargetItem[1] === "function") {
-        mEvents(bindTarget, delegateTarget, bindTargetItem[0], bindTargetItem[1])
+      if (typeof bindTargetItem[1] === 'function') {
+        this.mEvents(bindTarget, delegateTarget, bindTargetItem[0], bindTargetItem[1])
       } else {
-        mEvents(bindTarget, delegateTarget, bindTargetItem[0], bindTargetItem[1].handler, bindTargetItem[1].data, bindTargetItem[1].options)
+        this.mEvents(bindTarget, delegateTarget, bindTargetItem[0], bindTargetItem[1].handler, bindTargetItem[1].data, bindTargetItem[1].options)
       }
     })
     return bindTarget
@@ -72,7 +73,7 @@ class MEvents {
    * @param  {String} selector H5标准选择器
    * @return {HTMLDivElement}         选择器捕获的DOM元素
    */
-  getElement(selector) {
+  getElement (selector) {
     return document.querySelector(selector)
   }
   /**
@@ -80,12 +81,9 @@ class MEvents {
    * @param  {String} selector H5标准选择器
    * @return {NodeList}          HTMLDivElement 类数组
    */
-  getElements(selector) {
+  getElements (selector) {
     return document.querySelectorAll(selector)
   }
-
 }
-
-
 
 module.exports = MEvents
