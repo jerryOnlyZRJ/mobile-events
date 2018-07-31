@@ -1,8 +1,8 @@
 {
-  "name": "mobile-events",
+  "name": "mt-events",
   "version": "1.0.0",
   "description": "Make mobile events user-friendly.",
-  "main": "index.js",
+  "main": "core/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
