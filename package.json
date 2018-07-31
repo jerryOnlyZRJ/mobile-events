@@ -14,10 +14,7 @@
     "mobile",
     "events"
   ],
-  "author": [
-    "ranjayzheng",
-    "joyfang"
-  ],
+  "author": "ranjayzheng",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jerryOnlyZRJ/mobile-events/issues"
