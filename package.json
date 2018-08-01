@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --coverage",
     "lint": "eslint core/*.js --fix",
-    "precommit": "npm run test && lint-staged"
+    "precommit": "lint-staged",
+    "prepush": "npm run test"
   },
   "lint-staged": {
     "core/*.js": [
