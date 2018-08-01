@@ -2,16 +2,19 @@
   "name": "mt-events",
   "version": "1.0.2",
   "description": "Make mobile events user-friendly.",
-  "main": "core/index.js",
+  "main": "dist/main.js",
   "scripts": {
     "test": "jest --coverage",
+    "build": "webpack",
+    "jsdoc": "jsdoc ./core/ -d ./docs",
     "lint": "eslint core/*.js --fix",
-    "precommit": "npm run test && lint-staged"
+    "precommit": "lint-staged",
+    "prepush": "npm run test && npm run jsdoc"
   },
   "lint-staged": {
     "core/*.js": [
-      "prettier-eslint --write",
-      "eslint",
+      "prettier --write",
+      "eslint --fix",
       "git add"
     ]
   },
@@ -38,6 +41,10 @@
     "eslint-plugin-standard": "^3.1.0",
     "husky": "^0.14.3",
     "jest": "^23.4.2",
-    "lint-staged": "^7.2.0"
+    "jsdoc": "^3.5.5",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.14.0",
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.0"
   }
 }
