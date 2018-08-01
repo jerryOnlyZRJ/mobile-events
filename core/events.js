@@ -1,17 +1,17 @@
 module.exports = {
-  longtap: function() {},
-  dbtap: function(callback, xrange = 100, yrange = 100) {
+  longtap: function () {},
+  dbtap: function (callback, xrange = 100, yrange = 100) {
     let timer = null
     let lastClientX
     let lastClientY
-    return function(e) {
+    return function (e) {
       if (timer) {
         clearTimeout(timer)
         timer = null
         const thisClientX = e.changedTouches[0].clientX
         const thisClientY = e.changedTouches[0].clientY
-        x = Math.abs(thisClientX - lastClientX)
-        y = Math.abs(thisClientY - lastClientY)
+        const x = Math.abs(thisClientX - lastClientX)
+        const y = Math.abs(thisClientY - lastClientY)
         if (x <= xrange && y <= yrange) {
           e.stopPropagation()
           callback(e)
@@ -31,12 +31,12 @@ module.exports = {
       }
     }
   },
-  dragup: function() {},
-  dragdown: function() {},
-  dragright: function() {},
-  dragdown: function() {},
-  swiftup: function() {},
-  swiftdown: function() {},
-  swiftleft: function() {},
-  swiftright: function() {},
+  dragup: function () {},
+  dragdown: function () {},
+  dragleft: function () {},
+  dragright: function () {},
+  swiftup: function () {},
+  swiftdown: function () {},
+  swiftleft: function () {},
+  swiftright: function () {}
 }

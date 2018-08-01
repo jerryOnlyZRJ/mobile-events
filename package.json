@@ -6,14 +6,15 @@
   "scripts": {
     "test": "jest --coverage",
     "build": "webpack",
+    "jsdoc": "jsdoc ./core/ -d ./docs",
     "lint": "eslint core/*.js --fix",
     "precommit": "lint-staged",
-    "prepush": "npm run test"
+    "prepush": "npm run test && npm run jsdoc"
   },
   "lint-staged": {
     "core/*.js": [
-      "prettier-eslint --write",
-      "eslint",
+      "prettier --write",
+      "eslint core/*.js --fix",
       "git add"
     ]
   },
@@ -40,7 +41,9 @@
     "eslint-plugin-standard": "^3.1.0",
     "husky": "^0.14.3",
     "jest": "^23.4.2",
+    "jsdoc": "^3.5.5",
     "lint-staged": "^7.2.0",
+    "prettier": "^1.14.0",
     "webpack": "^4.16.3",
     "webpack-cli": "^3.1.0"
   }
