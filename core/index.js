@@ -23,6 +23,8 @@ class MTEvents {
    * @example
    * bind('#bindTarget', ...args)
    * @example
+   * bind('#bindTarget', 'click', handler)
+   * @example
    * bind('#bindTarget', '#delegateTarget', 'click', handler)
    * @example
    * bind('#bindTarget', '#delegateTarget', 'longtap', handler)
@@ -33,6 +35,9 @@ class MTEvents {
       return this._handleEventObj(bindTarget, undefined, delegateTarget)
     } else if (typeof event === 'object') {
       return this._handleEventObj(bindTarget, delegateTarget, event)
+    }
+    if (typeof delegateTarget === 'string' && typeof event === 'function') {
+      return this.bind(bindTarget, undefined, delegateTarget, event)
     }
     if (typeof bindTarget === 'string') {
       bindTarget = document.querySelector(bindTarget)
@@ -62,7 +67,7 @@ class MTEvents {
    */
   _handleEventObj (bindTarget, delegateTarget, eventObj) {
     Object.entries(eventObj).map(bindTargetItem => {
-      this.mtEvents(
+      this.bind(
         bindTarget,
         delegateTarget,
         bindTargetItem[0],
@@ -75,11 +80,11 @@ class MTEvents {
 
 let mtEvents = new MTEvents()
 const mtEventsPrototype = Object.create(MTEvents.prototype)
-mtEvents = mtEvents.bind
-Object.setPrototypeOf(mtEvents, mtEventsPrototype)
+const mtEventsFun = mtEvents.bind.bind(mtEvents)
+Object.setPrototypeOf(mtEventsFun, mtEventsPrototype)
 
 if (process.env.PLATFORM === 'Browser') {
-  window.mtEvents = mtEvents
+  window.mtEvents = mtEventsFun
 } else {
   module.exports = MTEvents
 }
