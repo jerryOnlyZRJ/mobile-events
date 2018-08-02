@@ -29,34 +29,28 @@
             <pre class="prettyprint source linenums"><code>const events = require('./events.js')
 
 /**
- * MEvents类
+ * MTEvents类
  */
-class MEvents {
+class MTEvents {
   /**
-   * mEvents 绑定事件方法
+   * mtEvents 绑定事件方法
    * @param  {String(Selector) | HTMLDivElement}   bindTarget              事件绑定DOM对象
-   * @param  {String(Selector)}   delegateTarget                                    代理对象
-   * @param {String}      event                                                                 待绑定事件
-   * @param  {Function} callback                                                               事件回调
-   * @param  {Object}   data                                                                    传入Handler的数据
-   * @param  {Object}   options                                                                配置参数
-   * @return {HTMLDivElement}                  bindTarget                         事件绑定DOM对象
+   * @param  {String(Selector)}              delegateTarget                           代理对象
+   * @param {String}                        event                                                  待绑定事件
+   * @param  {Function}                       callback                                           事件回调
+   * @return {HTMLDivElement}                  bindTarget                             事件绑定DOM对象
    * @example
-   * mEvents('#bindtarget', '#delegateTarget', 'longtap', (e) => { //do somthing }, options)
+   * mtEvents('#bindtarget', '#delegateTarget', 'longtap', (e) => {
+   *   //do somthing
+   * })
    */
-  mEvents(
-    bindTarget,
-    delegateTarget,
-    event,
-    callback,
-    options
-  ) {
+  mtEvents (bindTarget, delegateTarget, event, callback) {
     // arrange user input
     if (typeof delegateTarget === 'object') {
-      // mEvents(node, {event: {handler, data, options}})
+      // mtEvents(node, {event: handler})
       return this._handleEventObj(bindTarget, undefined, delegateTarget)
     } else if (typeof event === 'object') {
-      // mEvents(node, selector, {event: {handler, data, options}})
+      // mtEvents(node, selector, {event: handler})
       return this._handleEventObj(bindTarget, delegateTarget, event)
     }
     const _events = new Set(Object.keys(events))
@@ -64,82 +58,45 @@ class MEvents {
       bindTarget = document.querySelector(bindTarget)
     }
     if (!_events.has(event)) {
-
-    }
-    events[event](callback, options)
-  }
-
-  _delegateEvent(bindTarget, delegateTarget, event, callback) {
-    if (delegateTarget) {
-      const delegateTargets = new Set(
-        document.querySelectorAll(delegateTarget)
-      )
       bindTarget.addEventListener(event, e => {
-        let target = e.target
-        while (target !== bindTarget) {
-          if (delegateTargets.has(target)) {
-            callback(e)
-          } else {
-            target = target.parentNode
-          }
+        const target = events._delegateEvent(
+          bindTarget,
+          delegateTarget,
+          e.target
+        )
+        if ((delegateTarget &amp;&amp; target) || !delegateTarget) {
+          callback(e)
         }
       })
-    } else {
-      bindTarget.addEventListener(event, e => {})
     }
+    events[event](bindTarget, callback, delegateTarget)
     return bindTarget
   }
 
-  _handleEventObj(bindTarget, delegateTarget, eventObj) {
+  _handleEventObj (bindTarget, delegateTarget, eventObj) {
     Object.entries(eventObj).map(bindTargetItem => {
-      if (typeof bindTargetItem[1] === 'function') {
-        this.mEvents(
-          bindTarget,
-          delegateTarget,
-          bindTargetItem[0],
-          bindTargetItem[1]
-        )
-      } else {
-        this.mEvents(
-          bindTarget,
-          delegateTarget,
-          bindTargetItem[0],
-          bindTargetItem[1].handler,
-          bindTargetItem[1].data,
-          bindTargetItem[1].options
-        )
-      }
+      this.mtEvents(
+        bindTarget,
+        delegateTarget,
+        bindTargetItem[0],
+        bindTargetItem[1]
+      )
     })
     return bindTarget
   }
-  /**
-   * getElement 通过选择器获取单个元素
-   * @param  {String} selector H5标准选择器
-   * @return {HTMLDivElement}         选择器捕获的DOM元素
-   */
-  getElement(selector) {
-    return document.querySelector(selector)
-  }
-  /**
-   * getElement 通过选择器获取多个元素
-   * @param  {String} selector H5标准选择器
-   * @return {NodeList}          HTMLDivElement 类数组
-   */
-  getElements(selector) {
-    return document.querySelectorAll(selector)
-  }
 }
 
-let mEvents = new MEvents()
-const mEventsPrototype = Object.create(MEvents.prototype)
-mEvents = mEvents.mEvents
-mEvents.__proto__ = mEventsPrototype
+let mtEvents = new MTEvents()
+const mtEventsPrototype = Object.create(MTEvents.prototype)
+mtEvents = mtEvents.mtEvents
+Object.setPrototypeOf(mtEvents, mtEventsPrototype)
 
-if ('inBrowser') {
-  window.mEvents = mEvents
+if (process.env.PLATFORM === 'Browser') {
+  window.mtEvents = mtEvents
 } else {
-  module.exports = MEvents
-}</code></pre>
+  module.exports = MTEvents
+}
+</code></pre>
         </article>
     </section>
 
@@ -149,13 +106,13 @@ if ('inBrowser') {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="MEvents.html">MEvents</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="MTEvents.html">MTEvents</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Aug 01 2018 17:14:29 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Aug 02 2018 14:40:45 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>
