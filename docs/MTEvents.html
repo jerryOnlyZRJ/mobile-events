@@ -30,7 +30,7 @@
     
         <h2><span class="attribs"><span class="type-signature"></span></span>MTEvents<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">MTEvents类</div>
+            <div class="class-description">MTEvents类库内所有不对外发布的方法都以私有变量格式命名</div>
         
     
 </header>
@@ -93,7 +93,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index-Browser.js.html">index-Browser.js</a>, <a href="index-Browser.js.html#line8">line 8</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line7">line 7</a>
     </li></ul></dd>
     
 
@@ -147,7 +147,213 @@
     
 
     
-    <h4 class="name" id="mtEvents"><span class="type-signature"></span>mtEvents<span class="signature">(bindTarget, delegateTarget, event, callback)</span><span class="type-signature"> &rarr; {HTMLDivElement}</span></h4>
+    <h4 class="name" id="_handleEventObj"><span class="type-signature"></span>_handleEventObj<span class="signature">(bindTarget, delegateTarget, eventObj)</span><span class="type-signature"> &rarr; {HTMLDivElement}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    _handleEventObj    整理用户输入事件句柄对象
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>bindTarget</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String(Selector)</span>
+|
+
+<span class="param-type">HTMLDivElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">待绑定元素</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>delegateTarget</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String(Selector)</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">代理元素选择器</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>eventObj</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">事件句柄对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line63">line 63</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    bindTarget     事件绑定DOM对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">HTMLDivElement</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="bind"><span class="type-signature"></span>bind<span class="signature">(bindTarget, delegateTarget, event, callback)</span><span class="type-signature"> &rarr; {HTMLDivElement}</span></h4>
     
 
     
@@ -320,7 +526,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index-Browser.js.html">index-Browser.js</a>, <a href="index-Browser.js.html#line21">line 21</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line30">line 30</a>
     </li></ul></dd>
     
 
@@ -369,2159 +575,19 @@
 
 
 
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>mtEvents('#bindtarget', '#delegateTarget', 'longtap', (e) => {
-  //do somthing
-})</code></pre>
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="mtEvents"><span class="type-signature"></span>mtEvents<span class="signature">(bindTarget, delegateTarget, event, callback)</span><span class="type-signature"> &rarr; {HTMLDivElement}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    mtEvents 绑定事件方法
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>bindTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
-|
-
-<span class="param-type">HTMLDivElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">事件绑定DOM对象</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>delegateTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">代理对象</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>event</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">待绑定事件</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">事件回调</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index-npm.js.html">index-npm.js</a>, <a href="index-npm.js.html#line21">line 21</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    bindTarget                             事件绑定DOM对象
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">HTMLDivElement</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>mtEvents('#bindtarget', '#delegateTarget', 'longtap', (e) => {
-  //do somthing
-})</code></pre>
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="mtEvents"><span class="type-signature"></span>mtEvents<span class="signature">(bindTarget, delegateTarget, event, callback)</span><span class="type-signature"> &rarr; {HTMLDivElement}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    mtEvents 绑定事件方法
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>bindTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
-|
-
-<span class="param-type">HTMLDivElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">事件绑定DOM对象</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>delegateTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">代理对象</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>event</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">待绑定事件</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">事件回调</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line19">line 19</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    bindTarget                             事件绑定DOM对象
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">HTMLDivElement</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
+    <h5>Examples</h5>
     
     <pre class="prettyprint"><code>mtEvents('#bindtarget', '#delegateTarget', 'longtap', (e) => {  //do somthing})</code></pre>
 
+    <pre class="prettyprint"><code>bind(node, {event: handler})</code></pre>
 
+    <pre class="prettyprint"><code>bind(node, selector, {event: handler})</code></pre>
 
-        
-    
+    <pre class="prettyprint"><code>bind('#bindTarget', ...args)</code></pre>
 
-    
+    <pre class="prettyprint"><code>bind('#bindTarget', '#delegateTarget', 'click', handler)</code></pre>
 
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2><span class="attribs"><span class="type-signature"></span></span>MTEvents<span class="signature">()</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description">MTEvents类</div>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-    
-    <h2>Constructor</h2>
-    
-
-    
-    <h4 class="name" id="MTEvents"><span class="type-signature"></span>new MTEvents<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index-npm.js.html">index-npm.js</a>, <a href="index-npm.js.html#line8">line 8</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="mtEvents"><span class="type-signature"></span>mtEvents<span class="signature">(bindTarget, delegateTarget, event, callback)</span><span class="type-signature"> &rarr; {HTMLDivElement}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    mtEvents 绑定事件方法
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>bindTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
-|
-
-<span class="param-type">HTMLDivElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">事件绑定DOM对象</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>delegateTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">代理对象</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>event</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">待绑定事件</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">事件回调</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index-Browser.js.html">index-Browser.js</a>, <a href="index-Browser.js.html#line21">line 21</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    bindTarget                             事件绑定DOM对象
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">HTMLDivElement</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>mtEvents('#bindtarget', '#delegateTarget', 'longtap', (e) => {
-  //do somthing
-})</code></pre>
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="mtEvents"><span class="type-signature"></span>mtEvents<span class="signature">(bindTarget, delegateTarget, event, callback)</span><span class="type-signature"> &rarr; {HTMLDivElement}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    mtEvents 绑定事件方法
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>bindTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
-|
-
-<span class="param-type">HTMLDivElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">事件绑定DOM对象</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>delegateTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">代理对象</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>event</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">待绑定事件</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">事件回调</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index-npm.js.html">index-npm.js</a>, <a href="index-npm.js.html#line21">line 21</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    bindTarget                             事件绑定DOM对象
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">HTMLDivElement</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>mtEvents('#bindtarget', '#delegateTarget', 'longtap', (e) => {
-  //do somthing
-})</code></pre>
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="mtEvents"><span class="type-signature"></span>mtEvents<span class="signature">(bindTarget, delegateTarget, event, callback)</span><span class="type-signature"> &rarr; {HTMLDivElement}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    mtEvents 绑定事件方法
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>bindTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
-|
-
-<span class="param-type">HTMLDivElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">事件绑定DOM对象</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>delegateTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">代理对象</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>event</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">待绑定事件</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">事件回调</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line19">line 19</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    bindTarget                             事件绑定DOM对象
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">HTMLDivElement</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>mtEvents('#bindtarget', '#delegateTarget', 'longtap', (e) => {  //do somthing})</code></pre>
-
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2><span class="attribs"><span class="type-signature"></span></span>MTEvents<span class="signature">()</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description">MTEvents类</div>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-    
-    <h2>Constructor</h2>
-    
-
-    
-    <h4 class="name" id="MTEvents"><span class="type-signature"></span>new MTEvents<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line6">line 6</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="mtEvents"><span class="type-signature"></span>mtEvents<span class="signature">(bindTarget, delegateTarget, event, callback)</span><span class="type-signature"> &rarr; {HTMLDivElement}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    mtEvents 绑定事件方法
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>bindTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
-|
-
-<span class="param-type">HTMLDivElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">事件绑定DOM对象</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>delegateTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">代理对象</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>event</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">待绑定事件</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">事件回调</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index-Browser.js.html">index-Browser.js</a>, <a href="index-Browser.js.html#line21">line 21</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    bindTarget                             事件绑定DOM对象
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">HTMLDivElement</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>mtEvents('#bindtarget', '#delegateTarget', 'longtap', (e) => {
-  //do somthing
-})</code></pre>
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="mtEvents"><span class="type-signature"></span>mtEvents<span class="signature">(bindTarget, delegateTarget, event, callback)</span><span class="type-signature"> &rarr; {HTMLDivElement}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    mtEvents 绑定事件方法
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>bindTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
-|
-
-<span class="param-type">HTMLDivElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">事件绑定DOM对象</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>delegateTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">代理对象</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>event</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">待绑定事件</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">事件回调</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index-npm.js.html">index-npm.js</a>, <a href="index-npm.js.html#line21">line 21</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    bindTarget                             事件绑定DOM对象
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">HTMLDivElement</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>mtEvents('#bindtarget', '#delegateTarget', 'longtap', (e) => {
-  //do somthing
-})</code></pre>
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="mtEvents"><span class="type-signature"></span>mtEvents<span class="signature">(bindTarget, delegateTarget, event, callback)</span><span class="type-signature"> &rarr; {HTMLDivElement}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    mtEvents 绑定事件方法
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>bindTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
-|
-
-<span class="param-type">HTMLDivElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">事件绑定DOM对象</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>delegateTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">代理对象</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>event</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">待绑定事件</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">事件回调</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line19">line 19</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    bindTarget                             事件绑定DOM对象
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">HTMLDivElement</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>mtEvents('#bindtarget', '#delegateTarget', 'longtap', (e) => {  //do somthing})</code></pre>
+    <pre class="prettyprint"><code>bind('#bindTarget', '#delegateTarget', 'longtap', handler)</code></pre>
 
 
 
@@ -2541,13 +607,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="MTEvents.html">MTEvents</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Events.html">Events</a></li><li><a href="MTEvents.html">MTEvents</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Aug 02 2018 14:40:45 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Aug 02 2018 15:50:48 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>

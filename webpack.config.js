@@ -1,6 +1,6 @@
 module.exports = {
   mode: "production",
-  entry: './core/index-Browser.js',
+  entry: './lib/index-Browser.js',
   output: {
     filename: "mtevents.min.js"
   },

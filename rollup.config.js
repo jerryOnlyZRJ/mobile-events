@@ -1,16 +1,20 @@
 const replace = require('rollup-plugin-replace')
 const argv = require('yargs-parser')(process.argv.slice(2));
+const copy = require('rollup-plugin-copy')
 const platform = argv.platform
 
 export default {
-  input: './core/index.js',
+  entry: './core/index.js',
   output: {
-    file: `core/index-${platform}.js`,
+    file: `lib/index-${platform}.js`,
     format: 'cjs'
   },
   plugins: [
     replace({
       "process.env.PLATFORM": JSON.stringify(platform)
+    }),
+    copy({
+      './core': 'lib'
     })
   ]
 };

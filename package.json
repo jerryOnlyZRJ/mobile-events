@@ -2,7 +2,7 @@
   "name": "mt-events",
   "version": "1.0.2",
   "description": "Make mobile events user-friendly.",
-  "main": "core/index-npm.js",
+  "main": "lib/index-npm.js",
   "scripts": {
     "test": "jest --coverage",
     "build": "npm run build:browser &&  npm run build:npm && webpack",
@@ -50,6 +50,7 @@
     "lint-staged": "^7.2.0",
     "prettier": "^1.14.0",
     "rollup": "^0.63.5",
+    "rollup-plugin-copy": "^0.2.3",
     "rollup-plugin-replace": "^2.0.0",
     "webpack": "^4.16.3",
     "webpack-cli": "^3.1.0"
