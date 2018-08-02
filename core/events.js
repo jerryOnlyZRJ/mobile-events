@@ -40,6 +40,7 @@ class Events {
     bindTarget.addEventListener(
       'touchstart',
       e => {
+        e.preventDefault()
         const target = this._delegateEvent(
           bindTarget,
           delegateTarget,
@@ -49,7 +50,7 @@ class Events {
           timer = setTimeout(() => {
             clearTimeout(timer)
             timer = null
-          }, 500)
+          }, 1000)
         } else {
         }
       },
@@ -65,9 +66,9 @@ class Events {
         )
         if ((delegateTarget && target) || !delegateTarget) {
           if (timer) {
-            longTapCallback(e)
-          } else {
             shortTapCallback && shortTapCallback(e)
+          } else {
+            longTapCallback(e)
           }
           clearTimeout(timer)
           timer = null

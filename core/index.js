@@ -33,7 +33,7 @@ class MTEvents {
     // arrange user input
     if (typeof delegateTarget === 'object') {
       return this._handleEventObj(bindTarget, undefined, delegateTarget)
-    } else if (typeof event === 'object') {
+    } else if (!(event instanceof Array)) {
       return this._handleEventObj(bindTarget, delegateTarget, event)
     }
     if (typeof delegateTarget === 'string' && typeof event === 'function') {
@@ -54,8 +54,9 @@ class MTEvents {
           callback(e)
         }
       })
+    } else {
+      events[event](bindTarget, callback, delegateTarget)
     }
-    events[event](bindTarget, callback, delegateTarget)
     return bindTarget
   }
   /**
