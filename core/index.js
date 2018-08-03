@@ -90,5 +90,5 @@ Object.setPrototypeOf(mtEventsFun, mtEventsPrototype)
 if (process.env.PLATFORM === 'Browser') {
   window.mtEvents = mtEventsFun
 } else {
-  module.exports = MTEvents
+  module.exports = mtEventsFun
 }

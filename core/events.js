@@ -51,7 +51,6 @@ class Events {
             clearTimeout(timer)
             timer = null
           }, 1000)
-        } else {
         }
       },
       false
