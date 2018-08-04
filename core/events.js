@@ -27,6 +27,30 @@ class Events {
     return null
   }
   /**
+   * _createTouchEvent 支持浏览器调用touch系列事件，初始化事件
+   * @param  {String} type 事件名称(touchend)
+   * @return {Object}      浏览器原生事件对象
+   */
+  _createTouchEvent (type) {
+    return new window.Event(type, {
+      bubbles: true,
+      cancelable: true
+    })
+  }
+  /**
+   * _dispatchTouchEvent 出发touch系列事件
+   * @param  {String(Selector) | HTMLDivElement} eventTarget 事件触发DOM元素
+   * @param  {Object} event       浏览器原生事件对象
+   * @return {HTMLDivElement}             事件触发DOM元素
+   */
+  _dispatchTouchEvent (eventTarget, event) {
+    if (typeof eventTarget === 'string') {
+      eventTarget = document.querySelector(eventTarget)
+    }
+    eventTarget.dispatchEvent(event)
+    return eventTarget
+  }
+  /**
    * longtap 自定义长按事件
    */
   longtap (bindTarget, callback, delegateTarget) {
