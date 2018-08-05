@@ -37,27 +37,20 @@ class Events {
       longTapCallback = callback[0]
       shortTapCallback = callback[1]
     }
-    bindTarget.addEventListener(
-      'touchstart',
-      e => {
-        e.preventDefault()
-        const target = this._delegateEvent(
-          bindTarget,
-          delegateTarget,
-          e.target
-        )
-        if ((delegateTarget && target) || !delegateTarget) {
-          timer = setTimeout(() => {
-            clearTimeout(timer)
-            timer = null
-          }, 1000)
-        }
-      },
-      false
-    )
+    bindTarget.addEventListener('touchstart', e => {
+      e.preventDefault()
+      const target = this._delegateEvent(bindTarget, delegateTarget, e.target)
+      if ((delegateTarget && target) || !delegateTarget) {
+        timer = setTimeout(() => {
+          clearTimeout(timer)
+          timer = null
+        }, 1000)
+      }
+    })
     bindTarget.addEventListener(
       'touchend',
       e => {
+        e.preventDefault()
         const target = this._delegateEvent(
           bindTarget,
           delegateTarget,

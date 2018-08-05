@@ -76,3 +76,9 @@ describe('test delegate event', () => {
 		expect(output.innerHTML).toBe("delegateTarget click")
 	})
 })
+
+describe('test diy event longtap', () => {
+	// expect("test bind('#bindTarget', 'longtap', handler)", () => {
+
+	// })
+})

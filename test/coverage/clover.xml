@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1533373463315" clover="3.2.0">
-  <project timestamp="1533373463315" name="All files">
-    <metrics statements="76" coveredstatements="32" conditionals="48" coveredconditionals="20" methods="20" coveredmethods="5" elements="144" coveredelements="57" complexity="0" loc="76" ncloc="76" packages="1" files="2" classes="2">
-      <file name="events.js" path="F:\workspaces\mobile-events\lib\events.js">
-        <metrics statements="51" coveredstatements="8" conditionals="31" coveredconditionals="4" methods="16" coveredmethods="1"/>
+<coverage generated="1533438352083" clover="3.2.0">
+  <project timestamp="1533438352083" name="All files">
+    <metrics statements="77" coveredstatements="32" conditionals="48" coveredconditionals="20" methods="20" coveredmethods="5" elements="145" coveredelements="57" complexity="0" loc="77" ncloc="77" packages="1" files="2" classes="2">
+      <file name="events.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/events.js">
+        <metrics statements="52" coveredstatements="8" conditionals="31" coveredconditionals="4" methods="16" coveredmethods="1"/>
         <line num="18" count="11" type="cond" truecount="2" falsecount="0"/>
         <line num="19" count="8" type="stmt"/>
         <line num="20" count="8" type="stmt"/>
@@ -24,7 +24,8 @@
         <line num="50" count="0" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
         <line num="52" count="0" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
         <line num="61" count="0" type="stmt"/>
         <line num="66" count="0" type="cond" truecount="0" falsecount="5"/>
         <line num="67" count="0" type="cond" truecount="0" falsecount="2"/>
@@ -56,7 +57,7 @@
         <line num="107" count="0" type="stmt"/>
         <line num="124" count="1" type="stmt"/>
       </file>
-      <file name="index-npm.js" path="F:\workspaces\mobile-events\lib\index-npm.js">
+      <file name="index-npm.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/index-npm.js">
         <metrics statements="25" coveredstatements="24" conditionals="17" coveredconditionals="16" methods="4" coveredmethods="4"/>
         <line num="3" count="1" type="stmt"/>
         <line num="40" count="9" type="cond" truecount="2" falsecount="0"/>
