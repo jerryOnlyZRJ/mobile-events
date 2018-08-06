@@ -81,17 +81,20 @@ class Events {
           const x = Math.abs(thisClientX - lastClientX)
           const y = Math.abs(thisClientY - lastClientY)
           if (x <= xrange && y <= yrange) {
+            e.preventDefault()
             callback(e)
           } else {
-            lastClientX = e.changedTouches[0].clientX
-            lastClientY = e.changedTouches[0].clientY
-            timer = setTimeout(() => {
-              lastClientX = null
-              lastClientY = null
-              clearTimeout(timer)
-              timer = null
-            }, 500)
+            console.log('Double click in different area!')
           }
+        } else {
+          lastClientX = e.changedTouches[0].clientX
+          lastClientY = e.changedTouches[0].clientY
+          timer = setTimeout(() => {
+            lastClientX = null
+            lastClientY = null
+            clearTimeout(timer)
+            timer = null
+          }, 500)
         }
       }
     })
