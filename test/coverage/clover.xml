@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
 <coverage generated="1533532275546" clover="3.2.0">
   <project timestamp="1533532275546" name="All files">
     <metrics statements="84" coveredstatements="68" conditionals="52" coveredconditionals="45" methods="22" coveredmethods="13" elements="158" coveredelements="126" complexity="0" loc="84" ncloc="84" packages="1" files="3" classes="3">
       <file name="events.js" path="D:\mobile-events\lib\events.js">
         <metrics statements="53" coveredstatements="37" conditionals="31" coveredconditionals="24" methods="16" coveredmethods="7"/>
         <line num="18" count="36" type="cond" truecount="2" falsecount="0"/>
-=======
-<coverage generated="1533523345739" clover="3.2.0">
-  <project timestamp="1533523345739" name="All files">
-    <metrics statements="82" coveredstatements="60" conditionals="52" coveredconditionals="41" methods="22" coveredmethods="11" elements="156" coveredelements="112" complexity="0" loc="82" ncloc="82" packages="1" files="3" classes="3">
-      <file name="events.js" path="F:\workspaces\mobile-events\lib\events.js">
-        <metrics statements="51" coveredstatements="29" conditionals="31" coveredconditionals="20" methods="16" coveredmethods="5"/>
-        <line num="18" count="35" type="cond" truecount="2" falsecount="0"/>
->>>>>>> a4a20f9605ba3bc65a5123d3ab87cc3aa4e2fbe2
         <line num="19" count="24" type="stmt"/>
         <line num="20" count="24" type="stmt"/>
         <line num="21" count="24" type="cond" truecount="2" falsecount="0"/>
