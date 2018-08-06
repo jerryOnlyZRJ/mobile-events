@@ -10,12 +10,16 @@
     "build:npm": "rollup --config --platform npm",
     "jsdoc": "jsdoc ./core/ -d ./docs",
     "lint": "eslint core/*.js --fix",
-    "precommit": "npm run jsdoc && npm run test && lint-staged "
+    "precommit": "npm run jsdoc && lint-staged",
+    "prepush": "npm t"
   },
   "lint-staged": {
     "core/*.js": [
       "prettier --write",
       "eslint --fix",
+      "git add"
+    ],
+    "*": [
       "git add"
     ]
   },

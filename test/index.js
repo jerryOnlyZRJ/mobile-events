@@ -78,6 +78,8 @@ describe('test delegate event', () => {
 	})
 })
 
-describe('test longtap event', () => {
+describe('test diy event longtap', () => {
+	// expect("test bind('#bindTarget', 'longtap', handler)", () => {
 
+	// })
 })
