@@ -82,16 +82,16 @@ class Events {
           const y = Math.abs(thisClientY - lastClientY)
           if (x <= xrange && y <= yrange) {
             callback(e)
-          } else {
-            lastClientX = e.changedTouches[0].clientX
-            lastClientY = e.changedTouches[0].clientY
-            timer = setTimeout(() => {
-              lastClientX = null
-              lastClientY = null
-              clearTimeout(timer)
-              timer = null
-            }, 500)
           }
+        } else {
+          lastClientX = e.changedTouches[0].clientX
+          lastClientY = e.changedTouches[0].clientY
+          timer = setTimeout(() => {
+            lastClientX = null
+            lastClientY = null
+            clearTimeout(timer)
+            timer = null
+          }, 500)
         }
       }
     })
