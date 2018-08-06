@@ -126,7 +126,6 @@ describe('test delegate event', () => {
 })
 
 describe('test DIY event longtap', () => {
-
 	test("test bind('#bindTarget', 'longtap', handler)", async () => {
 		document.body.innerHTML = '<div id="bindTarget"></div>'
 		const bindTarget = document.querySelector('#bindTarget')
@@ -195,7 +194,7 @@ describe('test DIY event longtap', () => {
 	})
 })
 
-describe('remove DIY events', () => {
+describe('remove DIY longtap event', () => {
 	test("test remove('#bindTarget', 'longtap', handler)", async () => {
 		document.body.innerHTML = '<div id="bindTarget"></div>'
 		const bindTarget = document.querySelector('#bindTarget')
@@ -293,5 +292,36 @@ describe('test DIY event dbtap', () => {
 		await delay4Longtap('#delegateChild', 100)
 		await delay4Longtap('#delegateChild', 100)
 		expect(output.innerHTML).toBe("dbtap")
+	})
+})
+
+describe('remove DIY dbtap event', () => {
+	function delay4OtherLongtap(bindTarget, delay) {
+		return new Promise((resolve, reject) => {
+			const touchstart = touch.createTouchEvent('touchstart')
+			const touchend = touch.createTouchEvent('touchend')
+			touchend.changedTouches = [];
+			touchend.changedTouches.push({
+				'clientX': 200,
+				'clientY': 100
+			})
+			touch.dispatchTouchEvent(bindTarget, touchstart)
+			setTimeout(() => {
+				touch.dispatchTouchEvent(bindTarget, touchend)
+				resolve()
+			}, delay)
+		})
+	}
+	test("test remove('#bindTarget', 'dbtap', handler)", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		const dbtapHandler = e => {
+			bindTarget.innerHTML = 'dbtap'
+		}
+		mtEvents(bindTarget, 'dbtap', dbtapHandler)
+		mtEvents.remove(bindTarget, 'dbtap', dbtapHandler)
+		await delay4Longtap('#bindTarget', 100)
+		await delay4Longtap('#bindTarget', 100)
+		expect(bindTarget.innerHTML).toBe("")
 	})
 })
