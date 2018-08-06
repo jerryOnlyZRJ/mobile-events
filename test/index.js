@@ -160,25 +160,88 @@ describe('test DIY event longtap', () => {
 })
 
 describe('test DIY event dbtap', () => {
-	// function delay4Longtap(bindTarget, delay) {
-	// 	return new Promise((resolve, reject) => {
-	// 		const touchstart = touch.createTouchEvent('touchstart')
-	// 		const touchend = touch.createTouchEvent('touchend')
-	// 		touch.dispatchTouchEvent(bindTarget, touchstart)
-	// 		setTimeout(() => {
-	// 			touch.dispatchTouchEvent(bindTarget, touchend)
-	// 			resolve()
-	// 		}, delay)
-	// 	})
-	// }
-	// test("test bind('#bindTarget', 'dbtap', handler)", async () => {
-	// 	document.body.innerHTML = '<div id="bindTarget"></div>'
-	// 	const bindTarget = document.querySelector('#bindTarget')
-	// 	mtEvents(bindTarget, 'dbtap', e => {
-	// 		bindTarget.innerHTML = 'dbtap'
-	// 	})
-	// 	await delay4Longtap('#bindTarget', 100)
-	// 	await delay4Longtap('#bindTarget', 100)
-	// 	expect(bindTarget.innerHTML).toBe("dbtap")
-	// })
+	function delay4Longtap(bindTarget, delay) {
+		return new Promise((resolve, reject) => {
+			const touchstart = touch.createTouchEvent('touchstart')
+			const touchend = touch.createTouchEvent('touchend')
+			touchend.changedTouches = [];
+			touchend.changedTouches.push({
+				'clientX': 446,
+				'clientY': 368
+			})
+			touch.dispatchTouchEvent(bindTarget, touchstart)
+			setTimeout(() => {
+				touch.dispatchTouchEvent(bindTarget, touchend)
+				resolve()
+			}, delay)
+		})
+	}
+	function delay4OtherLongtap(bindTarget, delay) {
+		return new Promise((resolve, reject) => {
+			const touchstart = touch.createTouchEvent('touchstart')
+			const touchend = touch.createTouchEvent('touchend')
+			touchend.changedTouches = [];
+			touchend.changedTouches.push({
+				'clientX': 200,
+				'clientY': 100
+			})
+			touch.dispatchTouchEvent(bindTarget, touchstart)
+			setTimeout(() => {
+				touch.dispatchTouchEvent(bindTarget, touchend)
+				resolve()
+			}, delay)
+		})
+	}
+	test("test bind('#bindTarget', 'dbtap', handler)", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		mtEvents(bindTarget, 'dbtap', e => {
+			bindTarget.innerHTML = 'dbtap'
+		})
+		await delay4Longtap('#bindTarget', 100)
+		await delay4Longtap('#bindTarget', 100)
+		expect(bindTarget.innerHTML).toBe("dbtap")
+	})
+	test("test bind('#bindTarget', 'dbtap', handler)", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		mtEvents(bindTarget, 'dbtap', e => {
+			bindTarget.innerHTML = 'dbtap'
+		})
+		await delay4Longtap('#bindTarget', 100)
+		await delay4OtherLongtap('#bindTarget', 100)
+		expect(bindTarget.innerHTML).toBe("")
+	})
+	test("test bind('#bindTarget', 'dbtap', handler)", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		mtEvents(bindTarget, 'dbtap', e => {
+			bindTarget.innerHTML = 'dbtap'
+		})
+		await delay4Longtap('#bindTarget', 100)
+		setTimeout(() => {
+			delay4OtherLongtap('#bindTarget', 100)
+			expect(bindTarget.innerHTML).toBe("")
+		}, 1200)
+	})
+	test("test bind('#bindTarget', '#delegateTarget', 'dbtap', handler) make difference", async () => {
+		document.body.innerHTML = '<div id="bindTarget"><div id="delegateParent"><div id="delegateTarget"><div id="delegateChild"></div></div></div></div><div id="output"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		const output = document.querySelector('#output')
+		mtEvents(bindTarget, "#delegateTarget", 'dbtap', e => {
+			output.innerHTML = 'dbtap'
+		})
+		await delay4Longtap('#bindTarget', 100)
+		await delay4Longtap('#bindTarget', 100)
+		expect(output.innerHTML).toBe("")
+		await delay4Longtap('#delegateParent', 100)
+		await delay4Longtap('#delegateParent', 100)
+		expect(output.innerHTML).toBe("")
+		await delay4Longtap('#delegateTarget', 100)
+		await delay4Longtap('#delegateTarget', 100)
+		expect(output.innerHTML).toBe("dbtap")
+		await delay4Longtap('#delegateChild', 100)
+		await delay4Longtap('#delegateChild', 100)
+		expect(output.innerHTML).toBe("dbtap")
+	})
 })
