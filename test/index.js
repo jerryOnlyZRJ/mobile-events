@@ -1,7 +1,18 @@
 const mtEvents = require('../lib/index-npm.js')
 const touch = require('../core/touch.js')
 
-//TODOS: Add arguments validity test case
+function delay4Longtap(bindTarget, delay) {
+	return new Promise((resolve, reject) => {
+		const touchstart = touch.createTouchEvent('touchstart')
+		const touchend = touch.createTouchEvent('touchend')
+		touch.dispatchTouchEvent(bindTarget, touchstart)
+		setTimeout(() => {
+			touch.dispatchTouchEvent(bindTarget, touchend)
+			resolve()
+		}, delay)
+	})
+}
+
 describe('test arguments validity', () => {
 	test('test _checkBindTargetInput', () => {
 		document.body.innerHTML = '<div id="test-element"></div>'
@@ -17,7 +28,7 @@ describe('test MTEvents.bind', () => {
 		document.body.innerHTML = '<div id="bindTarget"></div>'
 		const bindTarget = document.querySelector('#bindTarget')
 		mtEvents(bindTarget, 'click', e => {
-			bindTarget.innerHTML = "click"
+			bindTarget.innerHTML += "click"
 		})
 		bindTarget.click()
 		expect(bindTarget.innerHTML).toBe("click")
@@ -41,6 +52,31 @@ describe('test MTEvents.bind', () => {
 		})
 		bindTarget.click()
 		expect(bindTarget.innerHTML).toBe("click")
+	})
+})
+
+describe('test remove native event', () => {
+	test("test remove('#bindTarget', 'click', handler)", () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		const clickHandler = e => bindTarget.innerHTML += "click"
+		mtEvents('#bindTarget', 'click', clickHandler)
+		mtEvents.remove(bindTarget, 'click', clickHandler)
+		bindTarget.click()
+		expect(bindTarget.innerHTML).toBe("")
+	})
+	test("test remove('#bindTarget', {'click': handler})", () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		const clickHandler = e => bindTarget.innerHTML += "click"
+		mtEvents('#bindTarget', {
+			click: clickHandler
+		})
+		mtEvents.remove(bindTarget, {
+			click: clickHandler
+		})
+		bindTarget.click()
+		expect(bindTarget.innerHTML).toBe("")
 	})
 })
 
@@ -90,17 +126,7 @@ describe('test delegate event', () => {
 })
 
 describe('test DIY event longtap', () => {
-	function delay4Longtap(bindTarget, delay) {
-		return new Promise((resolve, reject) => {
-			const touchstart = touch.createTouchEvent('touchstart')
-			const touchend = touch.createTouchEvent('touchend')
-			touch.dispatchTouchEvent(bindTarget, touchstart)
-			setTimeout(() => {
-				touch.dispatchTouchEvent(bindTarget, touchend)
-				resolve()
-			}, delay)
-		})
-	}
+
 	test("test bind('#bindTarget', 'longtap', handler)", async () => {
 		document.body.innerHTML = '<div id="bindTarget"></div>'
 		const bindTarget = document.querySelector('#bindTarget')
@@ -169,12 +195,25 @@ describe('test DIY event longtap', () => {
 	})
 })
 
+describe('remove DIY events', () => {
+	test("test remove('#bindTarget', 'longtap', handler)", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		const longtapHandler = e => {
+			bindTarget.innerHTML = 'longtap'
+		}
+		mtEvents(bindTarget, 'longtap', longtapHandler)
+		mtEvents.remove(bindTarget, 'longtap', longtapHandler)
+		await delay4Longtap(bindTarget, 1200)
+		expect(bindTarget.innerHTML).toBe("")
+	})
+})
+
 describe('test DIY event dbtap', () => {
 	function delay4Longtap(bindTarget, delay) {
 		return new Promise((resolve, reject) => {
 			const touchstart = touch.createTouchEvent('touchstart')
 			const touchend = touch.createTouchEvent('touchend')
-			touchend.changedTouches = [];
 			touchend.changedTouches.push({
 				'clientX': 446,
 				'clientY': 368

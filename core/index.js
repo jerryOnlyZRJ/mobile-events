@@ -5,6 +5,9 @@ const events = require('./events.js')
  * 库内所有不对外发布的方法都以私有变量格式命名
  */
 class MTEvents {
+  constructor () {
+    this.userCallback2Handler = new Map()
+  }
   /**
    * mtEvents 绑定事件方法
    * @param  {String(Selector) | HTMLElement}   bindTarget              事件绑定DOM对象
@@ -50,17 +53,19 @@ class MTEvents {
       return this.bind(bindTarget, undefined, delegateTarget, event)
     }
     bindTarget = this._checkBindTargetInput(bindTarget)
+    const eventHandler = e => {
+      const target = events._delegateEvent(
+        bindTarget,
+        delegateTarget,
+        e.target
+      )
+      if ((delegateTarget && target) || !delegateTarget) {
+        callback(e)
+      }
+    }
+    this.userCallback2Handler.set(callback, eventHandler)
     if (!this._isEventDIY(event)) {
-      bindTarget.addEventListener(event, e => {
-        const target = events._delegateEvent(
-          bindTarget,
-          delegateTarget,
-          e.target
-        )
-        if ((delegateTarget && target) || !delegateTarget) {
-          callback(e)
-        }
-      })
+      bindTarget.addEventListener(event, eventHandler)
     } else {
       events[event].bind(bindTarget, callback, delegateTarget)
     }
@@ -71,6 +76,10 @@ class MTEvents {
    * @param  {String(Selector) | HTMLElement}   bindTarget              事件绑定DOM对象
    * @param {String}                              event                                            绑定事件名称
    * @return {HTMLElement} [description]
+   * @example
+   * const handler = () => console.log('handler')
+   * bind('#bindTarget', 'click', handler)
+   * remove('#bindTarget', 'click', handler)
    */
   remove (bindTarget, event, callback) {
     bindTarget = this._checkBindTargetInput(bindTarget)
@@ -80,7 +89,10 @@ class MTEvents {
       })
     }
     if (!this._isEventDIY(event)) {
-      bindTarget.removeEventListener(event, callback)
+      bindTarget.removeEventListener(
+        event,
+        this.userCallback2Handler.get(callback)
+      )
     } else {
       events[event].remove(bindTarget, callback)
     }
@@ -127,6 +139,7 @@ let mtEvents = new MTEvents()
 const mtEventsPrototype = Object.create(MTEvents.prototype)
 const mtEventsFun = mtEvents.bind.bind(mtEvents)
 Object.setPrototypeOf(mtEventsFun, mtEventsPrototype)
+mtEventsFun.userCallback2Handler = mtEvents.userCallback2Handler
 
 if (process.env.PLATFORM === 'Browser') {
   window.mtEvents = mtEventsFun

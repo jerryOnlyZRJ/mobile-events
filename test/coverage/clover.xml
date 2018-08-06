@@ -1,128 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1533548007069" clover="3.2.0">
-  <project timestamp="1533548007069" name="All files">
-    <metrics statements="108" coveredstatements="96" conditionals="60" coveredconditionals="56" methods="23" coveredmethods="19" elements="191" coveredelements="171" complexity="0" loc="108" ncloc="108" packages="2" files="3" classes="3">
+<coverage generated="1533555464118" clover="3.2.0">
+  <project timestamp="1533555464118" name="All files">
+    <metrics statements="112" coveredstatements="110" conditionals="60" coveredconditionals="60" methods="24" coveredmethods="23" elements="196" coveredelements="193" complexity="0" loc="112" ncloc="112" packages="2" files="3" classes="3">
       <package name="core">
         <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <file name="touch.js" path="F:\workspaces\mobile-events\core\touch.js">
           <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-          <line num="12" count="50" type="stmt"/>
-          <line num="24" count="50" type="cond" truecount="2" falsecount="0"/>
+          <line num="12" count="52" type="stmt"/>
+          <line num="24" count="52" type="cond" truecount="2" falsecount="0"/>
           <line num="25" count="32" type="stmt"/>
-          <line num="27" count="50" type="stmt"/>
-          <line num="28" count="50" type="stmt"/>
+          <line num="27" count="52" type="stmt"/>
+          <line num="28" count="52" type="stmt"/>
           <line num="32" count="1" type="stmt"/>
         </file>
       </package>
       <package name="lib">
-        <metrics statements="102" coveredstatements="90" conditionals="58" coveredconditionals="54" methods="21" coveredmethods="17"/>
+        <metrics statements="106" coveredstatements="104" conditionals="58" coveredconditionals="58" methods="22" coveredmethods="21"/>
         <file name="events.js" path="F:\workspaces\mobile-events\lib\events.js">
-          <metrics statements="61" coveredstatements="57" conditionals="33" coveredconditionals="33" methods="11" coveredmethods="9"/>
+          <metrics statements="61" coveredstatements="59" conditionals="33" coveredconditionals="33" methods="11" coveredmethods="10"/>
           <line num="14" count="1" type="stmt"/>
-          <line num="18" count="4" type="stmt"/>
+          <line num="18" count="5" type="stmt"/>
           <line num="20" count="12" type="stmt"/>
           <line num="21" count="12" type="stmt"/>
-          <line num="22" count="12" type="cond" truecount="5" falsecount="0"/>
-          <line num="23" count="8" type="stmt"/>
-          <line num="24" count="4" type="stmt"/>
-          <line num="25" count="4" type="stmt"/>
-          <line num="30" count="12" type="stmt"/>
-          <line num="31" count="12" type="cond" truecount="5" falsecount="0"/>
-          <line num="32" count="8" type="cond" truecount="2" falsecount="0"/>
-          <line num="33" count="4" type="cond" truecount="2" falsecount="0"/>
-          <line num="35" count="4" type="stmt"/>
-          <line num="37" count="8" type="stmt"/>
-          <line num="38" count="8" type="stmt"/>
-          <line num="42" count="4" type="stmt"/>
+          <line num="26" count="12" type="cond" truecount="5" falsecount="0"/>
+          <line num="27" count="8" type="stmt"/>
+          <line num="28" count="4" type="stmt"/>
+          <line num="29" count="4" type="stmt"/>
+          <line num="34" count="12" type="stmt"/>
+          <line num="39" count="12" type="cond" truecount="5" falsecount="0"/>
+          <line num="40" count="8" type="cond" truecount="2" falsecount="0"/>
+          <line num="41" count="4" type="cond" truecount="2" falsecount="0"/>
           <line num="43" count="4" type="stmt"/>
-          <line num="44" count="4" type="stmt"/>
-          <line num="45" count="4" type="cond" truecount="2" falsecount="0"/>
-          <line num="46" count="3" type="stmt"/>
-          <line num="47" count="3" type="stmt"/>
-          <line num="49" count="4" type="stmt"/>
-          <line num="50" count="4" type="stmt"/>
-          <line num="54" count="0" type="stmt"/>
-          <line num="55" count="0" type="stmt"/>
-          <line num="62" count="1" type="stmt"/>
-          <line num="65" count="4" type="stmt"/>
-          <line num="67" count="13" type="stmt"/>
-          <line num="68" count="13" type="cond" truecount="5" falsecount="0"/>
-          <line num="69" count="9" type="cond" truecount="2" falsecount="0"/>
-          <line num="70" count="4" type="stmt"/>
-          <line num="71" count="4" type="stmt"/>
-          <line num="72" count="4" type="stmt"/>
-          <line num="73" count="4" type="stmt"/>
-          <line num="74" count="4" type="stmt"/>
-          <line num="75" count="4" type="stmt"/>
-          <line num="76" count="4" type="cond" truecount="4" falsecount="0"/>
-          <line num="77" count="3" type="stmt"/>
-          <line num="78" count="3" type="stmt"/>
-          <line num="80" count="1" type="stmt"/>
-          <line num="83" count="5" type="stmt"/>
-          <line num="84" count="5" type="stmt"/>
-          <line num="85" count="5" type="stmt"/>
-          <line num="86" count="1" type="stmt"/>
-          <line num="87" count="1" type="stmt"/>
-          <line num="88" count="1" type="cond" truecount="2" falsecount="0"/>
-          <line num="89" count="1" type="stmt"/>
-          <line num="95" count="4" type="stmt"/>
-          <line num="96" count="4" type="stmt"/>
-          <line num="97" count="4" type="stmt"/>
-          <line num="100" count="4" type="stmt"/>
-          <line num="103" count="0" type="stmt"/>
-          <line num="104" count="0" type="stmt"/>
-          <line num="117" count="48" type="cond" truecount="2" falsecount="0"/>
-          <line num="118" count="32" type="stmt"/>
-          <line num="119" count="32" type="stmt"/>
-          <line num="120" count="32" type="cond" truecount="2" falsecount="0"/>
-          <line num="121" count="16" type="stmt"/>
-          <line num="123" count="16" type="stmt"/>
-          <line num="126" count="16" type="stmt"/>
-          <line num="130" count="1" type="stmt"/>
+          <line num="45" count="8" type="stmt"/>
+          <line num="46" count="8" type="stmt"/>
+          <line num="50" count="5" type="stmt"/>
+          <line num="51" count="5" type="stmt"/>
+          <line num="52" count="5" type="stmt"/>
+          <line num="53" count="5" type="cond" truecount="2" falsecount="0"/>
+          <line num="54" count="3" type="stmt"/>
+          <line num="55" count="3" type="stmt"/>
+          <line num="57" count="5" type="stmt"/>
+          <line num="61" count="5" type="stmt"/>
+          <line num="68" count="1" type="stmt"/>
+          <line num="69" count="2" type="stmt"/>
+          <line num="76" count="1" type="stmt"/>
+          <line num="79" count="4" type="stmt"/>
+          <line num="81" count="13" type="stmt"/>
+          <line num="86" count="13" type="cond" truecount="5" falsecount="0"/>
+          <line num="87" count="9" type="cond" truecount="2" falsecount="0"/>
+          <line num="88" count="4" type="stmt"/>
+          <line num="89" count="4" type="stmt"/>
+          <line num="90" count="4" type="stmt"/>
+          <line num="91" count="4" type="stmt"/>
+          <line num="92" count="4" type="stmt"/>
+          <line num="93" count="4" type="stmt"/>
+          <line num="94" count="4" type="cond" truecount="4" falsecount="0"/>
+          <line num="95" count="3" type="stmt"/>
+          <line num="96" count="3" type="stmt"/>
+          <line num="98" count="1" type="stmt"/>
+          <line num="101" count="5" type="stmt"/>
+          <line num="102" count="5" type="stmt"/>
+          <line num="103" count="5" type="stmt"/>
+          <line num="104" count="1" type="stmt"/>
+          <line num="105" count="1" type="stmt"/>
+          <line num="106" count="1" type="cond" truecount="2" falsecount="0"/>
+          <line num="107" count="1" type="stmt"/>
+          <line num="113" count="4" type="stmt"/>
+          <line num="114" count="4" type="stmt"/>
+          <line num="115" count="4" type="stmt"/>
+          <line num="118" count="4" type="stmt"/>
+          <line num="124" count="0" type="stmt"/>
+          <line num="125" count="0" type="stmt"/>
+          <line num="138" count="48" type="cond" truecount="2" falsecount="0"/>
+          <line num="139" count="32" type="stmt"/>
+          <line num="140" count="32" type="stmt"/>
+          <line num="141" count="32" type="cond" truecount="2" falsecount="0"/>
+          <line num="142" count="16" type="stmt"/>
+          <line num="144" count="16" type="stmt"/>
+          <line num="147" count="16" type="stmt"/>
+          <line num="151" count="1" type="stmt"/>
         </file>
         <file name="index-npm.js" path="F:\workspaces\mobile-events\lib\index-npm.js">
-          <metrics statements="41" coveredstatements="33" conditionals="25" coveredconditionals="21" methods="10" coveredmethods="8"/>
+          <metrics statements="45" coveredstatements="45" conditionals="25" coveredconditionals="25" methods="11" coveredmethods="11"/>
           <line num="3" count="1" type="stmt"/>
-          <line num="41" count="22" type="cond" truecount="2" falsecount="0"/>
-          <line num="42" count="1" type="stmt"/>
-          <line num="43" count="1" type="stmt"/>
-          <line num="45" count="1" type="stmt"/>
-          <line num="46" count="21" type="cond" truecount="4" falsecount="0"/>
-          <line num="47" count="1" type="stmt"/>
-          <line num="48" count="1" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="44" count="28" type="cond" truecount="2" falsecount="0"/>
+          <line num="45" count="2" type="stmt"/>
+          <line num="46" count="2" type="stmt"/>
+          <line num="48" count="2" type="stmt"/>
+          <line num="49" count="26" type="cond" truecount="4" falsecount="0"/>
           <line num="50" count="1" type="stmt"/>
-          <line num="51" count="20" type="cond" truecount="4" falsecount="0"/>
-          <line num="52" count="7" type="stmt"/>
-          <line num="54" count="13" type="stmt"/>
-          <line num="55" count="13" type="cond" truecount="2" falsecount="0"/>
-          <line num="56" count="5" type="stmt"/>
-          <line num="57" count="11" type="stmt"/>
-          <line num="62" count="11" type="cond" truecount="5" falsecount="0"/>
-          <line num="63" count="7" type="stmt"/>
-          <line num="67" count="8" type="stmt"/>
-          <line num="69" count="13" type="stmt"/>
-          <line num="78" count="0" type="stmt"/>
-          <line num="79" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="80" count="0" type="stmt"/>
-          <line num="81" count="0" type="stmt"/>
-          <line num="84" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="85" count="0" type="stmt"/>
-          <line num="87" count="0" type="stmt"/>
-          <line num="89" count="0" type="stmt"/>
-          <line num="97" count="2" type="stmt"/>
-          <line num="98" count="2" type="stmt"/>
-          <line num="107" count="14" type="cond" truecount="2" falsecount="0"/>
-          <line num="108" count="2" type="stmt"/>
-          <line num="109" count="2" type="cond" truecount="2" falsecount="0"/>
-          <line num="110" count="1" type="stmt"/>
-          <line num="115" count="13" type="stmt"/>
-          <line num="123" count="13" type="stmt"/>
-          <line num="126" count="13" type="stmt"/>
-          <line num="130" count="1" type="stmt"/>
-          <line num="131" count="1" type="stmt"/>
-          <line num="132" count="1" type="stmt"/>
-          <line num="133" count="1" type="stmt"/>
-          <line num="136" count="1" type="stmt"/>
+          <line num="51" count="1" type="stmt"/>
+          <line num="53" count="1" type="stmt"/>
+          <line num="54" count="25" type="cond" truecount="4" falsecount="0"/>
+          <line num="55" count="9" type="stmt"/>
+          <line num="57" count="16" type="stmt"/>
+          <line num="58" count="16" type="stmt"/>
+          <line num="59" count="11" type="stmt"/>
+          <line num="64" count="11" type="cond" truecount="5" falsecount="0"/>
+          <line num="65" count="7" type="stmt"/>
+          <line num="68" count="16" type="stmt"/>
+          <line num="69" count="16" type="cond" truecount="2" falsecount="0"/>
+          <line num="70" count="7" type="stmt"/>
+          <line num="72" count="9" type="stmt"/>
+          <line num="74" count="16" type="stmt"/>
+          <line num="87" count="4" type="stmt"/>
+          <line num="88" count="4" type="cond" truecount="2" falsecount="0"/>
+          <line num="89" count="1" type="stmt"/>
+          <line num="90" count="1" type="stmt"/>
+          <line num="93" count="4" type="cond" truecount="2" falsecount="0"/>
+          <line num="94" count="3" type="stmt"/>
+          <line num="96" count="1" type="stmt"/>
+          <line num="98" count="4" type="stmt"/>
+          <line num="106" count="4" type="stmt"/>
+          <line num="107" count="4" type="stmt"/>
+          <line num="116" count="21" type="cond" truecount="2" falsecount="0"/>
+          <line num="117" count="4" type="stmt"/>
+          <line num="118" count="4" type="cond" truecount="2" falsecount="0"/>
+          <line num="119" count="1" type="stmt"/>
+          <line num="124" count="20" type="stmt"/>
+          <line num="132" count="20" type="stmt"/>
+          <line num="133" count="20" type="stmt"/>
+          <line num="137" count="1" type="stmt"/>
+          <line num="138" count="1" type="stmt"/>
+          <line num="139" count="1" type="stmt"/>
+          <line num="140" count="1" type="stmt"/>
+          <line num="141" count="1" type="stmt"/>
+          <line num="144" count="1" type="stmt"/>
         </file>
       </package>
     </metrics>
