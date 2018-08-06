@@ -92,7 +92,7 @@ class Events {
           timer = setTimeout(() => {
             lastClientX = null
             lastClientY = null
-            clearTimeout(timer)
+            timer && clearTimeout(timer)
             timer = null
           }, 500)
         }
