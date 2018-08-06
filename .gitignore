@@ -1,2 +1,8 @@
 # Dependency directories
 node_modules/
+
+#docs
+docs/
+
+#test coverage
+test/coverage/
