@@ -8,7 +8,7 @@
     "build": "npm run build:browser &&  npm run build:npm && webpack",
     "build:browser": "rollup --config --platform Browser",
     "build:npm": "rollup --config --platform npm",
-    "jsdoc": "jsdoc ./core/ -d ./docs",
+    "docs": "jsdoc ./core/ -d ./docs",
     "lint": "eslint core/*.js --fix",
     "precommit": "lint-staged",
     "prepush": "npm t"

@@ -99,14 +99,6 @@ class Events {
       }
     })
   }
-  dragup () {}
-  dragdown () {}
-  dragleft () {}
-  dragright () {}
-  swiftup () {}
-  swiftdown () {}
-  swiftleft () {}
-  swiftright () {}
 }
 
 module.exports = new Events()
