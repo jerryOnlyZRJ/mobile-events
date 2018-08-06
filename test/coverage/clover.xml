@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1533556725849" clover="3.2.0">
-  <project timestamp="1533556725850" name="All files">
+<coverage generated="1533562866221" clover="3.2.0">
+  <project timestamp="1533562866221" name="All files">
     <metrics statements="112" coveredstatements="112" conditionals="60" coveredconditionals="60" methods="24" coveredmethods="24" elements="196" coveredelements="196" complexity="0" loc="112" ncloc="112" packages="2" files="3" classes="3">
       <package name="core">
         <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
@@ -110,23 +110,23 @@
           <line num="90" count="1" type="stmt"/>
           <line num="93" count="5" type="cond" truecount="2" falsecount="0"/>
           <line num="94" count="3" type="stmt"/>
-          <line num="96" count="2" type="stmt"/>
-          <line num="98" count="5" type="stmt"/>
-          <line num="106" count="4" type="stmt"/>
-          <line num="107" count="4" type="stmt"/>
-          <line num="116" count="23" type="cond" truecount="2" falsecount="0"/>
-          <line num="117" count="4" type="stmt"/>
-          <line num="118" count="4" type="cond" truecount="2" falsecount="0"/>
-          <line num="119" count="1" type="stmt"/>
-          <line num="124" count="22" type="stmt"/>
-          <line num="132" count="22" type="stmt"/>
-          <line num="133" count="22" type="stmt"/>
-          <line num="137" count="1" type="stmt"/>
-          <line num="138" count="1" type="stmt"/>
-          <line num="139" count="1" type="stmt"/>
+          <line num="99" count="2" type="stmt"/>
+          <line num="101" count="5" type="stmt"/>
+          <line num="109" count="4" type="stmt"/>
+          <line num="110" count="4" type="stmt"/>
+          <line num="119" count="23" type="cond" truecount="2" falsecount="0"/>
+          <line num="120" count="4" type="stmt"/>
+          <line num="121" count="4" type="cond" truecount="2" falsecount="0"/>
+          <line num="122" count="1" type="stmt"/>
+          <line num="127" count="22" type="stmt"/>
+          <line num="135" count="22" type="stmt"/>
+          <line num="136" count="22" type="stmt"/>
           <line num="140" count="1" type="stmt"/>
           <line num="141" count="1" type="stmt"/>
+          <line num="142" count="1" type="stmt"/>
+          <line num="143" count="1" type="stmt"/>
           <line num="144" count="1" type="stmt"/>
+          <line num="147" count="1" type="stmt"/>
         </file>
       </package>
     </metrics>
