@@ -102,4 +102,17 @@ describe('test DIY event longtap', () => {
 		await delay4Longtap(bindTarget, 1200)
 		expect(bindTarget.innerHTML).toBe("longtap")
 	})
+	test("test bind('#bindTarget', 'longtap', [longtapHandler, shorttapHandler])", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		mtEvents(bindTarget, 'longtap', [e => {
+			bindTarget.innerHTML = 'longtap'
+		}, e => {
+			bindTarget.innerHTML = 'shorttap'
+		}])
+		await delay4Longtap('#bindTarget', 500)
+		expect(bindTarget.innerHTML).toBe("shorttap")
+		await delay4Longtap(bindTarget, 1200)
+		expect(bindTarget.innerHTML).toBe("longtap")
+	})
 })

@@ -40,7 +40,7 @@ class MTEvents {
       return this._handleEventObj(bindTarget, undefined, delegateTarget)
     } else if (!(event instanceof Array) && typeof event === 'object') {
       return this._handleEventObj(bindTarget, delegateTarget, event)
-    } else if (typeof event === 'function') {
+    } else if (typeof event === 'function' || event instanceof Array) {
       return this.bind(bindTarget, undefined, delegateTarget, event)
     }
     if (typeof bindTarget === 'string') {
