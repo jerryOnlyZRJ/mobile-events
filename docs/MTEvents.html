@@ -147,7 +147,7 @@
     
 
     
-    <h4 class="name" id="_handleEventObj"><span class="type-signature"></span>_handleEventObj<span class="signature">(bindTarget, delegateTarget, eventObj)</span><span class="type-signature"> &rarr; {HTMLDivElement}</span></h4>
+    <h4 class="name" id="_checkBindTargetInput"><span class="type-signature"></span>_checkBindTargetInput<span class="signature">(bindTarget)</span><span class="type-signature"> &rarr; {HTMLDivElement}</span></h4>
     
 
     
@@ -155,7 +155,7 @@
 
 
 <div class="description">
-    _handleEventObj    整理用户输入事件句柄对象
+    _checkBindTargetInput 检测用户输入的bindTarget是否合法
 </div>
 
 
@@ -214,28 +214,139 @@
         </tr>
 
     
+    </tbody>
+</table>
 
-        <tr>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line101">line 101</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    待绑定元素
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">HTMLDivElement</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
             
-                <td class="name"><code>delegateTarget</code></td>
-            
 
-            <td class="type">
-            
-                
-<span class="param-type">String(Selector)</span>
+    
+
+    
+    <h4 class="name" id="_handleEventObj"><span class="type-signature"></span>_handleEventObj<span class="signature">(eventObj)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
+
+    
 
 
-            
-            </td>
 
-            
+<div class="description">
+    _handleEventObj    遍历用户输入事件对象执行回调
+</div>
 
-            
 
-            <td class="description last">代理元素选择器</td>
-        </tr>
 
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
@@ -256,7 +367,7 @@
 
             
 
-            <td class="description last">事件句柄对象</td>
+            <td class="description last">事件对象</td>
         </tr>
 
     
@@ -297,7 +408,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line75">line 75</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line91">line 91</a>
     </li></ul></dd>
     
 
@@ -324,7 +435,7 @@
 
         
 <div class="param-desc">
-    bindTarget     事件绑定DOM对象
+    []
 </div>
 
 
@@ -335,7 +446,164 @@
     </dt>
     <dd>
         
-<span class="param-type">HTMLDivElement</span>
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="_isEventDIY"><span class="type-signature"></span>_isEventDIY<span class="signature">(event)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    _isEventDIY 判断用户输入事件是否为自定义事件
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>event</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">事件名称</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line117">line 117</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    是否为自定义事件
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
 
 
     </dd>
@@ -596,6 +864,190 @@
 
 
         
+            
+
+    
+
+    
+    <h4 class="name" id="remove"><span class="type-signature"></span>remove<span class="signature">(bindTarget, event, callback)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    remove 移除事件函数
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>bindTarget</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String(Selector)</span>
+|
+
+<span class="param-type">HTMLDivElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">事件绑定DOM对象</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>event</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">绑定事件名称</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">事件回调</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line75">line 75</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     
 
     
@@ -617,7 +1069,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Aug 06 2018 10:41:50 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Aug 06 2018 15:08:27 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>

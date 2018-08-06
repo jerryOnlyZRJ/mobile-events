@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1533523345739" clover="3.2.0">
-  <project timestamp="1533523345739" name="All files">
+<coverage generated="1533539174835" clover="3.2.0">
+  <project timestamp="1533539174835" name="All files">
     <metrics statements="82" coveredstatements="60" conditionals="52" coveredconditionals="41" methods="22" coveredmethods="11" elements="156" coveredelements="112" complexity="0" loc="82" ncloc="82" packages="1" files="3" classes="3">
       <file name="events.js" path="F:\workspaces\mobile-events\lib\events.js">
         <metrics statements="51" coveredstatements="29" conditionals="31" coveredconditionals="20" methods="16" coveredmethods="5"/>
@@ -32,21 +32,21 @@
         <line num="56" count="4" type="stmt"/>
         <line num="58" count="8" type="stmt"/>
         <line num="59" count="8" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
         <line num="68" count="0" type="stmt"/>
         <line num="69" count="0" type="stmt"/>
-        <line num="70" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
         <line num="73" count="0" type="stmt"/>
-        <line num="74" count="0" type="stmt"/>
-        <line num="75" count="0" type="cond" truecount="0" falsecount="5"/>
-        <line num="76" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="74" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="75" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="76" count="0" type="stmt"/>
         <line num="77" count="0" type="stmt"/>
         <line num="78" count="0" type="stmt"/>
         <line num="79" count="0" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
         <line num="81" count="0" type="stmt"/>
-        <line num="82" count="0" type="stmt"/>
-        <line num="83" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="84" count="0" type="stmt"/>
+        <line num="82" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="83" count="0" type="stmt"/>
         <line num="86" count="0" type="stmt"/>
         <line num="87" count="0" type="stmt"/>
         <line num="88" count="0" type="stmt"/>
@@ -54,7 +54,7 @@
         <line num="90" count="0" type="stmt"/>
         <line num="91" count="0" type="stmt"/>
         <line num="92" count="0" type="stmt"/>
-        <line num="109" count="1" type="stmt"/>
+        <line num="108" count="1" type="stmt"/>
       </file>
       <file name="index-npm.js" path="F:\workspaces\mobile-events\lib\index-npm.js">
         <metrics statements="25" coveredstatements="25" conditionals="19" coveredconditionals="19" methods="4" coveredmethods="4"/>

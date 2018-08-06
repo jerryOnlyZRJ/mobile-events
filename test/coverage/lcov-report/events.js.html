@@ -153,9 +153,7 @@
 <a name='L105'></a><a href='#L105'>105</a>
 <a name='L106'></a><a href='#L106'>106</a>
 <a name='L107'></a><a href='#L107'>107</a>
-<a name='L108'></a><a href='#L108'>108</a>
-<a name='L109'></a><a href='#L109'>109</a>
-<a name='L110'></a><a href='#L110'>110</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L108'></a><a href='#L108'>108</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -221,7 +219,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -240,6 +237,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -262,9 +260,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * 自定义事件处理句柄生成器
  * 每个自定义事件处理句柄以自定义事件命名
  * 所有处理句柄可传入三个参数：
@@ -280,7 +276,7 @@ class Events {
    * @param  {Object} target         原生事件对象上的target对象，即(e.target)
    * @return {Object | null}             如果存在代理，则调用此方法，事件发生在代理对象上则返回代理对象
    */
-  _delegateEvent (bindTarget, delegateTarget, target) {
+  _delegateEvent(bindTarget, delegateTarget, target) {
     if (!delegateTarget) return null
     const delegateTargets = new Set(document.querySelectorAll(delegateTarget))
     while (target !== bindTarget) {
@@ -295,7 +291,7 @@ class Events {
   /**
    * longtap 自定义长按事件
    */
-  longtap (bindTarget, callback, delegateTarget) {
+  longtap(bindTarget, callback, delegateTarget) {
     let longTapCallback = callback
     let shortTapCallback = null
     let timer = null
@@ -323,14 +319,13 @@ class Events {
         }
         clearTimeout(timer)
         timer = null
-      } else {
-      }
+      } else {}
     })
   }
   /**
    * dbtap 自定义双击事件
    */
-<span class="fstat-no" title="function not covered" >  db</span>tap (bindTarget, callback, delegateTarget) {
+<span class="fstat-no" title="function not covered" >  db</span>tap(bindTarget, callback, delegateTarget) {
     const xrange = <span class="cstat-no" title="statement not covered" >100</span>
     const yrange = <span class="cstat-no" title="statement not covered" >100</span>
     let timer = <span class="cstat-no" title="statement not covered" >null</span>
@@ -348,38 +343,37 @@ class Events {
           const y = <span class="cstat-no" title="statement not covered" >Math.abs(thisClientY - lastClientY)</span>
 <span class="cstat-no" title="statement not covered" >          if (x &lt;= xrange &amp;&amp; y &lt;= yrange) {</span>
 <span class="cstat-no" title="statement not covered" >            callback(e)</span>
-          } else {
-<span class="cstat-no" title="statement not covered" >            lastClientX = e.changedTouches[0].clientX</span>
-<span class="cstat-no" title="statement not covered" >            lastClientY = e.changedTouches[0].clientY</span>
-<span class="cstat-no" title="statement not covered" >            timer = setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >              lastClientX = null</span>
-<span class="cstat-no" title="statement not covered" >              lastClientY = null</span>
-<span class="cstat-no" title="statement not covered" >              clearTimeout(timer)</span>
-<span class="cstat-no" title="statement not covered" >              timer = null</span>
-            }, 500)
           }
+        } else {
+<span class="cstat-no" title="statement not covered" >          lastClientX = e.changedTouches[0].clientX</span>
+<span class="cstat-no" title="statement not covered" >          lastClientY = e.changedTouches[0].clientY</span>
+<span class="cstat-no" title="statement not covered" >          timer = setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            lastClientX = null</span>
+<span class="cstat-no" title="statement not covered" >            lastClientY = null</span>
+<span class="cstat-no" title="statement not covered" >            clearTimeout(timer)</span>
+<span class="cstat-no" title="statement not covered" >            timer = null</span>
+          }, 500)
         }
       }
     })
   }
-<span class="fstat-no" title="function not covered" >  dr</span>agup () {}
-<span class="fstat-no" title="function not covered" >  dr</span>agdown () {}
-<span class="fstat-no" title="function not covered" >  dr</span>agleft () {}
-<span class="fstat-no" title="function not covered" >  dr</span>agright () {}
-<span class="fstat-no" title="function not covered" >  sw</span>iftup () {}
-<span class="fstat-no" title="function not covered" >  sw</span>iftdown () {}
-<span class="fstat-no" title="function not covered" >  sw</span>iftleft () {}
-<span class="fstat-no" title="function not covered" >  sw</span>iftright () {}
+<span class="fstat-no" title="function not covered" >  dr</span>agup() {}
+<span class="fstat-no" title="function not covered" >  dr</span>agdown() {}
+<span class="fstat-no" title="function not covered" >  dr</span>agleft() {}
+<span class="fstat-no" title="function not covered" >  dr</span>agright() {}
+<span class="fstat-no" title="function not covered" >  sw</span>iftup() {}
+<span class="fstat-no" title="function not covered" >  sw</span>iftdown() {}
+<span class="fstat-no" title="function not covered" >  sw</span>iftleft() {}
+<span class="fstat-no" title="function not covered" >  sw</span>iftright() {}
 }
 &nbsp;
-module.exports = new Events()
-&nbsp;</pre></td></tr>
+module.exports = new Events()</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Aug 06 2018 10:42:25 GMT+0800 (中国标准时间)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Aug 06 2018 15:06:14 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="prettify.js"></script>
