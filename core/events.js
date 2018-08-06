@@ -47,28 +47,19 @@ class Events {
         }, 1000)
       }
     })
-    bindTarget.addEventListener(
-      'touchend',
-      e => {
-        e.preventDefault()
-        const target = this._delegateEvent(
-          bindTarget,
-          delegateTarget,
-          e.target
-        )
-        if ((delegateTarget && target) || !delegateTarget) {
-          if (timer) {
-            shortTapCallback && shortTapCallback(e)
-          } else {
-            longTapCallback(e)
-          }
-          clearTimeout(timer)
-          timer = null
+    bindTarget.addEventListener('touchend', e => {
+      const target = this._delegateEvent(bindTarget, delegateTarget, e.target)
+      if ((delegateTarget && target) || !delegateTarget) {
+        if (timer) {
+          shortTapCallback && shortTapCallback(e)
         } else {
+          longTapCallback(e)
         }
-      },
-      false
-    )
+        clearTimeout(timer)
+        timer = null
+      } else {
+      }
+    })
   }
   /**
    * dbtap 自定义双击事件
