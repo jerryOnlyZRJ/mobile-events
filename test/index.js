@@ -1,6 +1,7 @@
 const mtEvents = require('../lib/index-npm.js')
 const touch = require('../lib/touch.js')
 
+//TODOS: Add arguments validity test case
 describe('test MTEvents.bind', () => {
 	test("bind(node, 'click', handler) —— 原生事件绑定", () => {
 		document.body.innerHTML = '<div id="bindTarget"></div>'

@@ -34,6 +34,7 @@ class MTEvents {
    * bind('#bindTarget', '#delegateTarget', 'longtap', handler)
    */
   bind (bindTarget, delegateTarget, event, callback) {
+    // TODOS: Check arguments validity
     // arrange user input
     if (typeof delegateTarget === 'object') {
       return this._handleEventObj(bindTarget, undefined, delegateTarget)
