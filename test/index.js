@@ -1,4 +1,5 @@
 const mtEvents = require('../lib/index-npm.js')
+const touch = require('../lib/touch.js')
 
 describe('test MTEvents.bind', () => {
 	test("bind(node, 'click', handler) —— 原生事件绑定", () => {
@@ -75,4 +76,8 @@ describe('test delegate event', () => {
 		delegateChild.click()
 		expect(output.innerHTML).toBe("delegateTarget click")
 	})
+})
+
+describe('test longtap event', () => {
+
 })

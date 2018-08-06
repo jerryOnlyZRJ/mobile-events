@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1533373463315" clover="3.2.0">
-  <project timestamp="1533373463315" name="All files">
+<coverage generated="1533373535869" clover="3.2.0">
+  <project timestamp="1533373535870" name="All files">
     <metrics statements="76" coveredstatements="32" conditionals="48" coveredconditionals="20" methods="20" coveredmethods="5" elements="144" coveredelements="57" complexity="0" loc="76" ncloc="76" packages="1" files="2" classes="2">
       <file name="events.js" path="F:\workspaces\mobile-events\lib\events.js">
         <metrics statements="51" coveredstatements="8" conditionals="31" coveredconditionals="4" methods="16" coveredmethods="1"/>
