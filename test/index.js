@@ -78,8 +78,27 @@ describe('test delegate event', () => {
 	})
 })
 
-describe('test diy event longtap', () => {
-	// expect("test bind('#bindTarget', 'longtap', handler)", () => {
-
-	// })
+describe('test DIY event longtap', () => {
+	function delay4Longtap(bindTarget, delay) {
+		return new Promise((resolve, reject) => {
+			const touchstart = touch.createTouchEvent('touchstart')
+			const touchend = touch.createTouchEvent('touchend')
+			touch.dispatchTouchEvent(bindTarget, touchstart)
+			setTimeout(() => {
+				touch.dispatchTouchEvent(bindTarget, touchend)
+				resolve()
+			}, delay)
+		})
+	}
+	test("test bind('#bindTarget', 'longtap', handler)", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		mtEvents(bindTarget, 'longtap', e => {
+			bindTarget.innerHTML = 'longtap'
+		})
+		await delay4Longtap(bindTarget, 500)
+		expect(bindTarget.innerHTML).toBe("")
+		await delay4Longtap(bindTarget, 1200)
+		expect(bindTarget.innerHTML).toBe("longtap")
+	})
 })
