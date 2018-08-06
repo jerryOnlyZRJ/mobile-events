@@ -1,5 +1,5 @@
 const mtEvents = require('../lib/index-npm.js')
-const touch = require('../lib/touch.js')
+const touch = require('../core/touch.js')
 
 //TODOS: Add arguments validity test case
 describe('test MTEvents.bind', () => {
@@ -176,6 +176,7 @@ describe('test DIY event dbtap', () => {
 			}, delay)
 		})
 	}
+
 	function delay4OtherLongtap(bindTarget, delay) {
 		return new Promise((resolve, reject) => {
 			const touchstart = touch.createTouchEvent('touchstart')
