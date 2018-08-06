@@ -160,25 +160,25 @@ describe('test DIY event longtap', () => {
 })
 
 describe('test DIY event dbtap', () => {
-	function delay4Longtap(bindTarget, delay) {
-		return new Promise((resolve, reject) => {
-			const touchstart = touch.createTouchEvent('touchstart')
-			const touchend = touch.createTouchEvent('touchend')
-			touch.dispatchTouchEvent(bindTarget, touchstart)
-			setTimeout(() => {
-				touch.dispatchTouchEvent(bindTarget, touchend)
-				resolve()
-			}, delay)
-		})
-	}
-	test("test bind('#bindTarget', 'dbtap', handler)", async () => {
-		document.body.innerHTML = '<div id="bindTarget"></div>'
-		const bindTarget = document.querySelector('#bindTarget')
-		mtEvents(bindTarget, 'dbtap', e => {
-			bindTarget.innerHTML = 'dbtap'
-		})
-		await delay4Longtap('#bindTarget', 100)
-		await delay4Longtap('#bindTarget', 100)
-		expect(bindTarget.innerHTML).toBe("dbtap")
-	})
+	// function delay4Longtap(bindTarget, delay) {
+	// 	return new Promise((resolve, reject) => {
+	// 		const touchstart = touch.createTouchEvent('touchstart')
+	// 		const touchend = touch.createTouchEvent('touchend')
+	// 		touch.dispatchTouchEvent(bindTarget, touchstart)
+	// 		setTimeout(() => {
+	// 			touch.dispatchTouchEvent(bindTarget, touchend)
+	// 			resolve()
+	// 		}, delay)
+	// 	})
+	// }
+	// test("test bind('#bindTarget', 'dbtap', handler)", async () => {
+	// 	document.body.innerHTML = '<div id="bindTarget"></div>'
+	// 	const bindTarget = document.querySelector('#bindTarget')
+	// 	mtEvents(bindTarget, 'dbtap', e => {
+	// 		bindTarget.innerHTML = 'dbtap'
+	// 	})
+	// 	await delay4Longtap('#bindTarget', 100)
+	// 	await delay4Longtap('#bindTarget', 100)
+	// 	expect(bindTarget.innerHTML).toBe("dbtap")
+	// })
 })
