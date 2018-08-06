@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.98% </span>
+        <span class="strong">16.67% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/53</span>
+        <span class='fraction'>9/54</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">12.9% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/16</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">15.38% </span>
+        <span class="strong">15.09% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/52</span>
+        <span class='fraction'>8/53</span>
       </div>
     </div>
     <p class="quiet">
@@ -160,16 +160,7 @@
 <a name='L112'></a><a href='#L112'>112</a>
 <a name='L113'></a><a href='#L113'>113</a>
 <a name='L114'></a><a href='#L114'>114</a>
-<a name='L115'></a><a href='#L115'>115</a>
-<a name='L116'></a><a href='#L116'>116</a>
-<a name='L117'></a><a href='#L117'>117</a>
-<a name='L118'></a><a href='#L118'>118</a>
-<a name='L119'></a><a href='#L119'>119</a>
-<a name='L120'></a><a href='#L120'>120</a>
-<a name='L121'></a><a href='#L121'>121</a>
-<a name='L122'></a><a href='#L122'>122</a>
-<a name='L123'></a><a href='#L123'>123</a>
-<a name='L124'></a><a href='#L124'>124</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L115'></a><a href='#L115'>115</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -209,14 +200,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -224,10 +209,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -242,8 +225,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -292,7 +273,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">/**
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * 自定义事件处理句柄生成器
  * 每个自定义事件处理句柄以自定义事件命名
  * 所有处理句柄可传入三个参数：
@@ -308,7 +290,7 @@ class Events {
    * @param  {Object} target         原生事件对象上的target对象，即(e.target)
    * @return {Object | null}             如果存在代理，则调用此方法，事件发生在代理对象上则返回代理对象
    */
-  _delegateEvent(bindTarget, delegateTarget, target) {
+  _delegateEvent (bindTarget, delegateTarget, target) {
     if (!delegateTarget) return null
     const delegateTargets = new Set(document.querySelectorAll(delegateTarget))
     while (target !== bindTarget) {
@@ -323,7 +305,7 @@ class Events {
   /**
    * longtap 自定义长按事件
    */
-<span class="fstat-no" title="function not covered" >  lo</span>ngtap(bindTarget, callback, delegateTarget) {
+<span class="fstat-no" title="function not covered" >  lo</span>ngtap (bindTarget, callback, delegateTarget) {
     let longTapCallback = <span class="cstat-no" title="statement not covered" >callback</span>
     let shortTapCallback = <span class="cstat-no" title="statement not covered" >null</span>
     let timer = <span class="cstat-no" title="statement not covered" >null</span>
@@ -331,49 +313,39 @@ class Events {
 <span class="cstat-no" title="statement not covered" >      longTapCallback = callback[0]</span>
 <span class="cstat-no" title="statement not covered" >      shortTapCallback = callback[1]</span>
     }
-<span class="cstat-no" title="statement not covered" >    bindTarget.addEventListener(</span>
-      'touchstart',
-<span class="fstat-no" title="function not covered" >      e </span>=&gt; {
-<span class="cstat-no" title="statement not covered" >        e.preventDefault()</span>
-        const target = <span class="cstat-no" title="statement not covered" >this._delegateEvent(</span>
-          bindTarget,
-          delegateTarget,
-          e.target
-        )
-<span class="cstat-no" title="statement not covered" >        if ((delegateTarget &amp;&amp; target) || !delegateTarget) {</span>
-<span class="cstat-no" title="statement not covered" >          timer = setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            clearTimeout(timer)</span>
-<span class="cstat-no" title="statement not covered" >            timer = null</span>
-          }, 1000)
-        }
-      },
-    )
-<span class="cstat-no" title="statement not covered" >    bindTarget.addEventListener(</span>
-      'touchend',
-<span class="fstat-no" title="function not covered" >      e </span>=&gt; {
-<span class="cstat-no" title="statement not covered" >        e.preventDefault()</span>
-        const target = <span class="cstat-no" title="statement not covered" >this._delegateEvent(</span>
-          bindTarget,
-          delegateTarget,
-          e.target
-        )
-<span class="cstat-no" title="statement not covered" >        if ((delegateTarget &amp;&amp; target) || !delegateTarget) {</span>
-<span class="cstat-no" title="statement not covered" >          if (timer) {</span>
-<span class="cstat-no" title="statement not covered" >            shortTapCallback &amp;&amp; shortTapCallback(e)</span>
-          } else {
-<span class="cstat-no" title="statement not covered" >            longTapCallback(e)</span>
-          }
+<span class="cstat-no" title="statement not covered" >    bindTarget.addEventListener('touchstart', <span class="fstat-no" title="function not covered" >e </span>=&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      e.preventDefault()</span>
+      const target = <span class="cstat-no" title="statement not covered" >this._delegateEvent(bindTarget, delegateTarget, e.target)</span>
+<span class="cstat-no" title="statement not covered" >      if ((delegateTarget &amp;&amp; target) || !delegateTarget) {</span>
+<span class="cstat-no" title="statement not covered" >        timer = setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >          clearTimeout(timer)</span>
 <span class="cstat-no" title="statement not covered" >          timer = null</span>
-        } else {}
-      },
-      false
-    )
+        }, 1000)
+      }
+    })
+<span class="cstat-no" title="statement not covered" >    bindTarget.addEventListener('touchend', <span class="fstat-no" title="function not covered" >e </span>=&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      e.preventDefault()</span>
+<span class="cstat-no" title="statement not covered" >      e.stopPropagation()</span>
+      const target = <span class="cstat-no" title="statement not covered" >this._delegateEvent(</span>
+        bindTarget,
+        delegateTarget,
+        e.target
+      )
+<span class="cstat-no" title="statement not covered" >      if ((delegateTarget &amp;&amp; target) || !delegateTarget) {</span>
+<span class="cstat-no" title="statement not covered" >        if (timer) {</span>
+<span class="cstat-no" title="statement not covered" >          shortTapCallback &amp;&amp; shortTapCallback(e)</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          longTapCallback(e)</span>
+        }
+<span class="cstat-no" title="statement not covered" >        clearTimeout(timer)</span>
+<span class="cstat-no" title="statement not covered" >        timer = null</span>
+      } else {}
+    })
   }
   /**
    * dbtap 自定义双击事件
    */
-<span class="fstat-no" title="function not covered" >  db</span>tap(bindTarget, callback, delegateTarget) {
+<span class="fstat-no" title="function not covered" >  db</span>tap (bindTarget, callback, delegateTarget) {
     const xrange = <span class="cstat-no" title="statement not covered" >100</span>
     const yrange = <span class="cstat-no" title="statement not covered" >100</span>
     let timer = <span class="cstat-no" title="statement not covered" >null</span>
@@ -405,23 +377,24 @@ class Events {
       }
     })
   }
-<span class="fstat-no" title="function not covered" >  dr</span>agup() {}
-<span class="fstat-no" title="function not covered" >  dr</span>agdown() {}
-<span class="fstat-no" title="function not covered" >  dr</span>agleft() {}
-<span class="fstat-no" title="function not covered" >  dr</span>agright() {}
-<span class="fstat-no" title="function not covered" >  sw</span>iftup() {}
-<span class="fstat-no" title="function not covered" >  sw</span>iftdown() {}
-<span class="fstat-no" title="function not covered" >  sw</span>iftleft() {}
-<span class="fstat-no" title="function not covered" >  sw</span>iftright() {}
+<span class="fstat-no" title="function not covered" >  dr</span>agup () {}
+<span class="fstat-no" title="function not covered" >  dr</span>agdown () {}
+<span class="fstat-no" title="function not covered" >  dr</span>agleft () {}
+<span class="fstat-no" title="function not covered" >  dr</span>agright () {}
+<span class="fstat-no" title="function not covered" >  sw</span>iftup () {}
+<span class="fstat-no" title="function not covered" >  sw</span>iftdown () {}
+<span class="fstat-no" title="function not covered" >  sw</span>iftleft () {}
+<span class="fstat-no" title="function not covered" >  sw</span>iftright () {}
 }
 &nbsp;
-module.exports = new Events()</pre></td></tr>
+module.exports = new Events()
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Aug 05 2018 11:06:30 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Aug 06 2018 09:18:02 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="prettify.js"></script>
