@@ -96,7 +96,7 @@ describe('test DIY event longtap', () => {
 		mtEvents(bindTarget, 'longtap', e => {
 			bindTarget.innerHTML = 'longtap'
 		})
-		await delay4Longtap(bindTarget, 500)
+		await delay4Longtap('#bindTarget', 500)
 		expect(bindTarget.innerHTML).toBe("")
 		await delay4Longtap(bindTarget, 1200)
 		expect(bindTarget.innerHTML).toBe("longtap")
