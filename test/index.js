@@ -2,6 +2,16 @@ const mtEvents = require('../lib/index-npm.js')
 const touch = require('../core/touch.js')
 
 //TODOS: Add arguments validity test case
+describe('test arguments validity', () => {
+	test('test _checkBindTargetInput', () => {
+		document.body.innerHTML = '<div id="test-element"></div>'
+		try {
+			mtEvents._checkBindTargetInput('nothing-could-be-choisen')
+		} catch (err) {
+			expect(err instanceof Error).toBeTruthy()
+		}
+	})
+})
 describe('test MTEvents.bind', () => {
 	test("bind(node, 'click', handler) —— 原生事件绑定", () => {
 		document.body.innerHTML = '<div id="bindTarget"></div>'

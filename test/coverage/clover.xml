@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1533547605554" clover="3.2.0">
-  <project timestamp="1533547605555" name="All files">
-    <metrics statements="108" coveredstatements="95" conditionals="60" coveredconditionals="55" methods="23" coveredmethods="19" elements="191" coveredelements="169" complexity="0" loc="108" ncloc="108" packages="2" files="3" classes="3">
+<coverage generated="1533548007069" clover="3.2.0">
+  <project timestamp="1533548007069" name="All files">
+    <metrics statements="108" coveredstatements="96" conditionals="60" coveredconditionals="56" methods="23" coveredmethods="19" elements="191" coveredelements="171" complexity="0" loc="108" ncloc="108" packages="2" files="3" classes="3">
       <package name="core">
         <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <file name="touch.js" path="F:\workspaces\mobile-events\core\touch.js">
@@ -15,7 +15,7 @@
         </file>
       </package>
       <package name="lib">
-        <metrics statements="102" coveredstatements="89" conditionals="58" coveredconditionals="53" methods="21" coveredmethods="17"/>
+        <metrics statements="102" coveredstatements="90" conditionals="58" coveredconditionals="54" methods="21" coveredmethods="17"/>
         <file name="events.js" path="F:\workspaces\mobile-events\lib\events.js">
           <metrics statements="61" coveredstatements="57" conditionals="33" coveredconditionals="33" methods="11" coveredmethods="9"/>
           <line num="14" count="1" type="stmt"/>
@@ -81,7 +81,7 @@
           <line num="130" count="1" type="stmt"/>
         </file>
         <file name="index-npm.js" path="F:\workspaces\mobile-events\lib\index-npm.js">
-          <metrics statements="41" coveredstatements="32" conditionals="25" coveredconditionals="20" methods="10" coveredmethods="8"/>
+          <metrics statements="41" coveredstatements="33" conditionals="25" coveredconditionals="21" methods="10" coveredmethods="8"/>
           <line num="3" count="1" type="stmt"/>
           <line num="41" count="22" type="cond" truecount="2" falsecount="0"/>
           <line num="42" count="1" type="stmt"/>
@@ -111,10 +111,10 @@
           <line num="89" count="0" type="stmt"/>
           <line num="97" count="2" type="stmt"/>
           <line num="98" count="2" type="stmt"/>
-          <line num="107" count="13" type="cond" truecount="2" falsecount="0"/>
-          <line num="108" count="1" type="stmt"/>
-          <line num="109" count="1" type="cond" truecount="1" falsecount="1"/>
-          <line num="110" count="0" type="stmt"/>
+          <line num="107" count="14" type="cond" truecount="2" falsecount="0"/>
+          <line num="108" count="2" type="stmt"/>
+          <line num="109" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="110" count="1" type="stmt"/>
           <line num="115" count="13" type="stmt"/>
           <line num="123" count="13" type="stmt"/>
           <line num="126" count="13" type="stmt"/>
