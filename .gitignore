@@ -1,2 +1,8 @@
 # Dependency directories
 node_modules/
+
+#API docs
+docs/
+
+#test coverage
+test/coverage/
