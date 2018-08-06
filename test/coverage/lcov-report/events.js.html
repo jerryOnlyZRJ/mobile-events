@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">70.37% </span>
+        <span class="strong">55.56% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>38/54</span>
+        <span class='fraction'>30/54</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">77.42% </span>
+        <span class="strong">64.52% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>24/31</span>
+        <span class='fraction'>20/31</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">43.75% </span>
+        <span class="strong">31.25% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>7/16</span>
+        <span class='fraction'>5/16</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">69.81% </span>
+        <span class="strong">54.72% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>37/53</span>
+        <span class='fraction'>29/53</span>
       </div>
     </div>
     <p class="quiet">
@@ -173,7 +173,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">35x</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-yes">24x</span>
@@ -222,29 +222,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -331,16 +331,16 @@ class Events {
   /**
    * dbtap 自定义双击事件
    */
-  dbtap(bindTarget, callback, delegateTarget) {
-    const xrange = 100
-    const yrange = 100
-    let timer = null
+<span class="fstat-no" title="function not covered" >  db</span>tap(bindTarget, callback, delegateTarget) {
+    const xrange = <span class="cstat-no" title="statement not covered" >100</span>
+    const yrange = <span class="cstat-no" title="statement not covered" >100</span>
+    let timer = <span class="cstat-no" title="statement not covered" >null</span>
     let lastClientX
     let lastClientY
-    bindTarget.addEventListener('touchend', e =&gt; {
-      const target = this._delegateEvent(bindTarget, delegateTarget, e.target)
-      <span class="missing-if-branch" title="else path not taken" >E</span>if ((delegateTarget &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >target)</span> || !delegateTarget) {
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (timer) {
+<span class="cstat-no" title="statement not covered" >    bindTarget.addEventListener('touchend', <span class="fstat-no" title="function not covered" >e </span>=&gt; {</span>
+      const target = <span class="cstat-no" title="statement not covered" >this._delegateEvent(bindTarget, delegateTarget, e.target)</span>
+<span class="cstat-no" title="statement not covered" >      if ((delegateTarget &amp;&amp; target) || !delegateTarget) {</span>
+<span class="cstat-no" title="statement not covered" >        if (timer) {</span>
 <span class="cstat-no" title="statement not covered" >          clearTimeout(timer)</span>
 <span class="cstat-no" title="statement not covered" >          timer = null</span>
           const thisClientX = <span class="cstat-no" title="statement not covered" >e.changedTouches[0].clientX</span>
@@ -354,7 +354,7 @@ class Events {
 <span class="cstat-no" title="statement not covered" >            console.log('Double click in different area!')</span>
           }
         } else {
-          lastClientX = e.changedTouches[0].clientX
+<span class="cstat-no" title="statement not covered" >          lastClientX = e.changedTouches[0].clientX</span>
 <span class="cstat-no" title="statement not covered" >          lastClientY = e.changedTouches[0].clientY</span>
 <span class="cstat-no" title="statement not covered" >          timer = setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >            lastClientX = null</span>
@@ -382,7 +382,7 @@ module.exports = new Events()</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Aug 06 2018 13:27:33 GMT+0800 (中国标准时间)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Aug 06 2018 13:30:17 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="prettify.js"></script>
