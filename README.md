@@ -5,9 +5,10 @@ Make mobile events user-friendly.
 ## Feature
 
 * Use our function mtEvents in the Browser directly.
-* Contains popular mobile terminal events like double tap(dbtap), long tap(longtap), you can listen then like native API addEventListener with our mtEvents.
+* Contains popular mobile terminal events like double tap(dbtap), long tap(longtap), you can listen them like using native API `addEventListener` when using our mtEvents.
 * Contain event delegation, what you need to do is push an argument.
 * MtEvents is compatible with native events.(Like click, touchEvents)
+* Just only 2KB(less than) after gzip.We will deploy the script to our CDN as soon as possible.
 
 ## Usage
 
