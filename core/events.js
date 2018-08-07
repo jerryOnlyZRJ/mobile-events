@@ -106,6 +106,29 @@ class Events {
         return this._removeEvent('dbtap', bindTarget, callback)
       }
     }
+    this.drag = {
+      eventHandler: new Map(),
+      bind: (bindTarget, callback, delegateTarget) => {
+        this.drag.eventHandler.set(callback, {
+          touchstart: e => {},
+          touchend: e => {}
+        })
+      },
+      remove: (bindTarget, callback) => {
+        return this._removeEvent('drag', bindTarget, callback)
+      }
+    }
+    this.swift = {
+      eventHandler: new Map(),
+      bind: (bindTarget, callback, delegateTarget) => {
+        this.drag.eventHandler.set(callback, {
+          touchmove: e => {}
+        })
+      },
+      remove: (bindTarget, callback) => {
+        return this._removeEvent('swift', bindTarget, callback)
+      }
+    }
   }
   /**
    * _removeEvent 自定义事件移除
