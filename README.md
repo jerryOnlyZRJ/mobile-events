@@ -19,7 +19,7 @@ Make mobile events user-friendly.
 Include the (minified) **mtevents.min.js**  script file in your HTML markup: 
 
 ```html
-<script src="dist/mtevents.min.js"></script>
+<script src="http://mtevents.jerryonlyzrj.com/mtevents.min.js"></script>
 ```
 
 In your application code, use function mtEvents directly:
