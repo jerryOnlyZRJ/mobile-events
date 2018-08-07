@@ -53,11 +53,8 @@ class Events {
           this.longtap.eventHandler.get(callback).touchend
         )
       },
-      remove (bindTarget, callback) {
-        // 可Proxy
-        Object.entries(this.eventHandler.get(callback)).map(eventItem => {
-          bindTarget.removeEventListener(eventItem[0], eventItem[1])
-        })
+      remove: (bindTarget, callback) => {
+        return this._removeEvent('longtap', bindTarget, callback)
       }
     }
     /**
@@ -105,12 +102,23 @@ class Events {
           this.dbtap.eventHandler.get(callback).touchend
         )
       },
-      remove (bindTarget, callback) {
-        Object.entries(this.eventHandler.get(callback)).map(eventItem => {
-          bindTarget.removeEventListener(eventItem[0], eventItem[1])
-        })
+      remove: (bindTarget, callback) => {
+        return this._removeEvent('dbtap', bindTarget, callback)
       }
     }
+  }
+  /**
+   * _removeEvent 自定义事件移除
+   * @param  {String}   type       自定义事件名称
+   * @param  {HTMLElement}   bindTarget [description]
+   * @param  {Function} callback          用户自定义回调
+   * @return {HTMLElement}              [description]
+   */
+  _removeEvent (type, bindTarget, callback) {
+    Object.entries(this[type].eventHandler.get(callback)).map(eventItem => {
+      bindTarget.removeEventListener(eventItem[0], eventItem[1])
+    })
+    return bindTarget
   }
 }
 
