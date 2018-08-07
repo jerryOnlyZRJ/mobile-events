@@ -69,12 +69,7 @@ class Events {
       bind: (bindTarget, callback, delegateTarget) => {
         this.dbtap.eventHandler.set(callback, {
           touchend: e => {
-            const target = this._delegateEvent(
-              bindTarget,
-              delegateTarget,
-              e.target
-            )
-            if ((delegateTarget && target) || !delegateTarget) {
+            delegateProxyCreator(bindTarget, delegateTarget, e, () => {
               if (timer) {
                 clearTimeout(timer)
                 timer = null
@@ -98,7 +93,7 @@ class Events {
                   timer = null
                 }, 500)
               }
-            }
+            })()
           }
         })
         const xrange = 100
@@ -117,25 +112,6 @@ class Events {
         })
       }
     }
-  }
-  /**
-   * _delegateEvent 事件代理处理
-   * @param  {String(Selector) | HTMLDivElement} bindTarget     事件绑定元素
-   * @param  {String(Selector)} delegateTarget 事件代理元素
-   * @param  {Object} target         原生事件对象上的target对象，即(e.target)
-   * @return {Object | null}             如果存在代理，则调用此方法，事件发生在代理对象上则返回代理对象
-   */
-  _delegateEvent (bindTarget, delegateTarget, target) {
-    if (!delegateTarget) return null
-    const delegateTargets = new Set(document.querySelectorAll(delegateTarget))
-    while (target !== bindTarget) {
-      if (delegateTargets.has(target)) {
-        return target
-      } else {
-        target = target.parentNode
-      }
-    }
-    return null
   }
 }
 
