@@ -5,6 +5,7 @@
   "main": "lib/index-npm.js",
   "scripts": {
     "test": "jest --coverage",
+    "test:update": "npm run build && jest --coverage",
     "build": "npm run build:browser &&  npm run build:npm && webpack",
     "build:browser": "rollup --config --platform Browser",
     "build:npm": "rollup --config --platform npm",

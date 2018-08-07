@@ -1,4 +1,4 @@
-const mtEvents = require('../core/index.js')
+const mtEvents = require('../lib/index-npm.js')
 const touch = require('../core/touch.js')
 
 function delay4Longtap(bindTarget, delay) {
