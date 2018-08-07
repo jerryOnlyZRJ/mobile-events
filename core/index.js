@@ -1,4 +1,5 @@
 const events = require('./events.js')
+const { delegateProxyCreator } = require('./proxy.js')
 
 /**
  * MTEvents类
@@ -54,14 +55,9 @@ class MTEvents {
     }
     bindTarget = this._checkBindTargetInput(bindTarget)
     const eventHandler = e => {
-      const target = events._delegateEvent(
-        bindTarget,
-        delegateTarget,
-        e.target
-      )
-      if ((delegateTarget && target) || !delegateTarget) {
+      delegateProxyCreator(bindTarget, delegateTarget, e, () => {
         callback(e)
-      }
+      })()
     }
     this.userCallback2Handler.set(callback, eventHandler)
     if (!this._isEventDIY(event)) {

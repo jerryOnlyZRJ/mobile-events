@@ -1,3 +1,4 @@
+const { delegateProxyCreator } = require('./proxy.js')
 /**
  * 自定义事件处理句柄生成器
  * 每个自定义事件处理句柄以自定义事件命名
@@ -18,25 +19,15 @@ class Events {
         this.longtap.eventHandler.set(callback, {
           touchstart: e => {
             e.preventDefault()
-            const target = this._delegateEvent(
-              bindTarget,
-              delegateTarget,
-              e.target
-            )
-            if ((delegateTarget && target) || !delegateTarget) {
+            delegateProxyCreator(bindTarget, delegateTarget, e, () => {
               timer = setTimeout(() => {
                 clearTimeout(timer)
                 timer = null
               }, 1000)
-            }
+            })()
           },
           touchend: e => {
-            const target = this._delegateEvent(
-              bindTarget,
-              delegateTarget,
-              e.target
-            )
-            if ((delegateTarget && target) || !delegateTarget) {
+            delegateProxyCreator(bindTarget, delegateTarget, e, () => {
               if (timer) {
                 shortTapCallback && shortTapCallback(e)
               } else {
@@ -44,7 +35,7 @@ class Events {
               }
               clearTimeout(timer)
               timer = null
-            }
+            })()
           }
         })
         let longTapCallback = callback
