@@ -4,7 +4,7 @@ const delegateProxyCreator = require('./proxy.js')
  * 每个自定义事件处理句柄以自定义事件命名
  * 所有处理句柄可传入三个参数：
  * ①bindTarget：事件绑定对象
- * ②callback：事件处理回调(必须向callback传入原生事件对象e)
+ * ②callback： 事件处理回调(必须向callback传入原生事件对象e)
  * ③delegateTarget：事件代理对象
  */
 class Events {
@@ -15,6 +15,13 @@ class Events {
     this.longtap = {
       eventHandler: new Map(),
       bind: (bindTarget, callback, delegateTarget) => {
+        let longTapCallback = callback
+        let shortTapCallback = null
+        let timer = null
+        if (typeof callback === 'object') {
+          longTapCallback = callback[0]
+          shortTapCallback = callback[1]
+        }
         this.longtap.eventHandler.set(callback, {
           touchstart: e => {
             e.preventDefault()
@@ -37,13 +44,6 @@ class Events {
             })()
           }
         })
-        let longTapCallback = callback
-        let shortTapCallback = null
-        let timer = null
-        if (typeof callback === 'object') {
-          longTapCallback = callback[0]
-          shortTapCallback = callback[1]
-        }
         bindTarget.addEventListener(
           'touchstart',
           this.longtap.eventHandler.get(callback).touchstart
@@ -110,9 +110,35 @@ class Events {
       eventHandler: new Map(),
       bind: (bindTarget, callback, delegateTarget) => {
         this.drag.eventHandler.set(callback, {
-          touchstart: e => {},
-          touchend: e => {}
+          touchstart: e => {
+            delegateProxyCreator(bindTarget, delegateTarget, e, () => {
+              this.drag.lastClientObj = {
+                lastClientX: e.changedTouches[0].clientX,
+                lastClientY: e.changedTouches[0].clientY
+              }
+            })()
+          },
+          touchend: e => {
+            delegateProxyCreator(bindTarget, delegateTarget, e, () => {
+              if (callback instanceof Array) {
+                return this._arrangeCallbackArr(
+                  e,
+                  callback,
+                  this.drag.lastClientObj
+                )
+              }
+              callback(e)
+            })()
+          }
         })
+        bindTarget.addEventListener(
+          'touchstart',
+          this.drag.eventHandler.get(callback).touchstart
+        )
+        bindTarget.addEventListener(
+          'touchend',
+          this.drag.eventHandler.get(callback).touchend
+        )
       },
       remove: (bindTarget, callback) => {
         return this._removeEvent('drag', bindTarget, callback)
@@ -121,9 +147,31 @@ class Events {
     this.swift = {
       eventHandler: new Map(),
       bind: (bindTarget, callback, delegateTarget) => {
-        this.drag.eventHandler.set(callback, {
-          touchmove: e => {}
+        this.swift.eventHandler.set(callback, {
+          touchmove: e => {
+            e.preventDefault()
+            delegateProxyCreator(bindTarget, delegateTarget, e, () => {
+              if (!this.swift.lastClientObj) {
+                this.swift.lastClientObj = {
+                  lastClientX: e.changedTouches[0].clientX,
+                  lastClientY: e.changedTouches[0].clientY
+                }
+              }
+              if (callback instanceof Array) {
+                return this._arrangeCallbackArr(
+                  e,
+                  callback,
+                  this.swift.lastClientObj
+                )
+              }
+              callback(e)
+            })()
+          }
         })
+        bindTarget.addEventListener(
+          'touchmove',
+          this.swift.eventHandler.get(callback).touchmove
+        )
       },
       remove: (bindTarget, callback) => {
         return this._removeEvent('swift', bindTarget, callback)
@@ -142,6 +190,49 @@ class Events {
       bindTarget.removeEventListener(eventItem[0], eventItem[1])
     })
     return bindTarget
+  }
+  /**
+   * _arrangeCallbackArr 处理用户传入回调数组
+   * @param  {Object} e             原生事件对象
+   * @param  {Array} callbackArr   回调数组
+   * @param  {Object} lastClientObj 上一次的事件位置信息
+   */
+  _arrangeCallbackArr (e, callbackArr, lastClientObj) {
+    const { lastClientX, lastClientY } = lastClientObj
+    const clientX = e.changedTouches[0].clientX
+    const clientY = e.changedTouches[0].clientY
+    let left, right, up, down
+    switch (callbackArr.length) {
+      case 1:
+        up = right = down = left = callbackArr[0]
+        break
+      case 2:
+        up = down = callbackArr[0]
+        right = left = callbackArr[1]
+        break
+      case 3:
+        up = callbackArr[0]
+        right = left = callbackArr[1]
+        down = callbackArr[2]
+        break
+      case 4:
+        up = callbackArr[0]
+        right = callbackArr[1]
+        down = callbackArr[2]
+        left = callbackArr[3]
+    }
+    if (clientX > lastClientX) {
+      right(e)
+    } else {
+      left(e)
+    }
+    if (clientY > lastClientY) {
+      up(e)
+    } else {
+      down(e)
+    }
+    lastClientObj.lastClientX = clientX
+    lastClientObj.lastClientY = clientY
   }
 }
 
