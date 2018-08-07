@@ -5,6 +5,7 @@
   "main": "lib/index-npm.js",
   "scripts": {
     "test": "jest --coverage",
+    "codecov": "codecov",
     "test:update": "npm run build && jest --coverage",
     "build": "npm run build:browser &&  npm run build:npm && webpack",
     "build:browser": "rollup --config --platform Browser",
@@ -37,6 +38,7 @@
   "homepage": "https://github.com/jerryOnlyZRJ/mobile-events#readme",
   "devDependencies": {
     "args-parser": "^1.1.0",
+    "codecov": "^3.0.4",
     "eslint": "^5.2.0",
     "eslint-config-standard": "^12.0.0-alpha.0",
     "eslint-plugin-import": "^2.13.0",
