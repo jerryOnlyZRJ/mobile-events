@@ -1,4 +1,4 @@
-const { delegateProxyCreator } = require('./proxy.js')
+const delegateProxyCreator = require('./proxy.js')
 /**
  * 自定义事件处理句柄生成器
  * 每个自定义事件处理句柄以自定义事件命名
@@ -15,7 +15,6 @@ class Events {
     this.longtap = {
       eventHandler: new Map(),
       bind: (bindTarget, callback, delegateTarget) => {
-        // 可Proxy
         this.longtap.eventHandler.set(callback, {
           touchstart: e => {
             e.preventDefault()

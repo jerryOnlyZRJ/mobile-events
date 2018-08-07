@@ -14,7 +14,8 @@ export default {
       "process.env.PLATFORM": JSON.stringify(platform)
     }),
     copy({
-      './core/events.js': 'lib/events.js'
+      './core/events.js': 'lib/events.js',
+      './core/proxy.js': 'lib/proxy.js'
     })
   ]
 };

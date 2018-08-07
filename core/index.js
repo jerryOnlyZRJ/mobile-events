@@ -1,5 +1,5 @@
 const events = require('./events.js')
-const { delegateProxyCreator } = require('./proxy.js')
+const delegateProxyCreator = require('./proxy.js')
 
 /**
  * MTEvents类
