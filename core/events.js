@@ -63,6 +63,11 @@ class Events {
     this.dbtap = {
       eventHandler: new Map(),
       bind: (bindTarget, callback, delegateTarget) => {
+        const xrange = 100
+        const yrange = 100
+        let timer = null
+        let lastClientX
+        let lastClientY
         this.dbtap.eventHandler.set(callback, {
           touchend: e => {
             delegateProxyCreator(bindTarget, delegateTarget, e, () => {
@@ -92,11 +97,6 @@ class Events {
             })()
           }
         })
-        const xrange = 100
-        const yrange = 100
-        let timer = null
-        let lastClientX
-        let lastClientY
         bindTarget.addEventListener(
           'touchend',
           this.dbtap.eventHandler.get(callback).touchend
@@ -227,9 +227,9 @@ class Events {
       left(e)
     }
     if (clientY > lastClientY) {
-      up(e)
-    } else {
       down(e)
+    } else {
+      up(e)
     }
     lastClientObj.lastClientX = clientX
     lastClientObj.lastClientY = clientY
