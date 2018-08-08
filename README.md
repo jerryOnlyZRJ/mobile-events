@@ -67,10 +67,16 @@ You can see there is a coverage file in the test folder.
 
 ## DOCS
 
-If you want to make some contribution and know  how the function run works, you can run the command:
+There is a User API documentation link, click here ⬇️
+
+[中文文档](https://github.com/jerryOnlyZRJ/mobile-events/blob/master/docs/user/docs(zh).md)
+
+[Documentation](https://github.com/jerryOnlyZRJ/mobile-events/blob/master/docs/user/docs(en).md)
+
+If you want to make some contribution and know how the function run works, you can run the command:
 
 ```shell
 npm run docs
 ```
 
-There will be a docs folder in the root path and you will see the API documentation,.
+There will be a docs folder in the root path and you will see the cookbook for developer in developer folder.
