@@ -43,6 +43,8 @@ export default {
 </script>
 ```
 
+**实际上，mtEvents的执行环境还是在浏览器里，不论是通过script引入还是用过npm以来，最后都需要在浏览器环境中执行。**
+
 ### 事件处理
 
 #### 事件绑定：mtEvents(bindTarget, delegateTarget, event, callback)
