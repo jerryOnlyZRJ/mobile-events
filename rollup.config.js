@@ -15,7 +15,8 @@ export default {
     }),
     copy({
       './core/events.js': 'lib/events.js',
-      './core/proxy.js': 'lib/proxy.js'
+      './core/proxy.js': 'lib/proxy.js',
+      './core/weakmap.js': 'lib/weakmap.js',
     })
   ]
 };

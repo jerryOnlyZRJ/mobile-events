@@ -1,5 +1,6 @@
 const events = require('./events.js')
 const delegateProxyCreator = require('./proxy.js')
+const weakMapCreator = require('./weakmap.js')
 
 /**
  * MTEvents类
@@ -61,7 +62,8 @@ class MTEvents {
     }
     this.userCallback2Handler.set(callback, eventHandler)
     if (!this._isEventDIY(event)) {
-      bindTarget.addEventListener(event, eventHandler)
+      const weakmap = weakMapCreator(bindTarget, eventHandler)
+      bindTarget.addEventListener(event, weakmap.get(bindTarget))
     } else {
       events[event].bind(bindTarget, callback, delegateTarget)
     }
