@@ -19,6 +19,8 @@ Make mobile events user-friendly.
 --- | --- | --- | --- | --- | --- |
 Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | 11 ✖ |
 
+![browser-support](docs\user\images\browser-support.png)
+
 ## Usage
 
 ### Using URL 
