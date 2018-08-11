@@ -2,7 +2,7 @@
 
 Make mobile events user-friendly.
 
-![Travis (.org)](https://img.shields.io/travis/jerryOnlyZRJ/mobile-events.svg)  [![codecov](https://codecov.io/gh/jerryOnlyZRJ/mobile-events/branch/master/graph/badge.svg)](https://codecov.io/gh/jerryOnlyZRJ/mobile-events)  [![npm](https://img.shields.io/npm/v/mt-events.svg)](https://www.npmjs.com/package/mt-events)   [![npm](https://img.shields.io/npm/dw/mt-events.svg)](https://www.npmjs.com/package/mt-events)  ![npm](https://img.shields.io/npm/l/mt-events.svg)  ![GitHub language count](https://img.shields.io/badge/language-JavaScript-yellow.svg)
+![Travis (.org)](https://img.shields.io/travis/jerryOnlyZRJ/mobile-events.svg)  [![codecov](https://codecov.io/gh/jerryOnlyZRJ/mobile-events/branch/master/graph/badge.svg)](https://codecov.io/gh/jerryOnlyZRJ/mobile-events)  [![npm](https://img.shields.io/npm/v/mt-events.svg)](https://www.npmjs.com/package/mt-events)   [![npm](https://img.shields.io/npm/dw/mt-events.svg)](https://www.npmjs.com/package/mt-events)  ![GitHub](https://img.shields.io/github/license/jerryOnlyZRJ/mobile-events.svg)  ![GitHub language count](https://img.shields.io/badge/language-JavaScript-yellow.svg)
 
 ## Feature
 
