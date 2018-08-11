@@ -137,7 +137,9 @@ let mtEvents = new MTEvents()
 const mtEventsPrototype = Object.create(MTEvents.prototype)
 const mtEventsFun = mtEvents.bind.bind(mtEvents)
 Object.setPrototypeOf(mtEventsFun, mtEventsPrototype)
-mtEventsFun.userCallback2Handler = mtEvents.userCallback2Handler
+Object.keys(mtEvents).map(keyItem => {
+  mtEventsFun[keyItem] = mtEvents[keyItem]
+})
 
 if (process.env.PLATFORM === 'Browser') {
   window.mtEvents = mtEventsFun
