@@ -1,17 +1,14 @@
 # mt-events
-
-Make mobile events user-friendly.
+Handle mobile events on the web easily
 
 ![Travis (.org)](https://img.shields.io/travis/jerryOnlyZRJ/mobile-events.svg)  [![codecov](https://codecov.io/gh/jerryOnlyZRJ/mobile-events/branch/master/graph/badge.svg)](https://codecov.io/gh/jerryOnlyZRJ/mobile-events)  [![npm](https://img.shields.io/npm/v/mt-events.svg)](https://www.npmjs.com/package/mt-events)   [![npm](https://img.shields.io/npm/dw/mt-events.svg)](https://www.npmjs.com/package/mt-events)  ![GitHub](https://img.shields.io/github/license/jerryOnlyZRJ/mobile-events.svg)  ![GitHub language count](https://img.shields.io/badge/language-JavaScript-yellow.svg)
 
-## Feature
+## Features
 
-* Use our function mtEvents in the Browser directly.
-* Contains popular mobile terminal events like double tap(dbtap), long tap(longtap), you can listen them like using native API `addEventListener` when using our mtEvents.
-* Contain event delegation, what you need to do is push an argument.
-* MtEvents is compatible with native events.(Like click, touchEvents)
-* Just only 2KB(less than) after gzip.We will deploy the script to our CDN as soon as possible.
-* We used WeakMap to refer HTMLElement to its event handler. If you remove this HTMLElement, the reference will be destroyed.
+* MtEvents can be used in the browser directly
+* Supports widely-used mobile terminal events such as double tap and long tap, in addition to native web events like clicking. With MtEvents, you could listen for these mobile/web events just the way you would using the native `addEventListener` web API or JQuery.
+* Allows for event delegation; all you need to do is adding an extra argument.
+* The whole library is only 2KB after gzip. We will deploy the script to our CDN as soon as possible.
 
 ## Browser Support
 
@@ -23,31 +20,31 @@ Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | 11 ✖ |
 
 ## Usage
 
-### Using URL 
+### url
 
-Include the (minified) **mtevents.min.js**  script file in your HTML markup: 
+Include the (minified) **mtevents.min.js**  script file in your HTML:
 
 ```html
 <script src="http://mtevents.jerryonlyzrj.com/mtevents.min.js"></script>
 ```
 
-In your application code, use function mtEvents directly:
+Then use the `mtEvents` function directly in your JavaScript code:
 
 ```js
 mtEvents('#bindTarget', 'click', e => console.log('click'))
 ```
 
-### Using npm 
+### npm
 
-The following is an example how to use the mtEvents like a node.js module:（Like inside a VUE file）
+The following is an example of using MtEvents like a Node.js module, inside a Vue file for instance.
 
-Install the **mt-events** package with [npm](https://www.npmjs.org/): 
+Install the **mt-events** package with [npm](https://www.npmjs.org/):
 
 ```shell
 npm i mt-events
 ```
 
-Require and use it like in the Browser condition:
+Require and use it like such:
 
 ```html
 //test.vue
@@ -56,36 +53,36 @@ const mtEvents = require('mt-events')
 export default {
     ...,
     mounted(){
-    	mtEvents('#bindTarget', 'click', e => console.log('click'))
-	}
+        mtEvents('#bindTarget', 'click', e => console.log('click'))
+    }
 }
 </script>
 ```
 
 ## Tests
 
-The JavaScript MD5 project comes with Unit Tests. 
-
-You can run the test with npm test script in the Terminal n the root path of the repository package :
+The JavaScript MD5 project comes with unit tests. You can run the test with:
 
 ```shell
 npm t
 ```
 
-You can see there is a coverage file in the test folder.
+A coverage file is included in the **test** folder.
 
-## DOCS
+## Docs
 
-There is a User API documentation link, click here ⬇️
+### Users
+See the user API documentations below for your reference ⬇️
 
 [中文文档](https://github.com/jerryOnlyZRJ/mobile-events/blob/master/docs/user/docs(zh).md)
 
 [Documentation](https://github.com/jerryOnlyZRJ/mobile-events/blob/master/docs/user/docs(en).md)
 
-If you want to make some contribution and know how the function run works, you can run the command:
+### Developers
+
+Run the command below to create the **developer** sub-directory inside the **docs** folder:
 
 ```shell
 npm run docs
 ```
 
-There will be a docs folder in the root path and you will see the cookbook for developer in developer folder.
