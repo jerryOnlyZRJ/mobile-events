@@ -11,6 +11,7 @@ Make mobile events user-friendly.
 * Contain event delegation, what you need to do is push an argument.
 * MtEvents is compatible with native events.(Like click, touchEvents)
 * Just only 2KB(less than) after gzip.We will deploy the script to our CDN as soon as possible.
+* We used WeakMap to refer HTMLElement to its event Handler. if you remove this HTMLElement, the reference will be destroyed.
 
 ## Usage
 
