@@ -61,7 +61,7 @@ export default {
 
 ## Tests
 
-The JavaScript MD5 project comes with unit tests. You can run the test with:
+This project comes with unit tests. You can run the test with:
 
 ```shell
 npm t
