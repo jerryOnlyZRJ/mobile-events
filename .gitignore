@@ -6,3 +6,4 @@ docs/developer/
 test/coverage/
 #MAC
 .DS_Store
+*/.DS_Store 
