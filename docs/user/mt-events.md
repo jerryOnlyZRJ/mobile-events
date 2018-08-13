@@ -104,6 +104,8 @@ export default {
 
 ### 为您的项目添加开源许可证
 
+### 添加一些您喜欢的Icon来修饰您的项目吧
+
 ## mt-events从0到1
 
 ### 目录结构
@@ -233,9 +235,9 @@ dispatchTouchEvent (eventTarget, event) {
 
 - Travis CI 提供的是持续集成服务，它仅支持 Github，不支持其他代码托管。
 - 它需要绑定 Github 上面的项目，还需要该项目含有构建或者测试脚本。
-- 只要有新的代码，就会自动抓取。然后，提供一个运行环境，执行测试，完成构建，还能部署到服务器。
+- 只要有新的代码，就会自动抓取。然后，提供一个虚拟机环境，执行测试，完成构建，还能部署到服务器。
 - 只要代码有变更，就自动运行构建和测试，反馈运行结果。确保符合预期以后，再将新代码集成到主干。
-- 每次代码的小幅变更，就能看到运行结果，从而不断累积小的变更，而不是在开发周期结束时，一下子合并一大块代码，这大大提高了开发 mt-events 库的效率，只要一更新，用户即可拉取到最新的 js 代码。
+- 每次代码的小幅变更，就能看到运行结果，从而不断累积小的变更，而不是在开发周期结束时，一下子合并一大块代码，这大大提高了开发 mt-events 库的效率，只要一更新，用户即可拉取到最新的 js 代码。这就是增量上线。
 
 ###### 配置
 
@@ -252,10 +254,8 @@ cache:
 after_success:
 - npm run codecov
 - scp -i mtevents_travis_key -P $DEPLOY_PORT -o stricthostkeychecking=no -r dist/mtevents.min.js
-  $DEPLOY_USER@$DEPLOY_HOST:/usr/local/nginx/html
+  $DEPLOY_USER@$DEPLOY_HOST:/usr/local/nginx/html​
 ```
-​	最后部署，运行。根据运行返回状态，来判断是否运行成功。
-
 ## 源码剖析
 
 mt-events 源码都是按照 ES6 代码规范来写，下面从几个方面来体验 mt-events 源码的魅力：
