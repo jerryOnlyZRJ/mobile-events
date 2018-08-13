@@ -4,39 +4,36 @@
 
 最近在 H5 与APP联调的过程中， 经常需要实现一些常用的移动端事件封装成接口提供给 app，例如用户的单击tap事件、双击事件、长按事件以及拖动事件。但由于浏览器默认只提供了`touchstart`、`touchmove`、`touchend`三个原生事件，在实际的开发过程中，我们常用的解决方案便是通过监听`touchstart`和`touchend`事件配合定时器来实现我们的自定义移动端事件，为了实现常用自定义事件的复用，我们对其进行了封装，并提供方便用户使用的工具函数，这也是我们实现 mt-events 的初衷。
 
-mt-events 全名是 Mobile Terminal Events。最初我们对这个库的定位是希望封装一些常用的移动端事件来方便用户进行更为便捷的移动端开发，例如双击事件、长按事件、滑动事件等等。后来，随着项目的迭代，mt-events 的功能更倾向往前端事件绑定工具的趋势发展，因为我们集成了事件委托等，你可以像使用 JQuery 的 on 方法那样使用我们的 mt-events，更加便捷事件绑定和委托，让移动端事件如原生事件般友好。 
+mt-events 全名是 Mobile Terminal Events。最初我们对这个库的定位是希望封装一些常用的移动端事件来方便用户进行更为便捷的移动端开发，例如双击事件、长按事件、滑动事件等等。后来，随着项目的迭代，mt-events 的功能更倾向往前端事件绑定工具的趋势发展，因为我们集成了事件委托等，您可以像使用 JQuery 的 on 方法那样使用我们的 mt-events，更加便捷事件绑定和委托，让移动端事件如原生事件般友好。 这是我们项目的Github地址：https://github.com/jerryOnlyZRJ/mobile-events 。
 
-接下来，我们将带你体验 mt-events 所拥有的魅力。 
+接下来，我们将带您体验一款工具库的搭建流程，ES6新特性Map、Proxy、Reflect以及WeakMap在我们的工具库中发挥的作用，以及我们开源的工具库**mt-events**所拥有的魅力。 
 
 ------
 ## mt-events初探
-- 封装常用的**移动端事件**
+
+先看看mt-events这款工具库具有哪些特性：
+
+- 普遍性：封装常用的**移动端事件**：
+  - 单击
   - 双击
   - 长按
   - 滑动
   - 拖拽
-- 便捷事件**绑定**和**委托**
-- 没有任何依赖性
-- 代码压缩 + gzip，只有 **1.8KB**
+- 便捷性：在全局挂载工具函数，绑定事件如$.on()般丝滑；封装事件代理，只需要像JQuery那样传入被代理元素的选择器即可。
+- 新语法：使用Map映射事件回调，便捷事件移除；使用WeakMap实现DOM元素与回调的弱引用，预防内存泄漏。
+- 轻量级：代码压缩 + gzip，只有大约 **2KB**。
 
-------
-## 用法
-
-### 引用方式
-
-npm包下载链接：https://www.npmjs.com/package/mt-events
-
-如果你想在 HTML 页面里引入我们的 mt-events 工具库，可以通过如下方式：
+那么，我们又该如何使用它呢？这里提供了两种饮用工具库的方式，最常用的当然是从HTML里使用script引入：
 
 ```js
 <script src="http://mtevents.jerryonlyzrj.com/mtevents.min.js"></script>
 ```
 
-然后，我们的工具函数 mtEvents 将会被挂载在 window 对象上，你可以在浏览器的开发者工具里的 console 面板输入并执行 mtEvents，如果打印出如下文本说明您已经成功引入我们的工具库了：
+然后，我们的工具函数 mtEvents 将会被挂载在 window 对象上，您可以在浏览器的开发者工具里的 console 面板输入并执行 mtEvents，如果打印出如下文本说明您已经成功引入我们的工具库了：
 
-![mtEvents-console](images/mtEvents-console.png)
+![mtEvents-console](/Users/ranjayzheng/Desktop/mobile-events/docs/user/images/mtevents-console.png)
 
-或者你是 VUE 等前端框架的开发者，你也可以通过 npm 依赖的方式引入我们的工具。
+或者您是 VUE 等前端框架的开发者，您也可以通过 npm 依赖的方式引入我们的工具，我们的工具库会跟随您们的VUE文件被打包进bundle里。
 
 首先，将我们的工具库以上线依赖的形式安装：
 
@@ -59,201 +56,58 @@ export default {
 </script>
 ```
 
-**实际上，工具函数 mtEvents 的执行环境还是在浏览器里，不论是通过 script 引入还是使用 npm 依赖，最后都需要在浏览器环境中执行。**
+具体的使用方法，您可以参照我们Github为您提供的用户文档哦～
 
-### 事件处理
+## 如何搭建一款属于我们自己的开源库
 
-#### 事件绑定：mtEvents(bindTarget，delegateTarget，event， callback)
+### 选择一款合适的测试工具
 
-工具函数 mtEvents 用于事件绑定，它默认可以传入4个参数，它们分别是：
+​	没有经过测试的代码不具备任何说服性 。相信大家在浏览别人开源的工具库代码时，都能在根目录下见到一个名为test的文件夹，其中就放置着项目的测试文件。特别对于工具库来说，测试更是一个不可或缺的环节。
 
-* **bindTarget**
+​	市面上的测试工具种类繁多，例如 Jest，Mocha，Jasmine，Tape等，并不需要局限与哪一款，下面我们对这几种框架进行了一些对比。
 
-  类型：String(Selector) | HTMLElement
+- Jest
+  - facebook 开源的 js 单元测试框架
+  - **集成 JSDOM，mt-events 库主要适用于移动端，集成 JSDOM 能够让我们更好地去模拟移动端事件**
+  - 基于 Istanbul 的测试覆盖率工具，会在项目下生产一个 coverage 目录，内附一个优雅的测试覆盖率报告，让我们可以清晰看到优雅的测试情况
+  - 开箱即用，配置很少，只需要 npm 命令安装即可运行
+  - 内置 Jasmin 语法，以及添加了很多新特性
+  - 内置 auto mock，自带 mock API
+  - 支持断言和仿真，不需要引入第三方断言库
+  - 在隔离环境下测试，支持快照测试
+- Mocha
+  - 灵活，可配置扩展性强
+  - 社区成熟
+  - 需要较多的配置
+- Tape
+  - 最精简，体积最小，只提供最关键的东西
+  - 只提供最底层的 API
 
-  事件绑定的DOM元素对象，传入的值可以是一个 DOM 元素或者符合 CSS 选择器规范的字符串，工具会自动选取被选择器选中的**第一个** DOM 元素。
+### 使用eslint规范团队代码
 
-* **delegateTarget**
 
-  类型：String(Selector)
 
-  事件委托元素，符合 CSS 选择器规范的字符串，如果你不需要这个值，可以忽略不填，具体可参考下方的示例代码。
-
-* **event**
-
-  类型：String
-
-  单个事件的名称，可以是浏览器的原生事件，亦或是我们为你封装好的移动端常用事件（后方将会有封装事件的具体使用文档）。
-
-* **callback**
-
-  类型：Function
-
-  事件触发时执行的回调函数，接受一个形参`event`，在回调函数执行时我们将传入触发回调的原生事件对象`event`。
-
-#### 事件绑定代码示例
-
-- **基础用法**：如果你单纯地想为某个元素绑定某个事件的回调，你可以这样使用 mtEvents：
-
-```js
-//你可以赋予第一个参数一个字符串
-mtEvents('#bindTarget', 'click', e => console.log('BindTarget is clicked'))
-//或者直接传入一个DOM对象
-var bindTarget = document.querySelector('#bindTarget')
-mtEvents(bindTarget, 'click', e => console.log('BindTarget is clicked'))
-```
-
-- **绑定封装事件**：同理，绑定我们为你封装的事件也是同样的方法：
-
-```js
-//此代码将为你的目标元素绑定长按事件
-mtEvents('#bindTarget', 'longtap', e => console.log('BindTarget is longtap'))
-```
-
-- **使用事件委托**：如果你需要进行事件委托，只需要在第二个参数传入事件触发元素即可：
-
-```js
-mtEvents('#bindTarget', '#delegateTarget', 'click', e => console.log('BindTarget is clicked'))
-```
-
-如此一来，事件监听将会被绑定在 id 为 bindTarget 的 DOM 元素上，当 e.target 为 delegateTarget 或其子元素时，才会触发回调。
-
-- **为单一元素绑定多个事件**：如果你需要为某个元素绑定多个事件回调，我们为你提供了便捷方案：
-
-```js
-mtEvents(node, {
-    click: e => console.log('BindTarget is clicked'), 
-    longtap: e => console.log('BindTarget is longtap')
-})
-```
-
-你可以传入一个事件回调对象，对象的键是事件名称，值为事件对应的回调。
-
-#### 事件移除：mtEvents.remove(bindTarget，event，callback)
-
-工具函数 mtEvents 上挂载的 **remove** 方法用于移除你通过 mtEvents 绑定的事件，它默认可传入三个参数，它们分别是：
-
-* **bindTarget**
-
-  类型：String(Selector) | HTMLElement
-
-  同理事件绑定方法，事件绑定的 DOM 元素对象，传入的值可以是一个 DOM 元素或者符合 CSS 选择器规范的字符串，工具会自动选取被选择器选中的**第一个 **DOM 元素。
-
-* **event**
-
-  类型：String
-
-  同理事件绑定，你绑定在元素上的事件名称。
-
-* **callback**
-
-  类型：Function
-
-  相应事件触发时执行的回调函数。
-
-#### 事件移除代码示例
-
-同理事件绑定，你可以使用基础用法移除某个元素上的绑定事件：
-
-```js
-const handler = () => console.log('handler')
-mtEvents('#bindTarget', 'click', handler)
-mtEvents.remove('#bindTarget', 'click', handler)
-```
-
-**特别注意：如果你后续需要移除事件，在事件绑定时请不要使用匿名函数！！！否则将无法正常移除事件。**
-
-你也可以像事件绑定时那样传入一个事件回调对象来移除多个事件绑定：
-
-```js
-const clickHandler = () => console.log('clickHandler')
-const longtapHandler = () => console.log('longtapHandler')
-mtEvents.remove(node, {
-    click: clickHandler, 
-    longtap: longtapHandler
-})
-```
-
-### 封装事件
-
-#### longtap
-
-移动端长按事件，通过监听 touchstart 和 touchend 判断用户 touch 的时间是否超过指定阈值（默认为1s）触发事件，使用方法：
-
-```js
-mtEvents('#bindTarget', 'longtap', e => console.log('BindTarget is longtap'))
-```
-
-封装事件 longtap 的 callback 还可以接受一个数组，你也可以使用如下方法传入 callback：
-
-```js
-const longtap = e => console.log('BindTarget is longtap')
-const shorttap = e => console.log('BindTarget is shorttap')
-mtEvents('#bindTarget', 'longtap', [longtap, shorttap])
-```
-
-这么一来，用户如果长按，将触发长按事件，如果短按，将触发短按事件。
-
-#### dbtap
-
-移动端双击事件，通过监听两次 tap 的间隔时间和位置判断用户是否在某一范围内双击屏幕，使用方法：
-
-```js
-mtEvents('#bindTarget', 'dbtap', e => console.log('BindTarget is dbtap'))
-```
-
-#### drag
-
-移动端拖拽事件，通过监听 touchstart 和 touchend 的位置判断用户的手势发生了哪些偏移，执行相应回调，具体使用方法：
-
-```js
-mtEvents('#bindTarget', 'drag', e => console.log('BindTarget is drag'))
-```
-
-你可以为 callback 传入一个回调，分别表示用户进行上下左右拖拽时执行的回调函数：
-
-```js
-const up = e => console.log('up')
-const down = e => console.log('down')
-const left = e => console.log('left')
-const right = e => console.log('right')
-mtEvents('#bindTarget', 'drag', [up, right, down, left])
-```
-
-**callback 数组的顺序是顺时针方向即“上右下左”，如果传入只有一个 callback 的 callback 数组则与单纯传入一个 callback function 同样的效果；如果数组内有两个 callback，则数组第一项为纵向事件拖拽回调，第二项为横向拖拽回调；如果数组有三项，则第一项为up拖拽回调，第二项为横向拖拽回调，第三项为 down 拖拽回调。**
-
-**特别注意：横向事件的回调执行优先级大于纵向事件的回调执行优先级，即横向事件的回调会先于纵向事件的回调先行触发。**
-
-#### swift
-
-移动端滑动事件，通过监听 touchmove 判断用户手势发生了哪些偏移，执行相应回调。
-
-**swift 与 drag 的不同** ：swift 会持续监听用户手势，只要发生移动就持续触发事件，而 drag 值关注用户手势的初始位置和结束为止，只会在 touchend 的时候触发一次事件。
-
-用法完全类同 drag，这里就不再做相关描述。
-
-## 工程化搭建
+## mt-events从0到1
 
 ### 目录结构
 ```shell
 mt-events
-├── core                   # 核心代码
+├── core                   # 源代码文件夹
 │   ├── event.js           # 自定义事件处理句柄生成器，包含长按，双击，滑动，拖拽事件
 │   ├── index.js           # mtEvents 类以及绑定，移除事件方法
 │   ├── proxy.js           # 事件代理 Proxy 生成器
-│   ├── touch.js           # 模拟浏览器原生 touch 事件
+│   ├── touch.js           # 模拟浏览器原生 touch 事件，供test使用，未对外发布
 │   ├── weakmap.js         # 建立用户定义回调与事件绑定元素的弱引用，预防内存泄漏
 ├── dist
 │   ├── mtevents.min.js    # mt-events 工具库最终生成的 JS 上线压缩文件
 ├── docs                   
 │   ├── developer          # 为开发者提供的mt-events开发文档，使用命令`$npm run docs`即可生成
 │   ├── user               # 为用户提供的mt-events的中英文使用文档
-├── lib                    # 使用 rollup 减少冗余代码，区分 browser 和 npm 方式引用
+├── lib                    # 上线待构建代码临时文件夹
 │   ├── event.js           
 │   ├── index-Browser.js   # 上线压缩JS源文件
 │   ├── index-npm.js       # npm package入口文件
-│   ├── proxy.js           
-│   ├── touch.js           
+│   ├── proxy.js                    
 │   ├── weakmap.js                  
 ├── test
 │   ├── coverage           # 测试覆盖率参考文件
@@ -264,7 +118,11 @@ mt-events
 ├── rollup.config.js       # rollup 配置文件
 ├── webpack.config.js      # webpack配置文件 
 ```
-### 框架搭建
+这是一份平平无奇的项目目录，大家一定能看到很多熟悉的字眼，我们都对其中的文件的用途进行了解释说明，具体关键细节和重点，我们会在后文中提炼出来。
+
+### 工程化实践
+
+![images](images/images.jpeg)
 
 ####  工具选型 
 ```bash
@@ -276,9 +134,9 @@ API 文档生成工具： JSDoc
 项目管理工具： git
 ```
 #####   JavaScript 模块打包器 Rollup
-​	Rollup 已被许多主流的 JavaScript 库使用，它对代码模块使用新的标准化格式，这些标准都包含在 JavaScript 的 ES6 版本中，这可以让你自由无缝地使用你需要的 lib 中最有用的独立函数。Rollup 还为 mt-events实现了同构，分为 index-npm.js 和 index-Browser.js 文件，既可以通过 script 引入，也可以使用 npm 依赖。 
+​	Rollup 已被许多主流的 JavaScript 库使用，它对代码模块使用新的标准化格式，这些标准都包含在 JavaScript 的 ES6 版本中，这可以让您自由无缝地使用您需要的 lib 中最有用的独立函数。Rollup 还帮助 mt-events实现了简单的“同构”，通过区分用户的引用方式，我们将上线文件区分为 index-npm.js 和 index-Browser.js 文件，既可以通过 script 在HTML引入，也可以使用 npm 方式 require 依赖。 
 
-​	除了使用 ES6 模块，Rollup 具有 Tree Shaking 特性，可以静态分析导入模块，移除没用到的代码，尽量地减少代码体积。
+​	除了使用 ES6 模块，Rollup 独树一帜的 Tree Shaking 特性，可以静态分析导入模块，移除冗余，帮助我们完成了代码无用分支的裁剪：
 
 ``` javascript
 // index.js  
@@ -325,31 +183,43 @@ export default {
 ```
 
 #####  单元测试工具 Jest
-​	随着项目迭代的过程，依赖人工去回归测试容易出错和遗漏，为了保证 mt-events 库的质量，以及自动化测试，我们引入了单元自动化测试。目前测试工具很多，例如 Jest，Mocha，Jasmine，Tape等，下面我们对这几种框架进行了一些对比。
 
-- Jest
-  - facebook 开源的 js 单元测试框架
-  - **集成 JSDOM，mt-events 库主要适用于移动端，集成 JSDOM 能够让我们更好地去模拟移动端事件**
-  - 基于 Istanbul 的测试覆盖率工具，会在项目下生产一个 coverage 目录，内附一个优雅的测试覆盖率报告，让我们可以清晰看到优雅的测试情况
-  - 开箱即用，配置很少，只需要 npm 命令安装即可运行
-  - 内置 Jasmin 语法，以及添加了很多新特性
-  - 内置 auto mock，自带 mock API
-  - 支持断言和仿真，不需要引入第三方断言库
-  - 在隔离环境下测试，支持快照测试
-- Mocha
-  - 灵活，可配置扩展性强
-  - 社区成熟
-  - 需要较多的配置
-- Tape
-  - 最精简，体积最小，只提供最关键的东西
-  - 只提供最底层的 API
+​	随着项目迭代的过程，依赖人工去回归测试容易出错和遗漏，为了保证 mt-events 库的质量，以及实现自动化测试，我们引入了Jest，因为它集成了 **JSDOM**，用它模拟我们的事件库在浏览器环境中执行的效果再合适不过了。并且Jest容易上手，开箱即用，几乎零配置，功能全面。
 
-  最终我们的单元测试工具的选择是 **Jest**，集成 **JSDOM**，容易上手，开箱即用，几乎零配置，功能全面。
+​	但是在测试的开始阶段就遇到了一个问题，在浏览器原生移动端事件中，并没有一个像click()那样的方法可以供我们直接调用来模拟事件触发，这个问题又该如何解决呢？
+
+​	利用挂载在全局的TouchEvent构造函数，我们尝试着创建用户的touch事件，最终实践证明，这个方法可行，下方便是我们模拟touch事件的核心代码：
+
+```javascript
+// touch.js
+createTouchEvent (type) {
+    return new window.TouchEvent(type, {
+        bubbles: true,
+        cancelable: true
+    })
+}
+dispatchTouchEvent (eventTarget, event) {
+    if (typeof eventTarget === 'string') {
+        eventTarget = document.querySelector(eventTarget)
+    }
+    eventTarget.dispatchEvent(event)
+    return eventTarget
+}
+```
+
+​	下面是我们使用 Jest 测试代码的覆盖率及结果：
+![mtEvents-test](images/mtevents-test.png)
+
 
 #####  API 文档工具 JSDoc
 
 - JSDoc 是一个根据 javascript 文件中注释信息，生成 JavaScript 应用程序或库、模块的 API 文档 的工具
+
 - JSDoc 本质是代码注释，根据它一定的格式和规则去写，这样就能很方便生产智能提示和 mt-events API 文档
+
+  下面是 mt-events API 文档：
+![mtEvents-docs](images/mtevents-docs.png)
+  
 
 #####  持续集成服务 Travis CI 
 
