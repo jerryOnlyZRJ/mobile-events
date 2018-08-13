@@ -1,16 +1,15 @@
 # mt-events
 
-------
 ## 引言
 
-最近在 H5 与 app 联调的过程中，发现 H5 需要实现一些常用的移动端事件封装成接口提供给 app，这也是我们实现 mt-events 的初衷。
+最近在 H5 与APP联调的过程中， 经常需要实现一些常用的移动端事件封装成接口提供给 app，例如用户的单击tap事件、双击事件、长按事件以及拖动事件。但由于浏览器默认只提供了`touchstart`、`touchmove`、`touchend`三个原生事件，在实际的开发过程中，我们常用的解决方案便是通过监听`touchstart`和`touchend`事件配合定时器来实现我们的自定义移动端事件，为了实现常用自定义事件的复用，我们对其进行了封装，并提供方便用户使用的工具函数，这也是我们实现 mt-events 的初衷。
 
 mt-events 全名是 Mobile Terminal Events。最初我们对这个库的定位是希望封装一些常用的移动端事件来方便用户进行更为便捷的移动端开发，例如双击事件、长按事件、滑动事件等等。后来，随着项目的迭代，mt-events 的功能更倾向往前端事件绑定工具的趋势发展，因为我们集成了事件委托等，你可以像使用 JQuery 的 on 方法那样使用我们的 mt-events，更加便捷事件绑定和委托，让移动端事件如原生事件般友好。 
 
 接下来，我们将带你体验 mt-events 所拥有的魅力。 
 
 ------
-## 功能
+## mt-events初探
 - 封装常用的**移动端事件**
   - 双击
   - 长按
@@ -229,11 +228,10 @@ mtEvents('#bindTarget', 'drag', [up, right, down, left])
 
 移动端滑动事件，通过监听 touchmove 判断用户手势发生了哪些偏移，执行相应回调。
 
-** swift 与 drag 的不同**：swift 会持续监听用户手势，只要发生移动就持续触发事件，而 drag 值关注用户手势的初始位置和结束为止，只会在 touchend 的时候触发一次事件。
+**swift 与 drag 的不同** ：swift 会持续监听用户手势，只要发生移动就持续触发事件，而 drag 值关注用户手势的初始位置和结束为止，只会在 touchend 的时候触发一次事件。
 
 用法完全类同 drag，这里就不再做相关描述。
 
-------
 ## 工程化搭建
 
 ### 目录结构
@@ -244,39 +242,37 @@ mt-events
 │   ├── index.js           # mtEvents 类以及绑定，移除事件方法
 │   ├── proxy.js           # 事件代理 Proxy 生成器
 │   ├── touch.js           # 模拟浏览器原生 touch 事件
-│   ├── weakmap.js         # 设置 DOM 元素对应的 callback，移除DOM元素相对应的 callback 也去除
+│   ├── weakmap.js         # 建立用户定义回调与事件绑定元素的弱引用，预防内存泄漏
 ├── dist
-│   ├── mtevents.min.js    # mt-events 工具库最终生成的 js 文件
+│   ├── mtevents.min.js    # mt-events 工具库最终生成的 JS 上线压缩文件
 ├── docs                   
-│   ├── developer          # 使用 jsdoc 生成 js 库或者模块的 API 文档
-│   ├── user               # mt-events 的中英文使用文档
+│   ├── developer          # 为开发者提供的mt-events开发文档，使用命令`$npm run docs`即可生成
+│   ├── user               # 为用户提供的mt-events的中英文使用文档
 ├── lib                    # 使用 rollup 减少冗余代码，区分 browser 和 npm 方式引用
 │   ├── event.js           
-│   ├── index-Browser.js   # browser 方式引用
-│   ├── index-npm.js       # npm 方式引用
+│   ├── index-Browser.js   # 上线压缩JS源文件
+│   ├── index-npm.js       # npm package入口文件
 │   ├── proxy.js           
 │   ├── touch.js           
 │   ├── weakmap.js                  
 ├── test
-│   ├── coverage           # 测试覆盖率
+│   ├── coverage           # 测试覆盖率参考文件
 │   ├── index.js           # 测试用例
-├── .travis.yml            # travis-ci构建部署到服务器，一发布新版本用户即可以拿到最新 mtevents 代码
-├── jest.config.js         # jest 配置文件
-├── package.json           # 配置文件
+├── .travis.yml            # Travis-ci配置文件
+├── jest.config.js         # Jest 配置文件
+├── package.json           
 ├── rollup.config.js       # rollup 配置文件
-├── swebpack.config.js     # webpack4 打包配置文件 
+├── webpack.config.js      # webpack配置文件 
 ```
 ### 框架搭建
 
 ####  工具选型 
 ```bash
-构建： webpack4
-js 模块打包器： Rollup
-单元测试工具： Jest
-构建部署服务器: Travis CI 
-生成 API 文档工具： JSDoc
-语法支持： es6
-语法规范： eslint + prettier
+构建： webpack4 Rollup
+测试工具： Jest
+持续集成: Travis CI 
+API 文档生成工具： JSDoc
+代码规范： eslint  prettier lint-staged
 项目管理工具： git
 ```
 #####   JavaScript 模块打包器 Rollup
