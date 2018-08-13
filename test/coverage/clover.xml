@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<coverage generated="1534162680620" clover="3.2.0">
-  <project timestamp="1534162680621" name="All files">
-    <metrics statements="187" coveredstatements="187" conditionals="61" coveredconditionals="61" methods="51" coveredmethods="51" elements="299" coveredelements="299" complexity="0" loc="187" ncloc="187" packages="2" files="5" classes="5">
-=======
-<coverage generated="1534161482726" clover="3.2.0">
-  <project timestamp="1534161482726" name="All files">
+<coverage generated="1534164763960" clover="3.2.0">
+  <project timestamp="1534164763960" name="All files">
     <metrics statements="199" coveredstatements="199" conditionals="65" coveredconditionals="65" methods="51" coveredmethods="51" elements="315" coveredelements="315" complexity="0" loc="199" ncloc="199" packages="2" files="5" classes="5">
->>>>>>> 5f892bec4db415f7c7508b66aaf816b186666eb0
       <package name="core">
         <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <file name="touch.js" path="D:\mobile-events\core\touch.js">
+        <file name="touch.js" path="/Users/ranjayzheng/Desktop/mobile-events/core/touch.js">
           <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
           <line num="12" count="102" type="stmt"/>
-          <line num="24" count="101" type="cond" truecount="2" falsecount="0"/>
-          <line num="25" count="81" type="stmt"/>
-          <line num="27" count="101" type="stmt"/>
-          <line num="28" count="101" type="stmt"/>
+          <line num="24" count="102" type="cond" truecount="2" falsecount="0"/>
+          <line num="25" count="82" type="stmt"/>
+          <line num="27" count="102" type="stmt"/>
+          <line num="28" count="102" type="stmt"/>
           <line num="32" count="1" type="stmt"/>
         </file>
       </package>
       <package name="lib">
         <metrics statements="193" coveredstatements="193" conditionals="63" coveredconditionals="63" methods="49" coveredmethods="49"/>
-        <file name="events.js" path="D:\mobile-events\lib\events.js">
+        <file name="events.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/events.js">
           <metrics statements="128" coveredstatements="128" conditionals="34" coveredconditionals="34" methods="33" coveredmethods="33"/>
           <line num="1" count="1" type="stmt"/>
           <line num="15" count="1" type="stmt"/>
@@ -153,7 +147,7 @@
           <line num="290" count="10" type="stmt"/>
           <line num="294" count="1" type="stmt"/>
         </file>
-        <file name="index-npm.js" path="D:\mobile-events\lib\index-npm.js">
+        <file name="index-npm.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/index-npm.js">
           <metrics statements="48" coveredstatements="48" conditionals="20" coveredconditionals="20" methods="13" coveredmethods="13"/>
           <line num="3" count="1" type="stmt"/>
           <line num="4" count="1" type="stmt"/>
@@ -204,7 +198,7 @@
           <line num="143" count="1" type="stmt"/>
           <line num="147" count="1" type="stmt"/>
         </file>
-        <file name="proxy.js" path="D:\mobile-events\lib\proxy.js">
+        <file name="proxy.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/proxy.js">
           <metrics statements="13" coveredstatements="13" conditionals="9" coveredconditionals="9" methods="2" coveredmethods="2"/>
           <line num="9" count="80" type="cond" truecount="2" falsecount="0"/>
           <line num="10" count="40" type="stmt"/>
@@ -220,7 +214,7 @@
           <line num="38" count="80" type="stmt"/>
           <line num="41" count="1" type="stmt"/>
         </file>
-        <file name="weakmap.js" path="D:\mobile-events\lib\weakmap.js">
+        <file name="weakmap.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/weakmap.js">
           <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
           <line num="2" count="7" type="stmt"/>
           <line num="3" count="7" type="stmt"/>
