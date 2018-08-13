@@ -1,10 +1,20 @@
 const mtEvents = require('../lib/index-npm.js')
 const touch = require('../core/touch.js')
 
-function delay4tap(bindTarget, delay) {
+function delay4tap(bindTarget, clientX, clientY, delay) {
 	return new Promise((resolve, reject) => {
 		const touchstart = touch.createTouchEvent('touchstart')
+		touchstart.changedTouches = [];
+		touchstart.changedTouches.push({
+			'clientX': clientX,
+			'clientY': clientY
+		})
 		const touchend = touch.createTouchEvent('touchend')
+		touchend.changedTouches = [];
+		touchend.changedTouches.push({
+			'clientX': 100,
+			'clientY': 100
+		})
 		touch.dispatchTouchEvent(bindTarget, touchstart)
 		setTimeout(() => {
 			touch.dispatchTouchEvent(bindTarget, touchend)
@@ -192,7 +202,7 @@ describe('test DIY event tap', () => {
 		mtEvents(bindTarget, 'tap', e => {
 			bindTarget.innerHTML = 'tap'
 		})
-		await delay4tap('#bindTarget', 100)
+		await delay4tap('#bindTarget', 60, 60, 100)
 		expect(bindTarget.innerHTML).toBe("tap")
 	})
 	test("test bind('#bindTarget', 'tap', handler)", async () => {
@@ -201,7 +211,16 @@ describe('test DIY event tap', () => {
 		mtEvents(bindTarget, 'tap', e => {
 			bindTarget.innerHTML = 'tap'
 		})
-		await delay4tap('#bindTarget', 1200)
+		await delay4tap('#bindTarget', 10, 10, 100)
+		expect(bindTarget.innerHTML).toBe("")
+	})
+	test("test bind('#bindTarget', 'tap', handler)", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		mtEvents(bindTarget, 'tap', e => {
+			bindTarget.innerHTML = 'tap'
+		})
+		await delay4tap('#bindTarget', 60, 60, 1200)
 		expect(bindTarget.innerHTML).toBe("")
 	})
 	test("test bind('#bindTarget', '#delegateTarget', 'tap', handler) make difference", async () => {
@@ -211,13 +230,13 @@ describe('test DIY event tap', () => {
 		mtEvents(bindTarget, "#delegateTarget", 'tap', e => {
 			output.innerHTML = 'tap'
 		})
-		await delay4tap('#bindTarget', 100)
+		await delay4tap('#bindTarget', 60, 60, 100)
 		expect(output.innerHTML).toBe("")
-		await delay4tap('#delegateParent', 100)
+		await delay4tap('#delegateParent', 60, 60, 100)
 		expect(output.innerHTML).toBe("")
-		await delay4tap('#delegateTarget', 100)
+		await delay4tap('#delegateTarget', 60, 60, 100)
 		expect(output.innerHTML).toBe("tap")
-		await delay4tap('#delegateChild', 100)
+		await delay4tap('#delegateChild', 60, 60, 100)
 		expect(output.innerHTML).toBe("tap")
 	})
 })
