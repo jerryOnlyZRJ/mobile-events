@@ -66,7 +66,7 @@ export default {
 
 ​	市面上的测试工具种类繁多，例如 Jest，Karma，Mocha，Tape等，并不需要局限与哪一款，下面我们对这几种框架进行了一些对比。
 
-- Jest
+- [Jest](https://jestjs.io/)
   - facebook 开源的 js 单元测试框架
   - **集成 JSDOM，mt-events 库主要适用于移动端，集成 JSDOM 能够让我们更好地去模拟移动端事件**
   - 基于 Istanbul 的测试覆盖率工具，会在项目下生产一个 coverage 目录，内附一个优雅的测试覆盖率报告，让我们可以清晰看到优雅的测试情况
@@ -78,20 +78,97 @@ export default {
   - 在隔离环境下测试，支持快照测试
   - 较多用于 React 项目(但广泛支持各种项目)
   - 比较新，社区还不是很成熟
-- Mocha
-  - 灵活，可配置扩展性强
-  - 社区成熟
-  - 需要较多的配置
-- Tape
+- [Karma](https://karma-runner.github.io/2.0/index.html) 
+  - google Angular 团队开源的 JavaScript测试执行过程管理工具
+  - 配置简单方便
+  - 强大适配器，可以在 karma 上面配置 jasmine，mocha 等单元测试框架
+  - 可提供真实的模拟环境，可以在 chrome，firefox 等各种浏览器环境进行配置
+  - 开发者可以自己把控整个自动化测试流程，实现更加自动化，当我们编辑保存的时候，即可运行全部的测试用例
+  - 高扩展性，支持插件开发
+  - 支持 ci 服务
+  - 执行速度快
+  - 支持远程控制以及支持调试
+- [Mocha](https://mochajs.org/)
+  - 学习成本比较高，但随之带来的是它能提供更好的灵活性和可扩展性
+  - 社区成熟，在社区上可以找到各种的特殊场景下可用的插件或者扩展
+  - 需要较多的配置，配置相对比较麻烦
+  - 自身集成度不高，需要和第三方库结合（通常是 Enzyme 和 Chai）才能有断言、mocks、spies 的功能
+  - 默认创建全局的测试结构
+  - 终端显示友好
+  - 目前使用最广泛的库
+- [Tape](https://github.com/substack/tape)
   - 开发者只需要用 node 执行一个 js 脚本，直接调用 API 即可
-  - 最精简，体积最小，只提供最关键的东西
-  - 只提供最底层最基础的 API，简单的结构和断言
+  - 最精简，体积最小，提供简单的结构和断言
+  - 只提供最底层最基础的 API
+  - 没有定义全局变量，开发者可以随意更改测试代码
+  - 不需要 CLI 客户端环境，只需要能够运行 js 环境，即可运行 Tape
+
+综上所述，Jest 开箱即用，里边啥都有提供全面的方案；为大型项目配备足以快速上手的框架，建议使用Karma；Mocha 用的人最多，社区最成熟，灵活，可配置性强易拓展；Tape 最精简，提供最基础的东西最底层的API。
+
+下面我们举个例子如何安装配置使用  **Jest**：
+```shell
+npm i jest -D  # 安装 Jest
+
+// jest.config.js   # 在 jest.config.js 配置需要测试的代码路径，以及覆盖率输出文档的目录
+module.exports = {
+    testURL: 'http://localhost',
+    testMatch: ['<rootDir>/test/*.js'],
+    coverageDirectory: '<rootDir>/test/coverage',
+    coverageThreshold: {
+        global: {
+            branches: 90,
+            functions: 90,
+            lines: 90,
+            statements: 90
+        }
+    }
+}
+
+// package.json # 配置运行指令
+"scripts": {
+    "test": "jest --coverage"
+}
+
+// index.js     # 编写测试用例
+describe('test dbtap events', () => {
+	test('test 1+1', () => {
+        expect(1+1).toBe(2) 
+	})
+})
+
+// npm t        # 运行测试用例
+> test-lib@1.0.0 test D:\test-lib
+> jest
+
+ PASS  test/index.js
+  test dbtap events
+    √ test 1+1 (3ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.786s
+Ran all test suites.
+```
 
 ### 使用eslint规范团队代码
 
-在团队开发的工作中，代码规范是保障代码可读性的重要措施之一，
+在团队开发的工作中，代码维护所占的时间比重往往大于新功能的开发。因此制定符合团队的代码规范是至关重要的，这样不仅仅可以很大程度地避免基本语法错误，也保证了代码的可读性，方便维护。
+ ```	
+	程序是写给人读的，只是偶尔让计算机执行一下。
+															--Donald Knuth
+ ```
+众所周知，eslint 是一个开源的 JavaScript 代码检查工具，可以用来校验我们的代码，给代码定义一个规范，团队成员按照这个代码规范进行开发，这保证了代码的规范。使用 eslint 可以带来很多好处，可以帮助我们避免一些低级错误，可能一个小小的语法问题，让你定位了很久才发现问题所在，而且在团队合作的过程中，可以保证大家都按照同一种风格去开发，这样更方便大家看懂彼此的代码，提高开发效率。
+
+另外，eslint 的初衷是为了让开发者创建自己的代码检测规则，使其可以在编码过程中发现问题，扩展性强。为了方便使用，eslint 也内置了一些规则，也可以在这基础上去增加自定义规则。
+
+```shell
+eslint --init  # 如果不自定义自己的规则，可以选择第二个选项，用一种比较流行的内置规则规范代码
+```
 
 ### 选择您最熟悉的构建工具
+
+从事前端的开发者都会忍不住感叹前端技术发展之快，稍微过一阵子不关注新的技术，就会发现自己已经跟不上前端的迭代脚步了，会出现新思想和新框架，但是有一个特点就是源代码不能直接运行，终究需要一个工具来进行转换才能正常运行。
 
 ### 配置JSDoc为后来之人扫清障碍
 
@@ -100,7 +177,7 @@ export default {
 ​	这款工具名为JSDoc，它是一款根据 Javascript 文件中注释信息，生成 JavaScript 应用程序或库、模块的 API 文档的工具。JSDoc 分析的源代码是我们书写的符合Docblock格式的代码注释，它会智能帮我们生成美观的API文档页面，我们要做的，只是简单的跑一句`jsdoc`命令就可以了。
 
 下面是 mt-events的 API 文档（很美观不是吗？这些都是JSDoc自动生成的）：
-![mtEvents-docs](/Users/ranjayzheng/Desktop/mobile-events/docs/user/images/mtevents-docs.png)
+![mtEvents-docs](images/mtevents-docs.png)
 
 ​	简约的风格让人开起来心旷神怡，想想如果有后来的维护者想要快速了解您的项目的大体架构和具体方法的功能，献上这样一份开发者文档可不是要比直接丢给他一份源代码要来的好得多对吧。
 
@@ -292,7 +369,7 @@ Object.keys(mtEvents).map(keyItem => {
 
  ```	
 	WeakMap 就是为了解决这个问题而诞生的，它的键名所引用的对象都是弱引用，即垃圾回收机制不将该引用考虑在内。因此，只要所引用的对象的其他引用都被清除，垃圾回收机制就会释放该对象所占用的内存。也就是说，一旦不再需要，WeakMap 里面的键名对象和所对应的键值对会自动消失，不用手动删除引用。
-															--摘自 阮一峰《ECMAScript 6 入门》
+						                                   --摘自 阮一峰《ECMAScript 6 入门》
  ```
 
 ​	 weakmap.js 的意义在于建立DOM 元素与对应 callback的弱引用，在移除DOM元素时绑定在该元素上的回调也会被GC回收，这样就能起到防止内存泄漏的作用。
