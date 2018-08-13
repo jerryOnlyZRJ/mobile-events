@@ -256,7 +256,6 @@ after_success:
 ```
 ​	最后部署，运行。根据运行返回状态，来判断是否运行成功。
 
-------
 ## 源码剖析
 
 mt-events 源码都是按照 ES6 代码规范来写，下面从几个方面来体验 mt-events 源码的魅力：
@@ -312,7 +311,9 @@ function weakMapCreator (htmlElement, callback) {
 
 ### 事件委托的代码每次绑定事件都得写一次，用Proxy—Reflect快速去重
 
-在 proxy.js 源码中，定义了事件代理处理的方法：_delegateEvent，以及事件代理Proxy生成器：delegateProxyCreator，这样用户传入的参数：事件绑定元素，事件代理元素，callback 全部都得经过我们自己的事件代理Proxy生成器，进行相应的事件代理处理，这样可以大大减少代码量，使代码看起来更加精简美观，同时这样定位问题 bug 也变得简单很多，只需要从根源处去定位 bug 即可。
+​	在开发的过程中我们发现，为了实现事件委托相关操作，我们经常要书写重复的代码，为了降低代码的重复率，我们想到了使用ES6里的Proxy和Reflect对事件回调进行代理，在这过程中执行事件委托相关操作。
+
+​	在 proxy.js 源码中，定义了事件委托处理的方法：_delegateEvent，以及事件委托Proxy生成器：delegateProxyCreator，这样在执行事件监听回调时，经过我们的事件委托Proxy，进行相应的事件委托处理，这样不仅可以大大减少代码重复率，使代码看起来更加精简美观，同时这样定位问题 bug 也变得简单很多，只需要从根源处去定位 bug 即可。
 
 ```javascript
 /**
