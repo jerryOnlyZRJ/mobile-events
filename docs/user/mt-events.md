@@ -35,7 +35,7 @@ npm包下载链接：https://www.npmjs.com/package/mt-events
 
 然后，我们的工具函数 mtEvents 将会被挂载在 window 对象上，你可以在浏览器的开发者工具里的 console 面板输入并执行 mtEvents，如果打印出如下文本说明您已经成功引入我们的工具库了：
 
-![mtEvents-console](images/mtEvents-console.png)
+![mtEvents-console](images/mtevents-console.png)
 
 或者你是 VUE 等前端框架的开发者，你也可以通过 npm 依赖的方式引入我们的工具。
 
@@ -340,20 +340,49 @@ export default {
   - 内置 auto mock，自带 mock API
   - 支持断言和仿真，不需要引入第三方断言库
   - 在隔离环境下测试，支持快照测试
+
 - Mocha
   - 灵活，可配置扩展性强
   - 社区成熟
   - 需要较多的配置
+
 - Tape
   - 最精简，体积最小，只提供最关键的东西
   - 只提供最底层的 API
 
   最终我们的单元测试工具的选择是 **Jest**，集成 **JSDOM**，容易上手，开箱即用，几乎零配置，功能全面。
 
+  我们根据  **Jest **的集成 **JSDOM** 模拟一些移动端 touch 事件，支持浏览器调用 touch 系列事件，自定义了初始化 touch 事件以及触发 touch 系列事件。
+```javascript
+// touch.js
+createTouchEvent (type) {
+    return new window.TouchEvent(type, {
+        bubbles: true,
+        cancelable: true
+    })
+}
+dispatchTouchEvent (eventTarget, event) {
+    if (typeof eventTarget === 'string') {
+        eventTarget = document.querySelector(eventTarget)
+    }
+    eventTarget.dispatchEvent(event)
+    return eventTarget
+}
+```
+
+​	下面是我们使用 Jest 的代码测试覆盖率以及结果：![mtEvents-buildingpass](images/mtevents-buildingpass.png) 
+![mtEvents-test](images/mtevents-test.png)
+
+
 #####  API 文档工具 JSDoc
 
 - JSDoc 是一个根据 javascript 文件中注释信息，生成 JavaScript 应用程序或库、模块的 API 文档 的工具
+
 - JSDoc 本质是代码注释，根据它一定的格式和规则去写，这样就能很方便生产智能提示和 mt-events API 文档
+
+  下面是 mt-events API 文档：
+![mtEvents-docs](images/mtevents-docs.png)
+  
 
 #####  持续集成服务 Travis CI 
 
