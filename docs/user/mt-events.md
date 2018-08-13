@@ -91,7 +91,7 @@ export default {
 
 ### 配置JSDoc为后来之人扫清障碍
 
-​	项目的维护工作是延伸项目生命周期的最关键手段，阅读别人的源码相信对大家来说都是一件费力的事情，特别是当原作者不在你身边或者无法给你提供任何信息的时候，那就更是悲从中来。所以，书写完善的注释是开发过程中需要养成的良好习惯。为了提升代码的可维护性，我们都会在主干代码上完善我们的注释，并且，市面上有一款工具，它能够自动将我们的注释转化成API文档，生成可视化页面，听起来是很神奇吧，先别着急，听我娓娓道来。
+​	项目的维护工作是延伸项目生命周期的最关键手段，阅读别人的源码相信对大家来说都是一件费力的事情，特别是当原作者不在您身边或者无法给您提供任何信息的时候，那就更是悲从中来。所以，书写完善的注释是开发过程中需要养成的良好习惯。为了提升代码的可维护性，我们都会在主干代码上完善我们的注释，并且，市面上有一款工具，它能够自动将我们的注释转化成API文档，生成可视化页面，听起来是很神奇吧，先别着急，听我娓娓道来。
 
 ​	这款工具名为JSDoc，它是一款根据 Javascript 文件中注释信息，生成 JavaScript 应用程序或库、模块的 API 文档的工具。JSDoc 分析的源代码是我们书写的符合Docblock格式的代码注释，它会智能帮我们生成美观的API文档页面，我们要做的，只是简单的跑一句`jsdoc`命令就可以了。
 
@@ -259,12 +259,11 @@ after_success:
 ------
 ## 源码剖析
 
-​	mt-events 源码都是按照 ES6 代码规范来写，下面从几个方面来体验 mt-events 源码的魅力：
+mt-events 源码都是按照 ES6 代码规范来写，下面从几个方面来体验 mt-events 源码的魅力：
 
 ### 一个既是Function又是Object的工具函数
 
-- 通常 mtEvents 原来只是个类实例，如果想要使用事件绑定处理方法，则需要 mtEvents.bind() 来实现。那我们是不是可以考虑让 mtEvents 既是一个 function，也是一个 Object 呢？
-- 通过 Object.create(MTEvents.prototype) 来获取 mtEvents 的原型对象，mtEvents.bind.bind() 改变 this 指针的指向， 将其 mtEventsFun 绑定多个方法，实现 mtEvents 既是一个 function，也是一个 Object，方便开发者使用。
+​	如此奇葩的数据类型看起来似乎很陌生，但我敢保证您之前一定有见过，只是没注意到它罢了，而且是多年以前我们最经常打交道的老朋友。还记得JQuery里面的 **$** 符号嘛？你一定用过这种写法去获取元素`$("#myDom")`，也用过挂在 $ 上的ajax方法来发送请求就像这样：`$.ajax(...)`，是不是被我这么一说忽然发现，之前最常用的 **$** 居然既是个函数又是个对象，很少见这样的情况对吧，其实实现原理很简单，只需要把类实例的原型挂载到Function上就搞定了，之所以这么做，是为了让用户绑定事件时，直接使用**mtEvents**这个Function就可以了，就不需要再去拿到mtEvents上的bind方法了，能够优化体验。具体实现代码如下：
 
 ```javascript
 // index.js
@@ -280,18 +279,30 @@ Object.keys(mtEvents).map(keyItem => {
 
 ### 移除事件时需要传递指针，怎么让用户的回调和我们绑定在元素上的事件回调形成映射？
 
-我们定义 userCallback2Handler 为一个 map，将用户自定义的 callback 与事件处理器 eventHandler 绑定起来，相应的 remove 的时候也是根据 callback 来进行移除事件绑定。
+​	     在自定义事件中，我们是通过同时监听`touchstart`和`touchend`两个事件来判断用户触发的事件类型，并且在指定的位置执行用户传入的回调。那么，当用户需要移除之前绑定的事件时，我们又该如何处理呢？用户传入的肯定是需要执行的回调，而不是我们绑定在元素上的事件回调。
+
+​	这时候，我们就需要对用户传入的执行回调和我们绑定在事件监听上的回调建立映射关系了，这样我们就可以依据用户传入的执行回调找到我们所需要移除的事件绑定回调函数了。对于映射关系，我们首先想到的肯定就是对象了，但是在传统的JS里，对象的键只能是字符串，但是我们需要让它是一个函数，这回就该想到我们ES6里新增的数据类型Map了，他的键可以不限于字符串，正合我意。
+
+​	我们定义 userCallback2Handler 为一个 Map，将用户自定义的 callback 与事件处理器 eventHandler 绑定起来，相应的 remove 的时候也是根据 callback 来进行移除事件绑定，自定义事件中也是同理。
 
 ### 用户移除DOM元素时忘了移除绑定的事件怎么办？让WeakMap弱引用和内存泄漏Say goodbye!
 
- weakmap.js 的意义在于设置 DOM 元素对应的 callback，移除DOM元素相对应的 callback 也要对应的移除，防止内存泄漏。
+ ```	
+	WeakMap 就是为了解决这个问题而诞生的，它的键名所引用的对象都是弱引用，即垃圾回收机制不将该引用考虑在内。因此，只要所引用的对象的其他引用都被清除，垃圾回收机制就会释放该对象所占用的内存。也就是说，一旦不再需要，WeakMap 里面的键名对象和所对应的键值对会自动消失，不用手动删除引用。
+															--摘自 阮一峰《ECMAScript 6 入门》
+ ```
+
+​	 weakmap.js 的意义在于建立DOM 元素与对应 callback的弱引用，在移除DOM元素时绑定在该元素上的回调也会被GC回收，这样就能起到防止内存泄漏的作用。
 
 ```javascript
-// index.js
-this.userCallback2Handler = new Map()
-this.userCallback2Handler.set(callback, eventHandler)
-
 // weakmap.js
+
+/**
+ * weakMapCreator WeakMap生成器
+ * @param  {HTMLElement}   htmlElement DOM元素
+ * @param  {Function} callback    事件监听回调
+ * @return {WeakMap}               WeakMap实例
+ */
 function weakMapCreator (htmlElement, callback) {
     let weakMap = new WeakMap()
     weakMap.set(htmlElement, callback)
