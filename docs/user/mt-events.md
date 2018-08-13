@@ -85,7 +85,24 @@ export default {
 
 ### 使用eslint规范团队代码
 
+在团队开发的工作中，代码规范是保障代码可读性的重要措施之一，
 
+### 选择您最熟悉的构建工具
+
+### 配置JSDoc为后来之人扫清障碍
+
+​	项目的维护工作是延伸项目生命周期的最关键手段，阅读别人的源码相信对大家来说都是一件费力的事情，特别是当原作者不在你身边或者无法给你提供任何信息的时候，那就更是悲从中来。所以，书写完善的注释是开发过程中需要养成的良好习惯。为了提升代码的可维护性，我们都会在主干代码上完善我们的注释，并且，市面上有一款工具，它能够自动将我们的注释转化成API文档，生成可视化页面，听起来是很神奇吧，先别着急，听我娓娓道来。
+
+​	这款工具名为JSDoc，它是一款根据 Javascript 文件中注释信息，生成 JavaScript 应用程序或库、模块的 API 文档的工具。JSDoc 分析的源代码是我们书写的符合Docblock格式的代码注释，它会智能帮我们生成美观的API文档页面，我们要做的，只是简单的跑一句`jsdoc`命令就可以了。
+
+下面是 mt-events的 API 文档（很美观不是吗？这些都是JSDoc自动生成的）：
+![mtEvents-docs](/Users/ranjayzheng/Desktop/mobile-events/docs/user/images/mtevents-docs.png)
+
+​	简约的风格让人开起来心旷神怡，想想如果有后来的维护者想要快速了解您的项目的大体架构和具体方法的功能，献上这样一份开发者文档可不是要比直接丢给他一份源代码要来的好得多对吧。
+
+### 让持续集成工具帮您实现自动化部署
+
+### 为您的项目添加开源许可证
 
 ## mt-events从0到1
 
@@ -122,7 +139,7 @@ mt-events
 
 ### 工程化实践
 
-![images](images/images.jpeg)
+![images](images/engineering.jpeg)
 
 ####  工具选型 
 ```bash
@@ -210,17 +227,6 @@ dispatchTouchEvent (eventTarget, event) {
 ​	下面是我们使用 Jest 测试代码的覆盖率及结果：
 ![mtEvents-test](images/mtevents-test.png)
 
-
-#####  API 文档工具 JSDoc
-
-- JSDoc 是一个根据 javascript 文件中注释信息，生成 JavaScript 应用程序或库、模块的 API 文档 的工具
-
-- JSDoc 本质是代码注释，根据它一定的格式和规则去写，这样就能很方便生产智能提示和 mt-events API 文档
-
-  下面是 mt-events API 文档：
-![mtEvents-docs](images/mtevents-docs.png)
-  
-
 #####  持续集成服务 Travis CI 
 
 ###### 特性
@@ -255,10 +261,10 @@ after_success:
 
 ​	mt-events 源码都是按照 ES6 代码规范来写，下面从几个方面来体验 mt-events 源码的魅力：
 
-- 工具函数 mtEvents
+### 一个既是Function又是Object的工具函数
 
-  - 通常 mtEvents 原来只是个类实例，如果想要使用事件绑定处理方法，则需要 mtEvents.bind() 来实现。那我们是不是可以考虑让 mtEvents 既是一个 function，也是一个 Object 呢？
-  - 通过 Object.create(MTEvents.prototype) 来获取 mtEvents 的原型对象，mtEvents.bind.bind() 改变 this 指针的指向， 将其 mtEventsFun 绑定多个方法，实现 mtEvents 既是一个 function，也是一个 Object，方便开发者使用。
+- 通常 mtEvents 原来只是个类实例，如果想要使用事件绑定处理方法，则需要 mtEvents.bind() 来实现。那我们是不是可以考虑让 mtEvents 既是一个 function，也是一个 Object 呢？
+- 通过 Object.create(MTEvents.prototype) 来获取 mtEvents 的原型对象，mtEvents.bind.bind() 改变 this 指针的指向， 将其 mtEventsFun 绑定多个方法，实现 mtEvents 既是一个 function，也是一个 Object，方便开发者使用。
 
 ```javascript
 // index.js
@@ -272,9 +278,14 @@ Object.keys(mtEvents).map(keyItem => {
 ```
 ![mtEvents-bind](images/mtevents-binds.png)
 
-- 用户 callback
-  - 我们定义 userCallback2Handler 为一个 map，将用户自定义的 callback 与事件处理器 eventHandler 绑定起来，相应的 remove 的时候也是根据 callback 来进行移除事件绑定。
-  - 另外 weakmap.js 的意义在于设置 DOM 元素对应的 callback，移除DOM元素相对应的 callback 也要对应的移除，防止内存泄漏。
+### 移除事件时需要传递指针，怎么让用户的回调和我们绑定在元素上的事件回调形成映射？
+
+我们定义 userCallback2Handler 为一个 map，将用户自定义的 callback 与事件处理器 eventHandler 绑定起来，相应的 remove 的时候也是根据 callback 来进行移除事件绑定。
+
+### 用户移除DOM元素时忘了移除绑定的事件怎么办？让WeakMap弱引用和内存泄漏Say goodbye!
+
+ weakmap.js 的意义在于设置 DOM 元素对应的 callback，移除DOM元素相对应的 callback 也要对应的移除，防止内存泄漏。
+
 ```javascript
 // index.js
 this.userCallback2Handler = new Map()
@@ -288,10 +299,9 @@ function weakMapCreator (htmlElement, callback) {
 }
 ```
 
+### 事件委托的代码每次绑定事件都得写一次，用Proxy—Reflect快速去重
 
-- 事件代理处 proxy 生成器 
-
-  在 proxy.js 源码中，定义了事件代理处理的方法：_delegateEvent，以及事件代理Proxy生成器：delegateProxyCreator，这样用户传入的参数：事件绑定元素，事件代理元素，callback 全部都得经过我们自己的事件代理Proxy生成器，进行相应的事件代理处理，这样可以大大减少代码量，使代码看起来更加精简美观，同时这样定位问题 bug 也变得简单很多，只需要从根源处去定位 bug 即可。
+在 proxy.js 源码中，定义了事件代理处理的方法：_delegateEvent，以及事件代理Proxy生成器：delegateProxyCreator，这样用户传入的参数：事件绑定元素，事件代理元素，callback 全部都得经过我们自己的事件代理Proxy生成器，进行相应的事件代理处理，这样可以大大减少代码量，使代码看起来更加精简美观，同时这样定位问题 bug 也变得简单很多，只需要从根源处去定位 bug 即可。
 
 ```javascript
 /**
