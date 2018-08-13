@@ -1,6 +1,18 @@
 const mtEvents = require('../lib/index-npm.js')
 const touch = require('../core/touch.js')
 
+function delay4tap(bindTarget, delay) {
+	return new Promise((resolve, reject) => {
+		const touchstart = touch.createTouchEvent('touchstart')
+		const touchend = touch.createTouchEvent('touchend')
+		touch.dispatchTouchEvent(bindTarget, touchstart)
+		setTimeout(() => {
+			touch.dispatchTouchEvent(bindTarget, touchend)
+			resolve()
+		}, delay)
+	})
+}
+
 function delay4Longtap(bindTarget, delay) {
 	return new Promise((resolve, reject) => {
 		const touchstart = touch.createTouchEvent('touchstart')
@@ -170,6 +182,57 @@ describe('test delegate event', () => {
 		output.innerHTML = ""
 		delegateChild.click()
 		expect(output.innerHTML).toBe("delegateTarget click")
+	})
+})
+
+describe('test DIY event tap', () => {
+	test("test bind('#bindTarget', 'tap', handler)", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		mtEvents(bindTarget, 'tap', e => {
+			bindTarget.innerHTML = 'tap'
+		})
+		await delay4tap('#bindTarget', 100)
+		expect(bindTarget.innerHTML).toBe("tap")
+	})
+	test("test bind('#bindTarget', 'tap', handler)", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		mtEvents(bindTarget, 'tap', e => {
+			bindTarget.innerHTML = 'tap'
+		})
+		await delay4tap('#bindTarget', 1200)
+		expect(bindTarget.innerHTML).toBe("")
+	})
+	test("test bind('#bindTarget', '#delegateTarget', 'tap', handler) make difference", async () => {
+		document.body.innerHTML = '<div id="bindTarget"><div id="delegateParent"><div id="delegateTarget"><div id="delegateChild"></div></div></div></div><div id="output"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		const output = document.querySelector('#output')
+		mtEvents(bindTarget, "#delegateTarget", 'tap', e => {
+			output.innerHTML = 'tap'
+		})
+		await delay4tap('#bindTarget', 100)
+		expect(output.innerHTML).toBe("")
+		await delay4tap('#delegateParent', 100)
+		expect(output.innerHTML).toBe("")
+		await delay4tap('#delegateTarget', 100)
+		expect(output.innerHTML).toBe("tap")
+		await delay4tap('#delegateChild', 100)
+		expect(output.innerHTML).toBe("tap")
+	})
+})
+
+describe('remove DIY tap event', () => {
+	test("test remove('#bindTarget', 'tap', handler)", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		const dbtapHandler = e => {
+			bindTarget.innerHTML = 'tap'
+		}
+		mtEvents(bindTarget, 'tap', dbtapHandler)
+		mtEvents.remove(bindTarget, 'tap', dbtapHandler)
+		await delay4tap('#bindTarget', 100)
+		expect(bindTarget.innerHTML).toBe("")
 	})
 })
 
