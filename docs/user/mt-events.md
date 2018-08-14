@@ -293,13 +293,13 @@ after_success:			# 构建成功后的自定义操作
 2. 点击Community标签
 3. 如果您的项目没有添加License，在 **Checklist** 里会提示您添加许可证，点击 **Add** 按钮就进入可视化操作流程了
 
+![add-licenses](images/add-licenses.png)
+
 ### 添加一些您喜欢的Icon来修饰您的项目吧
 
 
 ​	GitHub 徽标的官方网站是 <http://shields.io/> ，可以在上面选择喜欢的徽标来为自己的项目润色，常见的徽标主要有持续集成状态，代码测试覆盖率，项目版本信息，项目下载量，开源协议类型，项目语言等，下面根据我们项目简单罗列几个图标讲一讲如何生成。
 
-
-![add-licenses](images/add-licenses.png)
 - 持续集成状态
 
   - 持续集成按照前面的模块推荐使用 [Travis CI](https://travis-ci.org/)，在项目中添加一个 `.travis.yml` 配置文件，告诉 Travis CI 怎样对你的项目进行编译或测试，具体配置关注上一个模块。
