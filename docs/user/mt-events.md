@@ -2,7 +2,7 @@
 
 ## 需求分析
 
-最近在 H5 与 APP 联调的过程中， 经常需要实现一些常用的移动端事件封装成接口提供给 app，例如用户的单击 tap 事件、双击事件、长按事件以及拖动事件。但由于浏览器默认只提供了`touchstart`、`touchmove`、`touchend`三个原生事件，在实际的开发过程中，我们常用的解决方案便是通过监听`touchstart`和`touchend`事件配合定时器来实现我们的自定义移动端事件，为了实现常用自定义事件的复用，我们对其进行了封装，并提供方便用户使用的工具函数，这也是我们实现 mt-events 的初衷。
+最近在 H5 开发与 APP 客户端工程师的联调过程中， 经常需要实现一些常用的移动端事件封装成接口提供给客户端，例如用户的单击 tap 事件、双击事件、长按事件以及拖动事件。但由于浏览器默认只提供了`touchstart`、`touchmove`、`touchend`三个原生事件，在实际的开发过程中，我们常用的解决方案便是通过监听`touchstart`和`touchend`事件配合定时器来实现我们的自定义移动端事件，为了实现常用自定义事件的复用，我们对其进行了封装，并提供方便用户使用的工具函数，这也是我们实现 mt-events 的初衷。
 
 mt-events 全名是 Mobile Terminal Events。最初我们对这个库的定位是希望封装一些常用的移动端事件来方便用户进行更为便捷的移动端开发，例如双击事件、长按事件、滑动事件等等。后来，随着项目的迭代，mt-events 的功能更倾向往前端事件绑定工具的趋势发展，因为我们集成了事件委托等，您可以像使用 JQuery 的 on 方法那样使用我们的 mt-events，更加便捷事件绑定和委托，让移动端事件如原生事件般友好。 这是我们项目的Github地址：https://github.com/jerryOnlyZRJ/mobile-events。
 
@@ -187,9 +187,36 @@ eslint --init  # 如果不自定义自己的规则，可以选择第二个选项
 
 ![bundle-tools](images/bundle-tools.png)
 
-在开发阶段我们经常会使用一些语法糖像ES6的新特性来方便我们的开发，或者ES6 Modules来衔接我们的模块化工作，但是有些新特性是Node.js或者浏览器还未能支持的，所以我们需要对开发代码进行编译及打包，为了提炼自动化工程，我们可以选择许多优良的自动化构建工具，例如前端巨头Webpack，或是流式构建Gulp，亦或是具有优良Tree-shaking特性的Rollup，每款构建工具都有自己的闪光点，我们可以根据业务需求选择最合适的构建工具。
+在开发阶段我们经常会使用一些语法糖像ES6的新特性来方便我们的开发，或者ES6 Modules来衔接我们的模块化工作，但是有些新特性是Node.js或者浏览器还未能支持的，所以我们需要对开发代码进行编译及打包，为了提炼自动化工程，我们可以选择许多优良的自动化构建工具，例如前端巨头Webpack，或是流式构建工具Gulp，亦或是具有优良Tree-shaking特性的Rollup，每款构建工具都有自己的闪光点，我们可以根据业务需求选择最合适的构建工具。
+
+- [Grunt](https://gruntjs.com/)
+  - Grunt 有大量可复用的插件，封装成常用的构建任务
+  - 灵活性高
+  - 集成度不高，配置麻烦，无法做到开箱即用
+  - 相当于 Npm scripts 的进化版
+  - 模式与Webpack类似，随着Webpack的不断迭代以及功能的完善，可以优先考虑使用Webpack
+- [Gulp](https://www.gulpjs.com.cn/)
+  - 基于流的自动化构建工具
+  - 可以管理任务和执行任务
+  - 可以监听文件的变化以及读写文件，流式处理任务
+  - 可以搭配其他工具一起使用
+  - 集成度不高，配置麻烦，无法做到开箱即用
+- [Webpack](https://webpack.docschina.org/)
+  - 一款打包模块化的 JavaScript 工具
+  - 通过 loader 转换文件，通过 Plugin 注入钩子，最后输出由多个模块组合成的文件。 
+  - 专注处理模块化的项目，不适用于非模块化项目
+  - 丰富完整，同时也可通过 Plugin 扩展
+  - 开箱即用，开发体验不错
+  - 社区成熟活跃，可以在社区中找到各种特殊场景的插件扩展
+- [Rollup](https://www.rollupjs.com/guide/zh)
+  - 类似 webpack 但专注于 ES6 模块的打包工具
+  - 针对 ES6 源码进行 Tree Shaking，移除只被定义但没有被使用的代码
+  - 针对 ES6 源码进行 Scope Hoisting，以减少输出文件的大小和提升运行性能
+  - 配置和使用简单，但不如 webpack 那么完善
+  - 社区生态链还不够成熟，很多特殊场景下无法找到解决方案
 
 我们的mt-events项目选择了Rollup和Webpack两款构建工具是因为我们需要对“同构”后的JS代码裁剪分支，因此我们需要利用Rollup优良的Tree-shaking特性；并且为了上线min.js文件的压缩打包，我们使用Webpack来方便我们的构建工作。
+
 
 ### 配置JSDoc为后来之人扫清障碍
 
@@ -202,9 +229,68 @@ eslint --init  # 如果不自定义自己的规则，可以选择第二个选项
 
 ​	简约的风格让人看起来心旷神怡，想想如果有后来的维护者想要快速了解您的项目的大体架构和具体方法的功能，献上这样一份开发者文档可不是要比直接丢给他一份源代码要来的好得多对吧。
 
+### 使用Git钩子对提交的代码进行lint和测试
+
 ### 让持续集成工具帮您实现自动化部署
 
+每次我们在本地跑完构建生成了上线文件之后，我们都需要通过`scp`或者`rsync`等方式上传到我们的服务器上，每次如果都需要手动执行相关命令完成上线操作肯定是违背了我们工程自动化的思想，为了实现自动化部署，我们可以使用持续集成工具来协助我们完成上线操作。
+
+市面上成熟的持续集成工具也不少，但是口碑最盛的也当属 **Travis CI** 和 **Jenkins** 了。作为Github的标配，Travis CI 在开源领域有着不可颠覆的地位，如果我们是在Github上对项目进行版本控制管理，选择这款工具自然再合适不过了。Jenkins因为内容较多，这里就不做过多介绍了，本文的重点，主要是谈谈Travis CI在我们的自动化工程中该如何运用。
+
+![ci-tools](images/ci-tools.png)
+
+###### Travis CI的特性：
+
+- Travis CI 提供的是持续集成服务，它仅支持 Github，不支持其他代码托管。
+- 它需要绑定 Github 上面的项目，还需要该项目含有构建或者测试脚本。
+- 只要有新的代码，就会自动抓取。然后，提供一个虚拟机环境，执行测试，完成构建，还能部署到服务器。
+- 只要代码有变更，就自动运行构建和测试，反馈运行结果。确保符合预期以后，再将新代码集成到主干。
+- 每次代码的小幅变更，就能看到运行结果，从而不断累积小的变更，而不是在开发周期结束时，一下子合并一大块代码，这大大提高了开发 mt-events 库的效率，只要一更新，用户即可拉取到最新的 js 代码。这就是增量上线。
+
+其实Travis CI的使用方法可以简单的概括为3步，就像官网首页的那样图片介绍的一样：
+
+![travis-guide](images/travis-guide.png)
+
+1. 在Travis CI的仪表盘里勾选您需要持续集成的项目
+2. 在您的项目根目录下添加一个名为`.travis.yml`的配置文件
+3. 最后你要做的，就是push您的代码，然后静观其变
+
+其实难点也就是`.travis.yml`配置文件的书写和具体持续集成的梳理的，先po一张我们项目的配置文件：
+
+```yaml
+language: node_js         # 项目语言，node项目就按照这种写法就OK了
+node_js:
+- 8.11.2 				# 项目环境
+cache:					# 缓存node_js依赖，提升第二次构建的效率
+  directories:
+  - node_modules
+before_install:          # 这些是我们加密密钥后自动生成，两行命令的作用就是得到一个有效密钥
+- openssl aes-256-cbc -K $encrypted_81d1fc7fdfa5_key -iv $encrypted_81d1fc7fdfa5_iv
+  -in mtevents_travis_key.enc -out mtevents_travis_key -d
+- chmod 600 mtevents_travis_key
+after_success:			# 构建成功后的自定义操作
+- npm run codecov		# 生成Github首页的codecov图标
+- scp -i mtevents_travis_key -P $DEPLOY_PORT -o stricthostkeychecking=no -r dist/mtevents.min.js
+  $DEPLOY_USER@$DEPLOY_HOST:/usr/local/nginx/html   		#将生成的上线文件scp到服务器
+```
+
+先梳理一下持续集成的流程，首先，我们更新开源项目然后push，Travis会监听到我们的push操作并自动拉取项目代码到Travis的虚拟机上，执行构建流程。思路就是这样，其实我们使用Shelljs也能实现一个简单的持续集成工具。
+
+通常，我们在CI大型项目例如网站、Web APP之类的项目时，更多地会使用`rsync`命令代替我们暴力的`scp`，因为`scp`会上传所有的文件，而`rsync`自带diff功能，所以功能如其名，它的作用就是“同步”变更文件，这样能极大提升我们的CI效率。但是由于我们的工具库项目只有一个min.js文件，所以`scp`就已经足够解决问题了。
+
 ### 为您的项目添加开源许可证
+
+每个开源项目都需要配置一份合适的开源许可证来告知所有浏览过我们的项目的用户他们拥有哪些权限，具体许可证的选取可以参照阮一峰前辈绘制的这张图表：
+
+![licenses](images/licenses.png)
+
+那我们又该怎样为我们的项目添加许可证了？其实Github已经为我们提供了非常简便的可视化操作:
+
+1. 打开我们的开源项目并切换至 **Insights** 面板
+2. 点击Community标签
+3. 如果您的项目没有添加License，在 **Checklist** 里会提示您添加许可证，点击 **Add** 按钮就进入可视化操作流程了
+
+![add-licenses](images/add-licenses.png)
 
 ### 添加一些您喜欢的Icon来修饰您的项目吧
 
@@ -331,33 +417,10 @@ dispatchTouchEvent (eventTarget, event) {
 ​	下面是我们使用 Jest 测试代码的覆盖率及结果：
 ![mtEvents-test](images/mtevents-test.png)
 
-#####  持续集成服务 Travis CI 
+##### 持续集成
 
-###### 特性
 
-- Travis CI 提供的是持续集成服务，它仅支持 Github，不支持其他代码托管。
-- 它需要绑定 Github 上面的项目，还需要该项目含有构建或者测试脚本。
-- 只要有新的代码，就会自动抓取。然后，提供一个虚拟机环境，执行测试，完成构建，还能部署到服务器。
-- 只要代码有变更，就自动运行构建和测试，反馈运行结果。确保符合预期以后，再将新代码集成到主干。
-- 每次代码的小幅变更，就能看到运行结果，从而不断累积小的变更，而不是在开发周期结束时，一下子合并一大块代码，这大大提高了开发 mt-events 库的效率，只要一更新，用户即可拉取到最新的 js 代码。这就是增量上线。
 
-###### 配置
-
-​	Travis 要求项目的根目录下面，必须有一个`.travis.yml`文件。这是配置文件，指定了 Travis 的行为。该文件必须保存在 Github 仓库里面，一旦代码仓库有新的 Commit，Travis 就会去找这个文件，执行里面的命令。 
-
-```shell
-// .travis.yml
-language: node_js
-node_js:
-- 8.11.2
-cache:
-  directories:
-  - node_modules
-after_success:
-- npm run codecov
-- scp -i mtevents_travis_key -P $DEPLOY_PORT -o stricthostkeychecking=no -r dist/mtevents.min.js
-  $DEPLOY_USER@$DEPLOY_HOST:/usr/local/nginx/html​
-```
 ## 源码剖析
 
 mt-events 源码都是按照 ES6 代码规范来写，下面从几个方面来体验 mt-events 源码的魅力：
