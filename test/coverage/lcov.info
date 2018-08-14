@@ -1,5 +1,5 @@
 TN:
-SF:/Users/ranjayzheng/Desktop/mobile-events/core/touch.js
+SF:D:\mobile-events\core\touch.js
 FN:11,(anonymous_0)
 FN:23,(anonymous_1)
 FNF:2
@@ -20,7 +20,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
-SF:/Users/ranjayzheng/Desktop/mobile-events/lib/events.js
+SF:D:\mobile-events\lib\events.js
 FN:11,(anonymous_0)
 FN:17,(anonymous_1)
 FN:24,(anonymous_2)
@@ -257,7 +257,7 @@ BRF:34
 BRH:34
 end_of_record
 TN:
-SF:/Users/ranjayzheng/Desktop/mobile-events/lib/index-npm.js
+SF:D:\mobile-events\lib\index-npm.js
 FN:12,(anonymous_0)
 FN:43,(anonymous_1)
 FN:47,(anonymous_2)
@@ -360,7 +360,7 @@ BRF:20
 BRH:20
 end_of_record
 TN:
-SF:/Users/ranjayzheng/Desktop/mobile-events/lib/proxy.js
+SF:D:\mobile-events\lib\proxy.js
 FN:8,_delegateEvent
 FN:29,delegateProxyCreator
 FNF:2
@@ -395,7 +395,7 @@ BRF:9
 BRH:9
 end_of_record
 TN:
-SF:/Users/ranjayzheng/Desktop/mobile-events/lib/weakmap.js
+SF:D:\mobile-events\lib\weakmap.js
 FN:1,weakMapCreator
 FNF:1
 FNH:1
