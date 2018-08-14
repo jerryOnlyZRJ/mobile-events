@@ -188,6 +188,7 @@ eslint --init  # 如果不自定义自己的规则，可以选择第二个选项
 ![bundle-tools](images/bundle-tools.png)
 
 在开发阶段我们经常会使用一些语法糖像ES6的新特性来方便我们的开发，或者ES6 Modules来衔接我们的模块化工作，但是有些新特性是Node.js或者浏览器还未能支持的，所以我们需要对开发代码进行编译及打包，为了提炼自动化工程，我们可以选择许多优良的自动化构建工具，例如前端巨头Webpack，或是流式构建工具Gulp，亦或是具有优良Tree-shaking特性的Rollup，每款构建工具都有自己的闪光点，我们可以根据业务需求选择最合适的构建工具。
+构建工具做的事情就是将一系列流程用代码去实现，自动化地去执行一系列复杂的操作，最终实现将源代码转换成可以执行的 JavaScript、CSS、HTML 代码。构建工具层出不穷，例如 Grunt，Gulp，Webpack，Rollup 等等。下面我们对这几种工具进行一些对比。
 
 - [Grunt](https://gruntjs.com/)
   - Grunt 有大量可复用的插件，封装成常用的构建任务
@@ -283,16 +284,47 @@ after_success:			# 构建成功后的自定义操作
 每个开源项目都需要配置一份合适的开源许可证来告知所有浏览过我们的项目的用户他们拥有哪些权限，具体许可证的选取可以参照阮一峰前辈绘制的这张图表：
 
 ![licenses](images/licenses.png)
+​	当我们花费了很多精力去构建完善我们的项目后，希望有更多的人来关注以及使用我们的项目。此时我们如何更好地向其他人展示自己的项目呢？给自己的项目添加一些好看的徽标是一种不错的选择，让人耳目一新。
 
 那我们又该怎样为我们的项目添加许可证了？其实Github已经为我们提供了非常简便的可视化操作:
+​	我们平时在逛 github 网站的时候，发现不少项目都在  README.md 中添加徽标，对项目进行标记和说明，这些小图标给项目增色不少，不仅简单美观，而且还包含清晰易懂的信息。
 
 1. 打开我们的开源项目并切换至 **Insights** 面板
 2. 点击Community标签
 3. 如果您的项目没有添加License，在 **Checklist** 里会提示您添加许可证，点击 **Add** 按钮就进入可视化操作流程了
 
-![add-licenses](images/add-licenses.png)
-
 ### 添加一些您喜欢的Icon来修饰您的项目吧
+
+
+​	GitHub 徽标的官方网站是 <http://shields.io/> ，可以在上面选择喜欢的徽标来为自己的项目润色，常见的徽标主要有持续集成状态，代码测试覆盖率，项目版本信息，项目下载量，开源协议类型，项目语言等，下面根据我们项目简单罗列几个图标讲一讲如何生成。
+
+
+![add-licenses](images/add-licenses.png)
+- 持续集成状态
+
+  - 持续集成按照前面的模块推荐使用 [Travis CI](https://travis-ci.org/)，在项目中添加一个 `.travis.yml` 配置文件，告诉 Travis CI 怎样对你的项目进行编译或测试，具体配置关注上一个模块。
+
+  - 然后徽标图片地址是
+
+    ```
+    http://img.shields.io/travis/{GitHub 用户名}/{项目名称}.svg
+    ```
+
+    将上面 URL 中的 {GitHub 用户名} 和 {项目名称} 替换为自己项目的即可，最后可以将集成完成后的 markdown 代码贴在自己的项目上
+
+  - 效果图是：![building](images\mtevents-buildingpass.png)
+
+- 项目版本信息
+
+  - 项目版本信息，是根据不同的发布工具来制定的。https://shields.io/#/examples/version 在这个网站上可以找到不同的发布工具的徽标图片地址。
+  - 这里以我们的库做示例，以 npm 方式发布出去的：https://img.shields.io/npm/v/npm.svg 
+  - 效果图是：![](images/mtevents-versions.png)
+
+- 项目下载量
+
+  - 项目被下载的次数，是根据不同的平台独立统计的。http://shields.io/#/examples/downloads 在这个网站上可以找到各种统计平台的徽标图片地址。
+  - 这里以我们的库做示例，以 npm 方式发布出去的，且以每周下载量的维度来看：https://img.shields.io/npm/dw/localeval.svg 
+  - 效果图是：![](images\mtevents-download.png)
 
 ## mt-events从0到1
 
@@ -418,8 +450,6 @@ dispatchTouchEvent (eventTarget, event) {
 ![mtEvents-test](images/mtevents-test.png)
 
 ##### 持续集成
-
-
 
 ## 源码剖析
 
