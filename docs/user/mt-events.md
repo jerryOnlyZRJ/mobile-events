@@ -234,6 +234,38 @@ module.exports = {
 
 ### 添加一些您喜欢的Icon来修饰您的项目吧
 
+​	当我们花费了很多精力去构建完善我们的项目后，希望有更多的人来关注以及使用我们的项目。此时我们如何更好地向其他人展示自己的项目呢？给自己的项目添加一些好看的徽标是一种不错的选择，让人耳目一新。
+
+​	我们平时在逛 github 网站的时候，发现不少项目都在  README.md 中添加徽标，对项目进行标记和说明，这些小图标给项目增色不少，不仅简单美观，而且还包含清晰易懂的信息。
+
+​	GitHub 徽标的官方网站是 <http://shields.io/> ，可以在上面选择喜欢的徽标来为自己的项目润色，常见的徽标主要有持续集成状态，代码测试覆盖率，项目版本信息，项目下载量，开源协议类型，项目语言等，下面根据我们项目简单罗列几个图标讲一讲如何生成。
+
+- 持续集成状态
+
+  - 持续集成按照前面的模块推荐使用 [Travis CI](https://travis-ci.org/)，在项目中添加一个 `.travis.yml` 配置文件，告诉 Travis CI 怎样对你的项目进行编译或测试，具体配置关注上一个模块。
+
+  - 然后徽标图片地址是
+
+    ```
+    http://img.shields.io/travis/{GitHub 用户名}/{项目名称}.svg
+    ```
+
+    将上面 URL 中的 {GitHub 用户名} 和 {项目名称} 替换为自己项目的即可，最后可以将集成完成后的 markdown 代码贴在自己的项目上
+
+  - 效果图是：![building](D:\study\mt-events\images\mtevents-buildingpass.png)
+
+- 项目版本信息
+
+  - 项目版本信息，是根据不同的发布工具来制定的。https://shields.io/#/examples/version 在这个网站上可以找到不同的发布工具的徽标图片地址。
+  - 这里以我们的库做示例，以 npm 方式发布出去的：https://img.shields.io/npm/v/npm.svg 
+  - 效果图是：![](D:\study\mt-events\images\mtevents-versions.png)
+
+- 项目下载量
+
+  - 项目被下载的次数，是根据不同的平台独立统计的。http://shields.io/#/examples/downloads 在这个网站上可以找到各种统计平台的徽标图片地址。
+  - 这里以我们的库做示例，以 npm 方式发布出去的，且以每周下载量的维度来看：https://img.shields.io/npm/dw/localeval.svg 
+  - 效果图是：![](D:\study\mt-events\images\mtevents-download.png)
+
 ## mt-events从0到1
 
 ### 目录结构
@@ -269,7 +301,7 @@ mt-events
 
 ### 工程化实践
 
-![images](images/engineering.jpeg)
+![images](D:\study\mt-events\images\mtevents-enginering.png)
 
 ####  工具选型 
 ```bash
