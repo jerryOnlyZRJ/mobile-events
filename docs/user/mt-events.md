@@ -31,7 +31,7 @@
 
 然后，我们的工具函数 mtEvents 将会被挂载在 window 对象上，您可以在浏览器的开发者工具里的 console 面板输入并执行 mtEvents，如果打印出如下文本说明您已经成功引入我们的工具库了：
 
-![mtEvents-console](images/mtevents-console.png)
+![mtEvents-console](https://user-gold-cdn.xitu.io/2018/8/14/16537aa1cf42c7c3?w=1824&h=314&f=png&s=95357)
 
 或者您是 VUE 等前端框架的开发者，您也可以通过 npm 依赖的方式引入我们的工具，我们的工具库会跟随您们的 VUE 文件被打包进 bundle 里。
 
@@ -59,6 +59,8 @@ export default {
 具体的使用方法，您可以参照我们 Github 为您提供的用户文档哦～
 
 ## 如何搭建一款属于我们自己的开源库
+
+![](https://user-gold-cdn.xitu.io/2018/8/14/16537c2ac2dd071e?w=330&h=349&f=png&s=10563)
 
 ### 选择一款合适的测试工具
 
@@ -164,17 +166,17 @@ $ npm t
 
 * 结果输出
 
-![test-result](images/test-result.png)
+![test-result](https://user-gold-cdn.xitu.io/2018/8/14/16537aaa35cff9d1?w=806&h=272&f=png&s=96005)
 
 这就是配置测试的基本流程。
 
 ### 使用 eslint 规范团队代码
 
 在团队开发的工作中，代码维护所占的时间比重往往大于新功能的开发。因此制定符合团队的代码规范是至关重要的，这样不仅仅可以很大程度地避免基本语法错误，也保证了代码的可读性，方便维护。
- ```	
-	程序是写给人读的，只是偶尔让计算机执行一下。
-															--Donald Knuth
- ```
+
+*程序是写给人读的，只是偶尔让计算机执行一下。
+							--Donald Knuth*
+							
 众所周知，eslint 是一个开源的 JavaScript 代码检查工具，可以用来校验我们的代码，给代码定义一个规范，团队成员按照这个代码规范进行开发，这保证了代码的规范。使用 eslint 可以带来很多好处，可以帮助我们避免一些低级错误，可能一个小小的语法问题，让您定位了很久才发现问题所在，而且在团队合作的过程中，可以保证大家都按照同一种风格去开发，这样更方便大家看懂彼此的代码，提高开发效率。
 
 另外，eslint 的初衷是为了让开发者创建自己的代码检测规则，使其可以在编码过程中发现问题，扩展性强。为了方便使用，eslint 也内置了一些规则，也可以在这基础上去增加自定义规则。
@@ -185,7 +187,7 @@ eslint --init
 
 ### 选择您最熟悉的构建工具
 
-![bundle-tools](images/bundle-tools.png)
+![bundle-tools](https://user-gold-cdn.xitu.io/2018/8/14/16537ab26cdb8c94?w=1440&h=800&f=jpeg&s=37522)
 
 在开发阶段我们经常会使用一些语法糖像ES6的新特性来方便我们的开发，或者 ES6 Modules 来衔接我们的模块化工作，但是有些新特性是 Node.js 或者浏览器还未能支持的，所以我们需要对开发代码进行编译及打包，为了提炼自动化工程，我们可以选择许多优良的自动化构建工具，例如前端巨头 Webpack，或是流式构建工具 Gulp，亦或是具有优良 Tree-shaking 特性的Rollup，每款构建工具都有自己的闪光点，我们可以根据业务需求选择最合适的构建工具。
 构建工具做的事情就是将一系列流程用代码去实现，自动化地去执行一系列复杂的操作，最终实现将源代码转换成可以执行的 JavaScript、CSS、HTML 代码。构建工具层出不穷，例如 Grunt，Gulp，Webpack，Rollup 等等。下面我们对这几种工具进行一些对比。
@@ -226,7 +228,8 @@ eslint --init
 ​	这款工具名为 JSDoc，它是一款根据 Javascript 文件中注释信息，生成 JavaScript 应用程序或库、模块的 API 文档的工具。JSDoc 分析的源代码是我们书写的符合 Docblock 格式的代码注释，它会智能帮我们生成美观的 API 文档页面，我们要做的，只是简单的跑一句`jsdoc`命令就可以了。
 
 下面是 [mt-events](https://github.com/jerryOnlyZRJ/mobile-events) 的 API 文档页面（很美观不是吗？这些都是JSDoc自动生成的）：
-![mtEvents-docs](images/mtevents-docs.png)
+
+![mtEvents-docs](https://user-gold-cdn.xitu.io/2018/8/14/16537ab9ff2761f3?w=1641&h=914&f=png&s=60008)
 
 ​	简约的风格让人看起来心旷神怡，想想如果有后来的维护者想要快速了解您的项目的大体架构和具体方法的功能，献上这样一份开发者文档可不是要比直接丢给他一份源代码要来的好得多对吧。
 
@@ -285,12 +288,12 @@ eslint --init
    配上钩子之后，我们就能看到这样的额输出结果了：
 
    * commit钩子
-
-   ![commit-husky](images/commit-husky.png)
+   
+   ![commit-husky](https://user-gold-cdn.xitu.io/2018/8/14/16537ac373b020bd?w=658&h=204&f=png&s=178800)
 
    * push钩子
 
-   ![push-husky](images/push-husky.png)
+   ![push-husky](https://user-gold-cdn.xitu.io/2018/8/14/16537ac7d40e3fab?w=662&h=240&f=png&s=192082)
 
 ### 让持续集成工具帮您实现自动化部署
 
@@ -298,7 +301,7 @@ eslint --init
 
 市面上成熟的持续集成工具也不少，但是口碑最盛的也当属 **Travis CI** 和 **Jenkins** 了。作为Github的标配，Travis CI 在开源领域有着不可颠覆的地位，如果我们是在Github上对项目进行版本控制管理，选择这款工具自然再合适不过了。Jenkins因为内容较多，这里就不做过多介绍了，本文的重点，主要是谈谈Travis CI在我们的自动化工程中该如何运用。
 
-![ci-tools](images/ci-tools.png)
+![ci-tools](https://user-gold-cdn.xitu.io/2018/8/14/16537acf35eb7261?w=1200&h=697&f=png&s=148997)
 
 ###### Travis CI 的特性：
 
@@ -310,7 +313,7 @@ eslint --init
 
 其实Travis CI的使用方法可以简单的概括为3步，就像官网首页的那样图片介绍的一样：
 
-![travis-guide](images/travis-guide.png)
+![travis-guide](https://user-gold-cdn.xitu.io/2018/8/14/16537adcf387ab27?w=1294&h=390&f=png&s=65651)
 
 1. 在 Travis CI 的仪表盘里勾选您需要持续集成的项目
 2. 在您的项目根目录下添加一个名为 `.travis.yml` 的配置文件
@@ -343,8 +346,7 @@ after_success:			# 构建成功后的自定义操作
 
 每个开源项目都需要配置一份合适的开源许可证来告知所有浏览过我们的项目的用户他们拥有哪些权限，具体许可证的选取可以参照阮一峰前辈绘制的这张图表：
 
-![licenses](images/licenses.png)
-​	当我们花费了很多精力去构建完善我们的项目后，希望有更多的人来关注以及使用我们的项目。此时我们如何更好地向其他人展示自己的项目呢？给自己的项目添加一些好看的徽标是一种不错的选择，让人耳目一新。
+![licenses](https://user-gold-cdn.xitu.io/2018/8/14/16537ae93a141d66?w=1600&h=1000&f=png&s=117471)
 
 那我们又该怎样为我们的项目添加许可证了？其实 Github 已经为我们提供了非常简便的可视化操作:
 ​	我们平时在逛 github 网站的时候，发现不少项目都在 README.md 中添加徽标，对项目进行标记和说明，这些小图标给项目增色不少，不仅简单美观，而且还包含清晰易懂的信息。
@@ -355,15 +357,14 @@ after_success:			# 构建成功后的自定义操作
 
 ### 添加一些您喜欢的 Icon 来修饰您的项目吧
 
+​	当我们花费了很多精力去构建完善我们的项目后，希望有更多的人来关注以及使用我们的项目。此时我们如何更好地向其他人展示自己的项目呢？给自己的项目添加一些好看的徽标是一种不错的选择，让人耳目一新。
+
 ​	点开 [mt-events](https://github.com/jerryOnlyZRJ/mobile-events/blob/master/README.md) 的README文件，您可以看到在开头部分有很多漂亮的小图标，很多大型项目都会使用这些小图标来装饰自己的项目，既能展示项目的一些主要信息，也能体现项目的专业性。
 
-![readme-icons](images/readme-icons.png)
-
+![readme-icons](https://user-gold-cdn.xitu.io/2018/8/14/16537af1de058514?w=2148&h=800&f=png&s=171023)
 
 ​	那么，我们又该如何为我们自己的开源项目添加这样的小图标呢？GitHub 小图标的官方网站是 <http://shields.io/> ，可以在上面选择喜欢的徽标来为自己的项目润色，常见的徽标主要有持续集成状态，代码测试覆盖率，项目版本信息，项目下载量，开源协议类型，项目语言等，下面根据我们项目简单罗列几个图标讲一讲如何生成。
-
-
-![add-licenses](images/add-licenses.png)
+![add-licenses](https://user-gold-cdn.xitu.io/2018/8/14/16537af9e68bba0f?w=2222&h=1464&f=png&s=255991)
 - 持续集成状态
 
   - 持续集成按照前面的模块推荐使用 [Travis CI](https://travis-ci.org/)，在项目中添加一个 `.travis.yml` 配置文件，告诉 Travis CI 怎样对您的项目进行编译或测试，具体配置关注上一个模块。
@@ -382,7 +383,7 @@ after_success:			# 构建成功后的自定义操作
 
 辛辛苦苦把项目的测试覆盖率提高到了100%，不把它show出来肯定很憋屈吧。如果您希望在您的Github上添加项目测试覆盖率小图标，这里我们推荐使用 **codecov** 这套解决方案（图片来自官网截图）。
 
-![codecov-index](images/codecov-index.png)
+![codecov-index](https://user-gold-cdn.xitu.io/2018/8/14/16537aff40896b58?w=3584&h=1862&f=png&s=734725)
 
 您要做的，只是像在Travis CI里添加项目那样把您需要跑收集测试覆盖率的项目添加进codecov的仪表盘，然后在您的项目里安装codecov依赖：
 
@@ -404,8 +405,9 @@ codecov的原理就是在您执行完项目测试之后，它会自动去寻找�
 ```
 
 现在，您终于知道我们的`.travis.yml`配置文件里的`npm run codecov`是做什么用了的吧～
+![codecov](https://user-gold-cdn.xitu.io/2018/8/14/16537a895f2d5829)
 
-接下来，就可以把我们的效果图添加进Github首页了：![codecov](https://codecov.io/gh/jerryOnlyZRJ/mobile-events/branch/master/graph/badge.svg)
+接下来，就可以把我们的效果图添加进Github首页了。
 
 - 项目版本信息
 
@@ -466,7 +468,7 @@ mt-events
 
 ### 工程化实践
 
-![images](images/mtevents-enginering.png)
+![images](https://user-gold-cdn.xitu.io/2018/8/14/16537b055f5d7c5a?w=338&h=149&f=jpeg&s=11965)
 
 ####  工具选型 
 ```bash
@@ -552,13 +554,14 @@ dispatchTouchEvent (eventTarget, event) {
 ```
 
 ​	下面是我们使用 Jest 测试代码的覆盖率及结果：
-![mtEvents-test](images/mtevents-test.png)
+
+![mtEvents-test](https://user-gold-cdn.xitu.io/2018/8/14/16537b0b83789aa6?w=743&h=822&f=png&s=84327)
 
 ##### 持续集成
 
 根据前文提到的配置，我们就可以在Travis CI首页看到我们的项目的持续集成结果：
 
-![travis-result](images/travis-result.png)
+![travis-result](https://user-gold-cdn.xitu.io/2018/8/14/16537b0f8703277d?w=3354&h=1272&f=png&s=327651)
 
 线上的min.js文件也同时被更新到最新的版本了。
 
@@ -568,7 +571,7 @@ mt-events 源码都是按照 ES6 代码规范来写，下面从几个方面来�
 
 ### 一个既是 Function 又是 Object 的工具函数
 
-​	如此奇葩的数据类型看起来似乎很陌生，但我敢保证您之前一定有见过，只是没注意到它罢了，而且是多年以前我们最经常打交道的老朋友。还记得 JQuery 里面的 **$** 符号嘛？您一定用过这种写法去获取元素 `$("#myDom")`，也用过挂在 $ 上的 ajax 方法来发送请求就像这样：`$.ajax(...)`，是不是被我这么一说忽然发现，之前最常用的 **$** 居然既是个函数又是个对象，很少见这样的情况对吧，其实实现原理很简单，只需要把类实例的原型挂载到 Function 上就搞定了，之所以这么做，是为了让用户绑定事件时，直接使用**mtEvents**这个 Function 就可以了，就不需要再去拿到 mtEvents 上的 bind 方法了，能够优化体验。具体实现代码如下：
+​	如此奇葩的数据类型看起来似乎很陌生，但我敢保证您之前一定有见过，只是没注意到它罢了，而且是多年以前我们最经常打交道的老朋友。还记得 JQuery 里面的`$`符号嘛？您一定用过这种写法去获取元素 `$("#myDom")`，也用过挂在 `$` 上的 ajax 方法来发送请求就像这样：`$.ajax(...)`，是不是被我这么一说忽然发现，之前最常用的 `$` 居然既是个函数又是个对象，很少见这样的情况对吧，其实实现原理很简单，只需要把类实例的原型挂载到 Function 上就搞定了，之所以这么做，是为了让用户绑定事件时，直接使用**mtEvents**这个 Function 就可以了，就不需要再去拿到 mtEvents 上的 bind 方法了，能够优化体验。具体实现代码如下：
 
 ```javascript
 // index.js
@@ -580,7 +583,7 @@ Object.keys(mtEvents).map(keyItem => {
   mtEventsFun[keyItem] = mtEvents[keyItem]
 })
 ```
-![mtEvents-bind](images/mtevents-binds.png)
+![mtEvents-bind](https://user-gold-cdn.xitu.io/2018/8/14/16537b152af78e2b?w=1382&h=308&f=png&s=35250)
 
 ### 移除事件时需要传递指针，怎么让用户的回调和我们绑定在元素上的事件回调形成映射？
 
@@ -592,10 +595,8 @@ Object.keys(mtEvents).map(keyItem => {
 
 ### 用户移除 DOM 元素时忘了移除绑定的事件怎么办？让 WeakMap 弱引用和内存泄漏 Say goodbye!
 
- ```	
-	WeakMap 就是为了解决这个问题而诞生的，它的键名所引用的对象都是弱引用，即垃圾回收机制不将该引用考虑在内。因此，只要所引用的对象的其他引用都被清除，垃圾回收机制就会释放该对象所占用的内存。也就是说，一旦不再需要，WeakMap 里面的键名对象和所对应的键值对会自动消失，不用手动删除引用。
-						                                   --摘自 阮一峰《ECMAScript 6 入门》
- ```
+*WeakMap 就是为了解决这个问题而诞生的，它的键名所引用的对象都是弱引用，即垃圾回收机制不将该引用考虑在内。因此，只要所引用的对象的其他引用都被清除，垃圾回收机制就会释放该对象所占用的内存。也就是说，一旦不再需要，WeakMap 里面的键名对象和所对应的键值对会自动消失，不用手动删除引用。
+						                                   --摘自 阮一峰《ECMAScript 6 入门》*
 
 ​	 weakmap.js 的意义在于建立 DOM 元素与对应 callback 的弱引用，在移除 DOM 元素时绑定在该元素上的回调也会被 GC 回收，这样就能起到防止内存泄漏的作用。
 
