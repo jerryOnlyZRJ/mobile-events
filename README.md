@@ -5,8 +5,8 @@ Handle mobile events on the web easily
 
 ## Features
 
-* MtEvents can be used in the browser directly
-* Supports widely-used mobile terminal events such as double tap and long tap, in addition to native web events like clicking. With MtEvents, you could listen for these mobile/web events just the way you would using the native `addEventListener` web API or JQuery.
+* mt-events can be used in the browser directly
+* Supports widely-used mobile terminal events such as double tap and long tap, in addition to native web events like clicking. With mt-events, you could listen for these mobile/web events just the way you would using the native `addEventListener` web API or JQuery.
 * Allows for event delegation; all you need to do is adding an extra argument.
 * The whole library is only 2KB after gzip. We will deploy the script to our CDN as soon as possible.
 
