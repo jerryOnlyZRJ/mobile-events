@@ -2,9 +2,9 @@
 
 ## 需求分析
 
-最近在 H5 开发与 APP 客户端工程师的联调过程中， 经常需要实现一些常用的移动端事件封装成接口提供给客户端，例如用户的单击 tap 事件、双击事件、长按事件以及拖动事件。但由于浏览器默认只提供了`touchstart`、`touchmove`、`touchend`三个原生事件，在实际的开发过程中，我们常用的解决方案便是通过监听`touchstart`和`touchend`事件配合定时器来实现我们的自定义移动端事件，为了实现常用自定义事件的复用，我们对其进行了封装，并提供方便用户使用的工具函数，这也是我们实现 mt-events 的初衷。
+最近在 H5 开发与 APP 客户端工程师的联调过程中， 经常需要实现一些常用的移动端事件封装成接口提供给客户端，例如用户的单击 tap 事件、双击事件、长按事件以及拖动事件。但由于浏览器默认只提供了 `touchstart`、`touchmove`、`touchend` 三个原生事件，在实际的开发过程中，我们常用的解决方案便是通过监听`touchstart` 和 `touchend` 事件配合定时器来实现我们的自定义移动端事件，为了实现常用自定义事件的复用，我们对其进行了封装，并提供方便用户使用的工具函数，这也是我们实现 mt-events 的初衷。
 
-mt-events 全名是 Mobile Terminal Events。最初我们对这个库的定位是希望封装一些常用的移动端事件来方便用户进行更为便捷的移动端开发，例如双击事件、长按事件、滑动事件等等。后来，随着项目的迭代，mt-events 的功能更倾向往前端事件绑定工具的趋势发展，因为我们集成了事件委托等，您可以像使用 JQuery 的 on 方法那样使用我们的 mt-events，更加便捷事件绑定和委托，让移动端事件如原生事件般友好。 这是我们项目的Github地址：https://github.com/jerryOnlyZRJ/mobile-events。
+mt-events 全名是 Mobile Terminal Events。最初我们对这个库的定位是希望封装一些常用的移动端事件来方便用户进行更为便捷的移动端开发，例如双击事件、长按事件、滑动事件等等。后来，随着项目的迭代，mt-events 的功能更倾向往前端事件绑定工具的趋势发展，因为我们集成了事件委托等，您可以像使用 JQuery 的 on 方法那样使用我们的 mt-events，更加便捷事件绑定和委托，让移动端事件如原生事件般友好。 这是我们项目的 Github 地址：https://github.com/jerryOnlyZRJ/mobile-events。
 
 接下来，我们将带您体验一款工具库的搭建流程，ES6 新特性 Map、Proxy、Reflect 以及 WeakMap 在我们的工具库中发挥的作用，以及我们开源的工具库**mt-events**所拥有的魅力。 
 
@@ -62,7 +62,7 @@ export default {
 
 ### 选择一款合适的测试工具
 
-​	没有经过测试的代码不具备任何说服性。相信大家在浏览别人开源的工具库代码时，都能在根目录下见到一个名为test的文件夹，其中就放置着项目的测试文件。特别对于工具库来说，测试更是一个不可或缺的环节。
+​	没有经过测试的代码不具备任何说服性。相信大家在浏览别人开源的工具库代码时，都能在根目录下见到一个名为 test 的文件夹，其中就放置着项目的测试文件。特别对于工具库来说，测试更是一个不可或缺的环节。
 
 ​	市面上的测试工具种类繁多，例如 Jest，Karma，Mocha，Tape等，并不需要局限与哪一款，下面我们对这几种框架进行了一些对比。
 
@@ -119,9 +119,9 @@ $ npm i jest -D
 // jest.config.js   	# 在 jest.config.js 配置测试用例路径，以及覆盖率输出文档的目录等等信息
 module.exports = {
     testURL: 'http://localhost',
-    testMatch: ['<rootDir>/test/*.js'],      // 测试文件匹配路径(拿到根目录下test文件夹里的所有JS文件)
+    testMatch: ['<rootDir>/test/*.js'],             // 测试文件匹配路径(拿到根目录下test文件夹里的所有JS文件)
     coverageDirectory: '<rootDir>/test/coverage',   // 测试覆盖率文档生成路径
-    coverageThreshold: {						  // 测试覆盖率通过阈值
+    coverageThreshold: {			    // 测试覆盖率通过阈值
         global: {
             branches: 90,
             functions: 90,
@@ -148,10 +148,10 @@ module.exports = {
 * 编写测试用例
 
 ```js
-// test/index.js     # 编写测试用例
+// test/index.js                              # 编写测试用例
 describe('test dbtap events', () => {         # 测试组
-	test('test 1+1', () => {				# 测试用例
-        expect(1+1).toBe(2)           		  # 断言
+	test('test 1+1', () => {	      # 测试用例
+        expect(1+1).toBe(2)           	      # 断言
 	})
 })
 ```
@@ -173,7 +173,7 @@ $ npm t
 在团队开发的工作中，代码维护所占的时间比重往往大于新功能的开发。因此制定符合团队的代码规范是至关重要的，这样不仅仅可以很大程度地避免基本语法错误，也保证了代码的可读性，方便维护。
  ```	
 	程序是写给人读的，只是偶尔让计算机执行一下。
-															--Donald Knuth
+						--Donald Knuth
  ```
 众所周知，eslint 是一个开源的 JavaScript 代码检查工具，可以用来校验我们的代码，给代码定义一个规范，团队成员按照这个代码规范进行开发，这保证了代码的规范。使用 eslint 可以带来很多好处，可以帮助我们避免一些低级错误，可能一个小小的语法问题，让您定位了很久才发现问题所在，而且在团队合作的过程中，可以保证大家都按照同一种风格去开发，这样更方便大家看懂彼此的代码，提高开发效率。
 
@@ -187,7 +187,7 @@ eslint --init  # 如果不自定义自己的规则，可以选择第二个选项
 
 ![bundle-tools](images/bundle-tools.png)
 
-在开发阶段我们经常会使用一些语法糖像ES6的新特性来方便我们的开发，或者ES6 Modules来衔接我们的模块化工作，但是有些新特性是Node.js或者浏览器还未能支持的，所以我们需要对开发代码进行编译及打包，为了提炼自动化工程，我们可以选择许多优良的自动化构建工具，例如前端巨头Webpack，或是流式构建工具Gulp，亦或是具有优良Tree-shaking特性的Rollup，每款构建工具都有自己的闪光点，我们可以根据业务需求选择最合适的构建工具。
+在开发阶段我们经常会使用一些语法糖像ES6的新特性来方便我们的开发，或者 ES6 Modules 来衔接我们的模块化工作，但是有些新特性是 Node.js 或者浏览器还未能支持的，所以我们需要对开发代码进行编译及打包，为了提炼自动化工程，我们可以选择许多优良的自动化构建工具，例如前端巨头 Webpack，或是流式构建工具 Gulp，亦或是具有优良 Tree-shaking 特性的Rollup，每款构建工具都有自己的闪光点，我们可以根据业务需求选择最合适的构建工具。
 构建工具做的事情就是将一系列流程用代码去实现，自动化地去执行一系列复杂的操作，最终实现将源代码转换成可以执行的 JavaScript、CSS、HTML 代码。构建工具层出不穷，例如 Grunt，Gulp，Webpack，Rollup 等等。下面我们对这几种工具进行一些对比。
 
 - [Grunt](https://gruntjs.com/)
@@ -216,16 +216,16 @@ eslint --init  # 如果不自定义自己的规则，可以选择第二个选项
   - 配置和使用简单，但不如 webpack 那么完善
   - 社区生态链还不够成熟，很多特殊场景下无法找到解决方案
 
-我们的mt-events项目选择了Rollup和Webpack两款构建工具是因为我们需要对“同构”后的JS代码裁剪分支，因此我们需要利用Rollup优良的Tree-shaking特性；并且为了上线min.js文件的压缩打包，我们使用Webpack来方便我们的构建工作。
+我们的 mt-events 项目选择了 Rollup 和 Webpack 两款构建工具是因为我们需要对“同构”后的JS代码裁剪分支，因此我们需要利用 Rollup 优良的 Tree-shaking  特性；并且为了上线 min.js 文件的压缩打包，我们使用 Webpack 来方便我们的构建工作。
 
 
 ### 配置JSDoc为后来之人扫清障碍
 
-​	项目的维护工作是延伸项目生命周期的最关键手段，阅读别人的源码相信对大家来说都是一件费力的事情，特别是当原作者不在您身边或者无法给您提供任何信息的时候，那就更是悲从中来。所以，书写完善的注释是开发过程中需要养成的良好习惯。为了提升代码的可维护性，我们都会在主干代码上完善我们的注释，并且，市面上有一款工具，它能够自动将我们的注释转化成API文档，生成可视化页面，听起来是很神奇吧，先别着急，听我娓娓道来。
+​	项目的维护工作是延伸项目生命周期的最关键手段，阅读别人的源码相信对大家来说都是一件费力的事情，特别是当原作者不在您身边或者无法给您提供任何信息的时候，那就更是悲从中来。所以，书写完善的注释是开发过程中需要养成的良好习惯。为了提升代码的可维护性，我们都会在主干代码上完善我们的注释，并且，市面上有一款工具，它能够自动将我们的注释转化成 API 文档，生成可视化页面，听起来是很神奇吧，先别着急，听我娓娓道来。
 
-​	这款工具名为JSDoc，它是一款根据 Javascript 文件中注释信息，生成 JavaScript 应用程序或库、模块的 API 文档的工具。JSDoc 分析的源代码是我们书写的符合Docblock格式的代码注释，它会智能帮我们生成美观的API文档页面，我们要做的，只是简单的跑一句`jsdoc`命令就可以了。
+​	这款工具名为 JSDoc，它是一款根据 Javascript 文件中注释信息，生成 JavaScript 应用程序或库、模块的 API 文档的工具。JSDoc 分析的源代码是我们书写的符合 Docblock 格式的代码注释，它会智能帮我们生成美观的 API 文档页面，我们要做的，只是简单的跑一句`jsdoc`命令就可以了。
 
-下面是 mt-events的 API 文档（很美观不是吗？这些都是JSDoc自动生成的）：
+下面是 mt-events的 API 文档（很美观不是吗？这些都是 JSDoc 自动生成的）：
 ![mtEvents-docs](images/mtevents-docs.png)
 
 ​	简约的风格让人看起来心旷神怡，想想如果有后来的维护者想要快速了解您的项目的大体架构和具体方法的功能，献上这样一份开发者文档可不是要比直接丢给他一份源代码要来的好得多对吧。
@@ -252,32 +252,32 @@ eslint --init  # 如果不自定义自己的规则，可以选择第二个选项
 
 ![travis-guide](images/travis-guide.png)
 
-1. 在Travis CI的仪表盘里勾选您需要持续集成的项目
-2. 在您的项目根目录下添加一个名为`.travis.yml`的配置文件
-3. 最后你要做的，就是push您的代码，然后静观其变
+1. 在 Travis CI 的仪表盘里勾选您需要持续集成的项目
+2. 在您的项目根目录下添加一个名为 `.travis.yml` 的配置文件
+3. 最后你要做的，就是 push 您的代码，然后静观其变
 
-其实难点也就是`.travis.yml`配置文件的书写和具体持续集成的梳理的，先po一张我们项目的配置文件：
+其实难点也就是 `.travis.yml` 配置文件的书写和具体持续集成的梳理的，先 po 一张我们项目的配置文件：
 
 ```yaml
-language: node_js         # 项目语言，node项目就按照这种写法就OK了
+language: node_js               # 项目语言，node 项目就按照这种写法就OK了
 node_js:
-- 8.11.2 				# 项目环境
-cache:					# 缓存node_js依赖，提升第二次构建的效率
+- 8.11.2 			# 项目环境
+cache:				# 缓存 node_js 依赖，提升第二次构建的效率
   directories:
   - node_modules
-before_install:          # 这些是我们加密密钥后自动生成，两行命令的作用就是得到一个有效密钥
+before_install:                 # 这些是我们加密密钥后自动生成，两行命令的作用就是得到一个有效密钥
 - openssl aes-256-cbc -K $encrypted_81d1fc7fdfa5_key -iv $encrypted_81d1fc7fdfa5_iv
   -in mtevents_travis_key.enc -out mtevents_travis_key -d
 - chmod 600 mtevents_travis_key
 after_success:			# 构建成功后的自定义操作
-- npm run codecov		# 生成Github首页的codecov图标
+- npm run codecov		# 生成 Github 首页的 codecov 图标
 - scp -i mtevents_travis_key -P $DEPLOY_PORT -o stricthostkeychecking=no -r dist/mtevents.min.js
-  $DEPLOY_USER@$DEPLOY_HOST:/usr/local/nginx/html   		#将生成的上线文件scp到服务器
+  $DEPLOY_USER@$DEPLOY_HOST:/usr/local/nginx/html   		#将生成的上线文件 scp 到服务器
 ```
 
-先梳理一下持续集成的流程，首先，我们更新开源项目然后push，Travis会监听到我们的push操作并自动拉取项目代码到Travis的虚拟机上，执行构建流程。思路就是这样，其实我们使用Shelljs也能实现一个简单的持续集成工具。
+先梳理一下持续集成的流程，首先，我们更新开源项目然后 push，Travis 会监听到我们的 push 操作并自动拉取项目代码到 Travis 的虚拟机上，执行构建流程。思路就是这样，其实我们使用 Shelljs 也能实现一个简单的持续集成工具。
 
-通常，我们在CI大型项目例如网站、Web APP之类的项目时，更多地会使用`rsync`命令代替我们暴力的`scp`，因为`scp`会上传所有的文件，而`rsync`自带diff功能，所以功能如其名，它的作用就是“同步”变更文件，这样能极大提升我们的CI效率。但是由于我们的工具库项目只有一个min.js文件，所以`scp`就已经足够解决问题了。
+通常，我们在CI大型项目例如网站、Web APP 之类的项目时，更多地会使用 `rsync` 命令代替我们暴力的 `scp`，因为 `scp` 会上传所有的文件，而 `rsync` 自带 diff 功能，所以功能如其名，它的作用就是“同步”变更文件，这样能极大提升我们的CI效率。但是由于我们的工具库项目只有一个 min.js 文件，所以 `scp` 就已经足够解决问题了。
 
 ### 为您的项目添加开源许可证
 
@@ -286,12 +286,12 @@ after_success:			# 构建成功后的自定义操作
 ![licenses](images/licenses.png)
 ​	当我们花费了很多精力去构建完善我们的项目后，希望有更多的人来关注以及使用我们的项目。此时我们如何更好地向其他人展示自己的项目呢？给自己的项目添加一些好看的徽标是一种不错的选择，让人耳目一新。
 
-那我们又该怎样为我们的项目添加许可证了？其实Github已经为我们提供了非常简便的可视化操作:
-​	我们平时在逛 github 网站的时候，发现不少项目都在  README.md 中添加徽标，对项目进行标记和说明，这些小图标给项目增色不少，不仅简单美观，而且还包含清晰易懂的信息。
+那我们又该怎样为我们的项目添加许可证了？其实 Github 已经为我们提供了非常简便的可视化操作:
+​	我们平时在逛 github 网站的时候，发现不少项目都在 README.md 中添加徽标，对项目进行标记和说明，这些小图标给项目增色不少，不仅简单美观，而且还包含清晰易懂的信息。
 
 1. 打开我们的开源项目并切换至 **Insights** 面板
-2. 点击Community标签
-3. 如果您的项目没有添加License，在 **Checklist** 里会提示您添加许可证，点击 **Add** 按钮就进入可视化操作流程了
+2. 点击 Community 标签
+3. 如果您的项目没有添加 License，在 **Checklist** 里会提示您添加许可证，点击 **Add** 按钮就进入可视化操作流程了
 
 ### 添加一些您喜欢的Icon来修饰您的项目吧
 
@@ -312,19 +312,19 @@ after_success:			# 构建成功后的自定义操作
 
     将上面 URL 中的 {GitHub 用户名} 和 {项目名称} 替换为自己项目的即可，最后可以将集成完成后的 markdown 代码贴在自己的项目上
 
-  - 效果图是：![building](images\mtevents-buildingpass.png)
+  - 效果图是：![building](images/mtevents-buildingpass.png)
 
 - 项目版本信息
 
   - 项目版本信息，是根据不同的发布工具来制定的。https://shields.io/#/examples/version 在这个网站上可以找到不同的发布工具的徽标图片地址。
   - 这里以我们的库做示例，以 npm 方式发布出去的：https://img.shields.io/npm/v/npm.svg 
-  - 效果图是：![](images/mtevents-versions.png)
+  - 效果图是：![versions](images/mtevents-versions.png)
 
 - 项目下载量
 
   - 项目被下载的次数，是根据不同的平台独立统计的。http://shields.io/#/examples/downloads 在这个网站上可以找到各种统计平台的徽标图片地址。
   - 这里以我们的库做示例，以 npm 方式发布出去的，且以每周下载量的维度来看：https://img.shields.io/npm/dw/localeval.svg 
-  - 效果图是：![](images\mtevents-download.png)
+  - 效果图是：![download](images/mtevents-download.png)
 
 ## mt-events从0到1
 
