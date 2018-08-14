@@ -1,34 +1,32 @@
-# mt-events使用文档
+# mt-events developer documentation
 
-便捷事件绑定和委托，让移动端事件如原生事件般友好。
+Event binding and delegation made easy. Handle mobile events on the web.
 
-## 介绍
+## Introduction
 
-### mt-events是什么？
+### What is mt-events？
 
-mt-events全名是Mobile Terminal Events，在最初定位时我们是希望封装一些常用的移动端事件来方便用户进行更为便捷的移动端开发，例如双击事件、长按事件、滑动事件等等，后来，随着项目的迭代，mt-events的功能更倾向往前端事件绑定工具的趋势发展，因为我们集成了事件委托等，您可以像使用JQuery的on方法那样使用我们的mtEvents，而且我们的工具库经过代码压缩、gzip之后，仅仅只有2KB哦～您可以将它下载到本地，也可以使用`script`标签引入我们为您提供的url。接下来，我们将带您体验mt-events所拥有的魅力。
+mt-events is short for Mobile Terminal Events. At first we wanted to develop a package of handlers for mobile events such as double click, long tap and swipe, in order to ease the mobile development process for front-end developers. Later on, we integrated things like event delegation, so mt-events is evolving into a full-fledged event-handling tool. Therefore, you could use mt-events very similar to the way you would use JQuery. What's best is that the size of our library is only 2KB after gzip. You could download it or use the `script` tag to import the url provided. Now lets dive into the details of using this light-weighted event-handling library.
 
-### 起步
+### Getting Started
 
-如果您想在HTML页面里引入我们的mt-events工具库，可以通过如下方式：
+First, import mt-events in your HTML as such:
 
 ```js
 <script src="http://mtevents.jerryonlyzrj.com/mtevents.min.js"></script>
 ```
 
-然后，我们的工具函数mtEvents将会被挂载在window对象上，您可以在浏览器的开发者工具里的console面板输入并执行mtEvents，如果打印出如下文本说明您已经成功引入我们的工具库了：
+After the import, our `mtEvents` function will be attached to the `window` object. Open your browser dev tool's console tab and enter `mtEvents`, if you see the printed text below then you have successfully included our library.
 
 ![mtEvents-console](images/mtEvents-console.png)
 
-或者您是VUE等前端框架的开发者，您也可以通过npm依赖的方式引入我们的工具：
-
-首先，将我们的工具库以上线依赖的形式安装：
+If you are developing with frameworks like Vue.js, you could install our library via npm:
 
 ```shell
 npm i mt-events --save
 ```
 
-然后就可以在我们的.vue等文件里直接引入使用啦：
+Then require and use mt-events in your .vue file, etc:
 
 ```html
 //test.vue
@@ -37,43 +35,43 @@ const mtEvents = require('mt-events')
 export default {
     ...,
     mounted(){
-    	mtEvents('#bindTarget', 'click', e => console.log('click'))
-	}
+      mtEvents('#bindTarget', 'click', e => console.log('click'))
+    }
 }
 </script>
 ```
 
-**实际上，mtEvents的执行环境还是在浏览器里，不论是通过script引入还是使用npm依赖，最后都需要在浏览器环境中执行。**
+**Note: No matter how you imported the library (with script or npm), eventually mtEvents needs to run in the browser enviroment.**
 
-### 事件处理
+### Event Handling
 
-#### 事件绑定：mtEvents(bindTarget, delegateTarget, event, callback)
+#### Event-binding：`mtEvents(bindTarget, delegateTarget, event, callback)`
 
-工具函数mtEvents用于事件绑定，它默认可以传入4个参数，它们分别是：
+the `mtEvents` helper function is used for event-binding，the 4 default parameters are：
 
 * **bindTarget**
 
   Type：String(Selector) | HTMLElement
 
-  事件绑定的DOM元素对象，传入的值可以是一个DOM元素或者符合CSS选择器规范的字符串，工具会自动选取被选择器选中的**第一个**DOM元素。
+  The DOM target of this event-binding; could be a Dom element or a CSS selector string (the **first** element matching the selector will be selected)
 
-* **delegateTarget**
+* **delegateTarget** (optional)
 
   Type：String(Selector)
 
-  事件委托元素，符合CSS选择器规范的字符串，如果您不需要这个值，可以忽略不填，具体可参考下方的示例代码。
+  Event-delegation target; an optional CSS selector string.
 
 * **event**
 
   Type：String
 
-  单个事件的名称，可以是浏览器的原生事件，亦或是我们为您封装好的移动端常用事件（后方将会有封装事件的具体使用文档）。
+  The name of this event; could be a native web event or a mobile event included in our library.
 
 * **callback**
 
   Type：Function
 
-  事件触发时执行的回调函数，接受一个形参`event`，在回调函数执行时我们将传入触发回调的原生事件对象`event`。
+  The event callback function; has a native event-target `event` parameter, which will be passed in when the callback gets executed.
 
 #### 事件绑定代码示例
 
@@ -106,7 +104,7 @@ mtEvents('#bindTarget', '#delegateTarget', 'click', e => console.log('BindTarget
 
 ```js
 mtEvents(node, {
-    click: e => console.log('BindTarget is clicked'), 
+    click: e => console.log('BindTarget is clicked'),
     longtap: e => console.log('BindTarget is longtap')
 })
 ```
@@ -153,7 +151,7 @@ mtEvents.remove('#bindTarget', 'click', handler)
 const clickHandler = () => console.log('clickHandler')
 const longtapHandler = () => console.log('longtapHandler')
 mtEvents.remove(node, {
-    click: clickHandler, 
+    click: clickHandler,
     longtap: longtapHandler
 })
 ```
