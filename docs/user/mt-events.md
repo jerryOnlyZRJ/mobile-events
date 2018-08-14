@@ -79,7 +79,7 @@ export default {
   - 较多用于 React 项目(但广泛支持各种项目)
   - 比较新，社区还不是很成熟
 - [Karma](https://karma-runner.github.io/2.0/index.html) 
-  - google Angular 团队开源的 JavaScript测试执行过程管理工具
+  - Google Angular 团队开源的 JavaScript测试执行过程管理工具
   - 配置简单方便
   - 强大适配器，可以在 karma 上面配置 jasmine，mocha 等单元测试框架
   - 可提供真实的模拟环境，可以在 chrome，firefox 等各种浏览器环境进行配置
@@ -103,18 +103,25 @@ export default {
   - 没有定义全局变量，开发者可以随意更改测试代码
   - 不需要 CLI 客户端环境，只需要能够运行 js 环境，即可运行 Tape
 
-综上所述，Jest 开箱即用，里边啥都有提供全面的方案；为大型项目配备足以快速上手的框架，建议使用Karma；Mocha 用的人最多，社区最成熟，灵活，可配置性强易拓展；Tape 最精简，提供最基础的东西最底层的API。
+综上所述，Jest 开箱即用；若需要为大型项目配备足以快速上手的框架，建议使用Karma；Mocha 用的人最多，社区最成熟，灵活，可配置性强易拓展；Tape 最精简，提供最基础的东西最底层的API。
 
-下面我们举个例子如何安装配置使用  **Jest**：
+下面我们举个例子如何使用  **Jest**：
+
+* 安装Jest
+
 ```shell
-npm i jest -D  # 安装 Jest
+$ npm i jest -D
+```
 
-// jest.config.js   # 在 jest.config.js 配置需要测试的代码路径，以及覆盖率输出文档的目录
+* 添加配置文件：
+
+```js
+// jest.config.js   	# 在 jest.config.js 配置测试用例路径，以及覆盖率输出文档的目录等等信息
 module.exports = {
     testURL: 'http://localhost',
-    testMatch: ['<rootDir>/test/*.js'],
-    coverageDirectory: '<rootDir>/test/coverage',
-    coverageThreshold: {
+    testMatch: ['<rootDir>/test/*.js'],      // 测试文件匹配路径(拿到根目录下test文件夹里的所有JS文件)
+    coverageDirectory: '<rootDir>/test/coverage',   // 测试覆盖率文档生成路径
+    coverageThreshold: {						  // 测试覆盖率通过阈值
         global: {
             branches: 90,
             functions: 90,
@@ -123,33 +130,43 @@ module.exports = {
         }
     }
 }
+```
 
-// package.json # 配置运行指令
-"scripts": {
-    "test": "jest --coverage"
+* 配置package测试scripts
+
+```js
+// package.json
+{
+    ...,
+    "scripts": {
+        ...,
+        "test": "jest"
+    }
 }
+```
 
-// index.js     # 编写测试用例
-describe('test dbtap events', () => {
-	test('test 1+1', () => {
-        expect(1+1).toBe(2) 
+* 编写测试用例
+
+```js
+// test/index.js     # 编写测试用例
+describe('test dbtap events', () => {         # 测试组
+	test('test 1+1', () => {				# 测试用例
+        expect(1+1).toBe(2)           		  # 断言
 	})
 })
-
-// npm t        # 运行测试用例
-> test-lib@1.0.0 test D:\test-lib
-> jest
-
- PASS  test/index.js
-  test dbtap events
-    √ test 1+1 (3ms)
-
-Test Suites: 1 passed, 1 total
-Tests:       1 passed, 1 total
-Snapshots:   0 total
-Time:        1.786s
-Ran all test suites.
 ```
+
+* 执行测试
+
+```shell
+$ npm t
+```
+
+* 结果输出
+
+![test-result](images/test-result.png)
+
+这就是一次测试的基本流程。
 
 ### 使用eslint规范团队代码
 
@@ -158,7 +175,7 @@ Ran all test suites.
 	程序是写给人读的，只是偶尔让计算机执行一下。
 															--Donald Knuth
  ```
-众所周知，eslint 是一个开源的 JavaScript 代码检查工具，可以用来校验我们的代码，给代码定义一个规范，团队成员按照这个代码规范进行开发，这保证了代码的规范。使用 eslint 可以带来很多好处，可以帮助我们避免一些低级错误，可能一个小小的语法问题，让你定位了很久才发现问题所在，而且在团队合作的过程中，可以保证大家都按照同一种风格去开发，这样更方便大家看懂彼此的代码，提高开发效率。
+众所周知，eslint 是一个开源的 JavaScript 代码检查工具，可以用来校验我们的代码，给代码定义一个规范，团队成员按照这个代码规范进行开发，这保证了代码的规范。使用 eslint 可以带来很多好处，可以帮助我们避免一些低级错误，可能一个小小的语法问题，让您定位了很久才发现问题所在，而且在团队合作的过程中，可以保证大家都按照同一种风格去开发，这样更方便大家看懂彼此的代码，提高开发效率。
 
 另外，eslint 的初衷是为了让开发者创建自己的代码检测规则，使其可以在编码过程中发现问题，扩展性强。为了方便使用，eslint 也内置了一些规则，也可以在这基础上去增加自定义规则。
 
@@ -168,7 +185,11 @@ eslint --init  # 如果不自定义自己的规则，可以选择第二个选项
 
 ### 选择您最熟悉的构建工具
 
-从事前端的开发者都会忍不住感叹前端技术发展之快，稍微过一阵子不关注新的技术，就会发现自己已经跟不上前端的迭代脚步了，会出现新思想和新框架，但是有一个特点就是源代码不能直接运行，终究需要一个工具来进行转换才能正常运行。
+![bundle-tools](images/bundle-tools.png)
+
+在开发阶段我们经常会使用一些语法糖像ES6的新特性来方便我们的开发，或者ES6 Modules来衔接我们的模块化工作，但是有些新特性是Node.js或者浏览器还未能支持的，所以我们需要对开发代码进行编译及打包，为了提炼自动化工程，我们可以选择许多优良的自动化构建工具，例如前端巨头Webpack，或是流式构建Gulp，亦或是具有优良Tree-shaking特性的Rollup，每款构建工具都有自己的闪光点，我们可以根据业务需求选择最合适的构建工具。
+
+我们的mt-events项目选择了Rollup和Webpack两款构建工具是因为我们需要对“同构”后的JS代码裁剪分支，因此我们需要利用Rollup优良的Tree-shaking特性；并且为了上线min.js文件的压缩打包，我们使用Webpack来方便我们的构建工作。
 
 ### 配置JSDoc为后来之人扫清障碍
 
@@ -179,7 +200,7 @@ eslint --init  # 如果不自定义自己的规则，可以选择第二个选项
 下面是 mt-events的 API 文档（很美观不是吗？这些都是JSDoc自动生成的）：
 ![mtEvents-docs](images/mtevents-docs.png)
 
-​	简约的风格让人开起来心旷神怡，想想如果有后来的维护者想要快速了解您的项目的大体架构和具体方法的功能，献上这样一份开发者文档可不是要比直接丢给他一份源代码要来的好得多对吧。
+​	简约的风格让人看起来心旷神怡，想想如果有后来的维护者想要快速了解您的项目的大体架构和具体方法的功能，献上这样一份开发者文档可不是要比直接丢给他一份源代码要来的好得多对吧。
 
 ### 让持续集成工具帮您实现自动化部署
 
@@ -222,7 +243,7 @@ mt-events
 
 ### 工程化实践
 
-![images](images/engineering.jpeg)
+![images](images/mtevents-enginering.png)
 
 ####  工具选型 
 ```bash
@@ -230,8 +251,8 @@ mt-events
 测试工具： Jest
 持续集成: Travis CI 
 API 文档生成工具： JSDoc
-代码规范： eslint  prettier lint-staged
-项目管理工具： git
+代码规范： eslint  prettier  lint-staged
+项目版本控制工具： git
 ```
 #####   JavaScript 模块打包器 Rollup
 ​	Rollup 已被许多主流的 JavaScript 库使用，它对代码模块使用新的标准化格式，这些标准都包含在 JavaScript 的 ES6 版本中，这可以让您自由无缝地使用您需要的 lib 中最有用的独立函数。Rollup 还帮助 mt-events实现了简单的“同构”，通过区分用户的引用方式，我们将上线文件区分为 index-npm.js 和 index-Browser.js 文件，既可以通过 script 在HTML引入，也可以使用 npm 方式 require 依赖。 
@@ -343,7 +364,7 @@ mt-events 源码都是按照 ES6 代码规范来写，下面从几个方面来�
 
 ### 一个既是Function又是Object的工具函数
 
-​	如此奇葩的数据类型看起来似乎很陌生，但我敢保证您之前一定有见过，只是没注意到它罢了，而且是多年以前我们最经常打交道的老朋友。还记得JQuery里面的 **$** 符号嘛？你一定用过这种写法去获取元素`$("#myDom")`，也用过挂在 $ 上的ajax方法来发送请求就像这样：`$.ajax(...)`，是不是被我这么一说忽然发现，之前最常用的 **$** 居然既是个函数又是个对象，很少见这样的情况对吧，其实实现原理很简单，只需要把类实例的原型挂载到Function上就搞定了，之所以这么做，是为了让用户绑定事件时，直接使用**mtEvents**这个Function就可以了，就不需要再去拿到mtEvents上的bind方法了，能够优化体验。具体实现代码如下：
+​	如此奇葩的数据类型看起来似乎很陌生，但我敢保证您之前一定有见过，只是没注意到它罢了，而且是多年以前我们最经常打交道的老朋友。还记得JQuery里面的 **$** 符号嘛？您一定用过这种写法去获取元素`$("#myDom")`，也用过挂在 $ 上的ajax方法来发送请求就像这样：`$.ajax(...)`，是不是被我这么一说忽然发现，之前最常用的 **$** 居然既是个函数又是个对象，很少见这样的情况对吧，其实实现原理很简单，只需要把类实例的原型挂载到Function上就搞定了，之所以这么做，是为了让用户绑定事件时，直接使用**mtEvents**这个Function就可以了，就不需要再去拿到mtEvents上的bind方法了，能够优化体验。具体实现代码如下：
 
 ```javascript
 // index.js
