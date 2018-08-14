@@ -225,7 +225,7 @@ eslint --init  # 如果不自定义自己的规则，可以选择第二个选项
 
 ​	这款工具名为JSDoc，它是一款根据 Javascript 文件中注释信息，生成 JavaScript 应用程序或库、模块的 API 文档的工具。JSDoc 分析的源代码是我们书写的符合Docblock格式的代码注释，它会智能帮我们生成美观的API文档页面，我们要做的，只是简单的跑一句`jsdoc`命令就可以了。
 
-下面是 mt-events的 API 文档（很美观不是吗？这些都是JSDoc自动生成的）：
+下面是 mt-events的 API 文档页面（很美观不是吗？这些都是JSDoc自动生成的）：
 ![mtEvents-docs](images/mtevents-docs.png)
 
 ​	简约的风格让人看起来心旷神怡，想想如果有后来的维护者想要快速了解您的项目的大体架构和具体方法的功能，献上这样一份开发者文档可不是要比直接丢给他一份源代码要来的好得多对吧。
@@ -254,7 +254,7 @@ eslint --init  # 如果不自定义自己的规则，可以选择第二个选项
 
 1. 在Travis CI的仪表盘里勾选您需要持续集成的项目
 2. 在您的项目根目录下添加一个名为`.travis.yml`的配置文件
-3. 最后你要做的，就是push您的代码，然后静观其变
+3. 最后您要做的，就是push您的代码，然后静观其变
 
 其实难点也就是`.travis.yml`配置文件的书写和具体持续集成的梳理的，先po一张我们项目的配置文件：
 
@@ -277,7 +277,7 @@ after_success:			# 构建成功后的自定义操作
 
 先梳理一下持续集成的流程，首先，我们更新开源项目然后push，Travis会监听到我们的push操作并自动拉取项目代码到Travis的虚拟机上，执行构建流程。思路就是这样，其实我们使用Shelljs也能实现一个简单的持续集成工具。
 
-通常，我们在CI大型项目例如网站、Web APP之类的项目时，更多地会使用`rsync`命令代替我们暴力的`scp`，因为`scp`会上传所有的文件，而`rsync`自带diff功能，所以功能如其名，它的作用就是“同步”变更文件，这样能极大提升我们的CI效率。但是由于我们的工具库项目只有一个min.js文件，所以`scp`就已经足够解决问题了。
+通常，我们在CI一些大型项目时，例如网站、Web APP之类的项目时，更多地会使用`rsync`命令代替我们暴力的`scp`，因为`scp`会上传所有的文件，而`rsync`自带diff功能，所以功能如其名，它的作用就是“同步”变更文件，这样能极大提升我们的CI效率。但是由于我们的工具库项目只有一个min.js文件，所以`scp`就已经足够解决问题了。
 
 ### 为您的项目添加开源许可证
 
@@ -302,7 +302,7 @@ after_success:			# 构建成功后的自定义操作
 
 - 持续集成状态
 
-  - 持续集成按照前面的模块推荐使用 [Travis CI](https://travis-ci.org/)，在项目中添加一个 `.travis.yml` 配置文件，告诉 Travis CI 怎样对你的项目进行编译或测试，具体配置关注上一个模块。
+  - 持续集成按照前面的模块推荐使用 [Travis CI](https://travis-ci.org/)，在项目中添加一个 `.travis.yml` 配置文件，告诉 Travis CI 怎样对您的项目进行编译或测试，具体配置关注上一个模块。
 
   - 然后徽标图片地址是
 
@@ -312,19 +312,60 @@ after_success:			# 构建成功后的自定义操作
 
     将上面 URL 中的 {GitHub 用户名} 和 {项目名称} 替换为自己项目的即可，最后可以将集成完成后的 markdown 代码贴在自己的项目上
 
-  - 效果图是：![building](images\mtevents-buildingpass.png)
+  - 效果图是：![Travis (.org)](https://img.shields.io/travis/jerryOnlyZRJ/mobile-events.svg)
+
+- 测试覆盖率
+
+辛辛苦苦把项目的测试覆盖率提高到了100%，不把它show出来肯定很憋屈吧。如果您希望在您的Github上添加项目测试覆盖率小图标，这里我们推荐使用 **codecov** 这套解决方案（图片来自官网截图）。
+
+![codecov-index](images/codecov-index.png)
+
+您要做的，只是像在Travis CI里添加项目那样把您需要跑收集测试覆盖率的项目添加进codecov的仪表盘，然后在您的项目里安装codecov依赖：
+
+```shell
+$ npm install codecov --save-dev
+```
+
+codecov的原理就是在您执行完项目测试之后，它会自动去寻找并收集项目内的测试覆盖率文档，然后呈现在页面上，并生成小图标，所以，您只要在项目测试之后执行`codecov`命令就行了。因为我们的codedev是安装在本地，所以我们需要进入`package.json`内配置一下我们的codecov执行命令：
+
+```js
+  // package.json
+{
+    ...,
+    "scripts": {
+        ...,
+        "codecov": "codecov"
+    }
+}
+```
+
+现在，您终于知道我们的`.travis.yml`配置文件里的`npm run codecov`是做什么用了的吧～
+
+接下来，就可以把我们的效果图添加进Github首页了：![codecov](https://codecov.io/gh/jerryOnlyZRJ/mobile-events/branch/master/graph/badge.svg)
 
 - 项目版本信息
 
   - 项目版本信息，是根据不同的发布工具来制定的。https://shields.io/#/examples/version 在这个网站上可以找到不同的发布工具的徽标图片地址。
-  - 这里以我们的库做示例，以 npm 方式发布出去的：https://img.shields.io/npm/v/npm.svg 
-  - 效果图是：![](images/mtevents-versions.png)
+
+  - 这里以我们的库做示例，以 npm 方式发布出去的，所以图标的地址就是：
+
+    ```
+    https://img.shields.io/npm/v/{项目名称}.svg
+    ```
+
+  - 效果图是：![npm](https://img.shields.io/npm/v/mt-events.svg)
 
 - 项目下载量
 
   - 项目被下载的次数，是根据不同的平台独立统计的。http://shields.io/#/examples/downloads 在这个网站上可以找到各种统计平台的徽标图片地址。
-  - 这里以我们的库做示例，以 npm 方式发布出去的，且以每周下载量的维度来看：https://img.shields.io/npm/dw/localeval.svg 
-  - 效果图是：![](images\mtevents-download.png)
+
+  - 这里以我们的库做示例，以 npm 方式发布出去的，且以每周下载量的维度来看：
+
+    ```
+    https://img.shields.io/npm/dw/{您的项目}.svg 
+    ```
+
+  - 效果图是：![npm](https://img.shields.io/npm/dw/mt-events.svg)
 
 ## mt-events从0到1
 
@@ -451,6 +492,12 @@ dispatchTouchEvent (eventTarget, event) {
 
 ##### 持续集成
 
+根据前文提到的配置，我们就可以在Travis CI首页看到我们的项目的持续集成结果：
+
+![travis-result](images/travis-result.png)
+
+线上的min.js文件也同时被更新到最新的版本了。
+
 ## 源码剖析
 
 mt-events 源码都是按照 ES6 代码规范来写，下面从几个方面来体验 mt-events 源码的魅力：
@@ -551,6 +598,3 @@ function delegateProxyCreator (bindTarget, delegateTarget, e, callback) {
   return new Proxy(callback, handler)
 }
 ```
-
-
-
