@@ -4,7 +4,7 @@
 
 最近在 H5 开发与 APP 客户端工程师的联调过程中， 经常需要实现一些常用的移动端事件封装成接口提供给客户端，例如用户的单击 tap 事件、双击事件、长按事件以及拖动事件。但由于浏览器默认只提供了 `touchstart`、`touchmove`、`touchend` 三个原生事件，在实际的开发过程中，我们常用的解决方案便是通过监听`touchstart` 和 `touchend` 事件配合定时器来实现我们的自定义移动端事件，为了实现常用自定义事件的复用，我们对其进行了封装，并提供方便用户使用的工具函数，这也是我们实现 [mt-events](https://github.com/jerryOnlyZRJ/mobile-events) 的初衷。
 
-**[mt-events](https://github.com/jerryOnlyZRJ/mobile-events)** 全名是 Mobile Terminal Events。最初我们对这个库的定位是希望封装一些常用的移动端事件来方便用户进行更为便捷的移动端开发，例如双击事件、长按事件、滑动事件等等。后来，随着项目的迭代，mt-events 的功能更倾向往前端事件绑定工具的趋势发展，因为我们集成了事件委托等，您可以像使用 JQuery 的 on 方法那样使用我们的 mt-events，更加便捷事件绑定和委托，让移动端事件如原生事件般友好。 这是我们项目的 Github 地址：https://github.com/jerryOnlyZRJ/mobile-events。
+**[mt-events](https://github.com/jerryOnlyZRJ/mobile-events)** 全名是 Mobile Terminal Events。最初我们对这个库的定位是希望封装一些常用的移动端事件来方便用户进行更为便捷的移动端开发，例如双击事件、长按事件、滑动事件等等。后来，随着项目的迭代，mt-events 的功能更倾向往前端事件绑定工具的趋势发展，因为我们集成了事件委托等，您可以像使用 JQuery 的 on 方法那样使用我们的 mt-events，更加便捷事件绑定和委托，让移动端事件如原生事件般友好。 这是我们项目的 Github 地址：https://github.com/jerryOnlyZRJ/mobile-events 。
 
 接下来，我们将带您体验一款工具库的搭建流程，ES6 新特性 Map、Proxy、Reflect 以及 WeakMap 在我们的工具库中发挥的作用，以及我们开源的工具库**mt-events**所拥有的魅力。 
 
