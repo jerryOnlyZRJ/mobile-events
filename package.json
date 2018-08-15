@@ -1,6 +1,6 @@
 {
   "name": "mt-events",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Make mobile events user-friendly.",
   "main": "lib/index-npm.js",
   "scripts": {
