@@ -9,6 +9,7 @@ Handle mobile events on the web easily
 * Supports widely-used mobile terminal events such as double tap and long tap, in addition to native web events like clicking. With mt-events, you could listen for these mobile/web events just the way you would using the native `addEventListener` web API or JQuery.
 * Allows for event delegation; all you need to do is adding an extra argument.
 * The whole library is only 2KB after gzip. We will deploy the script to our CDN as soon as possible.
+* Use **WeakMap** to manage the reference of HTMLElement and its event handler, so there is no need for you to remove the event handler after you remove a HTMLElement, the weak reference will be recycled by GC.
 
 ## Browser Support
 
