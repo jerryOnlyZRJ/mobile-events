@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1534390785252" clover="3.2.0">
-  <project timestamp="1534390785252" name="All files">
-    <metrics statements="192" coveredstatements="192" conditionals="65" coveredconditionals="65" methods="52" coveredmethods="52" elements="309" coveredelements="309" complexity="0" loc="192" ncloc="192" packages="2" files="7" classes="7">
-      <package name="core">
-        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <file name="touch.js" path="/Users/ranjayzheng/Desktop/mobile-events/core/touch.js">
-          <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-          <line num="12" count="102" type="stmt"/>
-          <line num="24" count="102" type="cond" truecount="2" falsecount="0"/>
-          <line num="25" count="82" type="stmt"/>
-          <line num="27" count="102" type="stmt"/>
-          <line num="28" count="102" type="stmt"/>
-          <line num="32" count="1" type="stmt"/>
-        </file>
-      </package>
+<coverage generated="1534391276071" clover="3.2.0">
+  <project timestamp="1534391276071" name="All files">
+    <metrics statements="192" coveredstatements="192" conditionals="65" coveredconditionals="65" methods="52" coveredmethods="52" elements="309" coveredelements="309" complexity="0" loc="192" ncloc="192" packages="3" files="7" classes="7">
       <package name="lib">
-        <metrics statements="186" coveredstatements="186" conditionals="63" coveredconditionals="63" methods="50" coveredmethods="50"/>
+        <metrics statements="151" coveredstatements="151" conditionals="52" coveredconditionals="52" methods="38" coveredmethods="38"/>
         <file name="events.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/events.js">
           <metrics statements="103" coveredstatements="103" conditionals="32" coveredconditionals="32" methods="25" coveredmethods="25"/>
           <line num="1" count="1" type="stmt"/>
@@ -173,7 +161,10 @@
           <line num="143" count="1" type="stmt"/>
           <line num="147" count="1" type="stmt"/>
         </file>
-        <file name="proxy.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/proxy.js">
+      </package>
+      <package name="lib.tools">
+        <metrics statements="35" coveredstatements="35" conditionals="11" coveredconditionals="11" methods="12" coveredmethods="12"/>
+        <file name="proxy.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/tools/proxy.js">
           <metrics statements="13" coveredstatements="13" conditionals="9" coveredconditionals="9" methods="2" coveredmethods="2"/>
           <line num="9" count="80" type="cond" truecount="2" falsecount="0"/>
           <line num="10" count="40" type="stmt"/>
@@ -189,7 +180,7 @@
           <line num="38" count="80" type="stmt"/>
           <line num="41" count="1" type="stmt"/>
         </file>
-        <file name="singleevent.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/singleevent.js">
+        <file name="singleevent.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/tools/singleevent.js">
           <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
           <line num="3" count="5" type="stmt"/>
           <line num="4" count="5" type="stmt"/>
@@ -202,7 +193,7 @@
           <line num="21" count="5" type="stmt"/>
           <line num="25" count="1" type="stmt"/>
         </file>
-        <file name="timer.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/timer.js">
+        <file name="timer.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/tools/timer.js">
           <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
           <line num="3" count="15" type="stmt"/>
           <line num="6" count="18" type="stmt"/>
@@ -213,12 +204,24 @@
           <line num="14" count="17" type="stmt"/>
           <line num="18" count="1" type="stmt"/>
         </file>
-        <file name="weakmap.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/weakmap.js">
+        <file name="weakmap.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/tools/weakmap.js">
           <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
           <line num="8" count="7" type="stmt"/>
           <line num="9" count="7" type="stmt"/>
           <line num="10" count="7" type="stmt"/>
           <line num="13" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="test.tools">
+        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <file name="touch.js" path="/Users/ranjayzheng/Desktop/mobile-events/test/tools/touch.js">
+          <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+          <line num="12" count="102" type="stmt"/>
+          <line num="24" count="102" type="cond" truecount="2" falsecount="0"/>
+          <line num="25" count="82" type="stmt"/>
+          <line num="27" count="102" type="stmt"/>
+          <line num="28" count="102" type="stmt"/>
+          <line num="32" count="1" type="stmt"/>
         </file>
       </package>
     </metrics>

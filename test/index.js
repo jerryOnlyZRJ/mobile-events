@@ -1,5 +1,5 @@
 const mtEvents = require('../lib/index-npm.js')
-const touch = require('../core/touch.js')
+const touch = require('./tools/touch.js')
 
 function delay4tap(bindTarget, clientX, clientY, delay) {
 	return new Promise((resolve, reject) => {

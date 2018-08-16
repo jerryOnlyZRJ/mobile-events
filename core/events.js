@@ -1,6 +1,6 @@
-const delegateProxyCreator = require('./proxy.js')
-const SingleEvent = require('./singleevent.js')
-const Timer = require('./timer.js')
+const delegateProxyCreator = require('./tools/proxy.js')
+const SingleEvent = require('./tools/singleevent.js')
+const Timer = require('./tools/timer.js')
 /**
  * _arrangeCallbackArr 处理用户传入回调数组
  * @param  {Object} e             原生事件对象
