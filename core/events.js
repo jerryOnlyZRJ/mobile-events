@@ -1,5 +1,6 @@
 const delegateProxyCreator = require('./proxy.js')
 const SingleEvent = require('./singleevent.js')
+const Timer = require('./timer.js')
 /**
  * _arrangeCallbackArr 处理用户传入回调数组
  * @param  {Object} e             原生事件对象
@@ -43,6 +44,7 @@ function _arrangeCallbackArr (e, callbackArr, lastClientObj) {
   lastClientObj.lastClientX = clientX
   lastClientObj.lastClientY = clientY
 }
+
 /**
  * 自定义事件处理句柄生成器
  * 每个自定义事件处理句柄以自定义事件命名
@@ -58,9 +60,7 @@ class Events {
      */
     this.tap = new SingleEvent({
       eventHandlers: function (bindTarget, callback, delegateTarget) {
-        const xrange = 50
-        const yrange = 50
-        let timer = null
+        let timer = new Timer()
         let lastClientX
         let lastClientY
         return {
@@ -69,28 +69,25 @@ class Events {
             delegateProxyCreator(bindTarget, delegateTarget, e, () => {
               lastClientX = e.changedTouches[0].clientX
               lastClientY = e.changedTouches[0].clientY
-              timer = setTimeout(() => {
+              timer.timeoutCreator(300, () => {
                 lastClientX = null
                 lastClientY = null
-                clearTimeout(timer)
-                timer = null
-              }, 300)
+              })
             })()
           },
           touchend: e => {
             delegateProxyCreator(bindTarget, delegateTarget, e, () => {
-              if (timer) {
+              if (timer.timer) {
                 const thisClientX = e.changedTouches[0].clientX
                 const thisClientY = e.changedTouches[0].clientY
                 const x = Math.abs(thisClientX - lastClientX)
                 const y = Math.abs(thisClientY - lastClientY)
-                if (x <= xrange && y <= yrange) {
+                if (x <= 50 && y <= 50) {
                   e.preventDefault()
                   callback(e)
                 }
               }
-              clearTimeout(timer)
-              timer = null
+              timer.clearTimer()
             })()
           }
         }
@@ -103,7 +100,7 @@ class Events {
       eventHandlers: function (bindTarget, callback, delegateTarget) {
         let longTapCallback = callback
         let shortTapCallback = null
-        let timer = null
+        let timer = new Timer()
         if (typeof callback === 'object') {
           longTapCallback = callback[0]
           shortTapCallback = callback[1]
@@ -112,21 +109,17 @@ class Events {
           touchstart: e => {
             e.preventDefault()
             delegateProxyCreator(bindTarget, delegateTarget, e, () => {
-              timer = setTimeout(() => {
-                clearTimeout(timer)
-                timer = null
-              }, 1000)
+              timer.timeoutCreator(1000)
             })()
           },
           touchend: e => {
             delegateProxyCreator(bindTarget, delegateTarget, e, () => {
-              if (timer) {
+              if (timer.timer) {
                 shortTapCallback && shortTapCallback(e)
               } else {
                 longTapCallback(e)
               }
-              clearTimeout(timer)
-              timer = null
+              timer.clearTimer()
             })()
           }
         }
@@ -137,22 +130,19 @@ class Events {
      */
     this.dbtap = new SingleEvent({
       eventHandlers: function (bindTarget, callback, delegateTarget) {
-        const xrange = 100
-        const yrange = 100
-        let timer = null
+        let timer = new Timer()
         let lastClientX
         let lastClientY
         return {
           touchend: e => {
             delegateProxyCreator(bindTarget, delegateTarget, e, () => {
-              if (timer) {
-                clearTimeout(timer)
-                timer = null
+              if (timer.timer) {
+                timer.clearTimer()
                 const thisClientX = e.changedTouches[0].clientX
                 const thisClientY = e.changedTouches[0].clientY
                 const x = Math.abs(thisClientX - lastClientX)
                 const y = Math.abs(thisClientY - lastClientY)
-                if (x <= xrange && y <= yrange) {
+                if (x <= 100 && y <= 100) {
                   e.preventDefault()
                   callback(e)
                 } else {
@@ -161,12 +151,10 @@ class Events {
               } else {
                 lastClientX = e.changedTouches[0].clientX
                 lastClientY = e.changedTouches[0].clientY
-                timer = setTimeout(() => {
+                timer.timeoutCreator(500, () => {
                   lastClientX = null
                   lastClientY = null
-                  timer && clearTimeout(timer)
-                  timer = null
-                }, 500)
+                })
               }
             })()
           }

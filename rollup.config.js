@@ -18,6 +18,7 @@ export default {
       './core/proxy.js': 'lib/proxy.js',
       './core/weakmap.js': 'lib/weakmap.js',
       './core/singleevent.js': 'lib/singleevent.js',
+      './core/timer.js': 'lib/timer.js'
     })
   ]
 };
