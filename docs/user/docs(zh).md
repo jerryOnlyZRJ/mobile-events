@@ -160,7 +160,7 @@ mtEvents.remove(node, {
 
 ## 封装事件
 
-#### tap
+### tap
 
 移动端单击事件，通过监听 touchstart 和 touchend 判断用户 touch 的时间是否超过指定阈值（默认为300ms）触发事件，使用方法：
 
