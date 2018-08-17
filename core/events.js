@@ -59,7 +59,7 @@ class Events {
      * tap 自定义点击事件
      */
     this.tap = new SingleEvent({
-      eventHandlers: function (bindTarget, callback, delegateTarget) {
+      eventHandlers: function (callback) {
         let timer = new Timer()
         let position = new Position()
         return {
@@ -86,7 +86,7 @@ class Events {
      * longtap 自定义长按事件
      */
     this.longtap = new SingleEvent({
-      eventHandlers: function (bindTarget, callback, delegateTarget) {
+      eventHandlers: function (callback) {
         let longTapCallback = callback
         let shortTapCallback = null
         let timer = new Timer()
@@ -114,7 +114,7 @@ class Events {
      * dbtap 自定义双击事件
      */
     this.dbtap = new SingleEvent({
-      eventHandlers: function (bindTarget, callback, delegateTarget) {
+      eventHandlers: function (callback) {
         let timer = new Timer()
         let position = new Position()
         return {
@@ -138,7 +138,7 @@ class Events {
       }
     })
     this.drag = new SingleEvent({
-      eventHandlers: function (bindTarget, callback, delegateTarget) {
+      eventHandlers: function (callback) {
         let lastClientObj = null
         return {
           touchstart: e => {
@@ -157,7 +157,7 @@ class Events {
       }
     })
     this.swift = new SingleEvent({
-      eventHandlers: function (bindTarget, callback, delegateTarget) {
+      eventHandlers: function (callback) {
         let lastClientObj = null
         return {
           touchmove: e => {
