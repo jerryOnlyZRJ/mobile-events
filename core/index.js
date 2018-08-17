@@ -1,5 +1,5 @@
-const events = require('./events.js')
 const delegateProxyCreator = require('./tools/proxy.js')
+const events = require('./events.js')
 const weakMapBinder = require('./tools/weakmap.js')
 
 /**
@@ -55,11 +55,11 @@ class MTEvents {
       return this.bind(bindTarget, undefined, delegateTarget, event)
     }
     bindTarget = this._checkBindTargetInput(bindTarget)
-    const eventHandler = e => {
-      delegateProxyCreator(bindTarget, delegateTarget, e, () => {
-        callback(e)
-      })()
-    }
+    const eventHandler = delegateProxyCreator(
+      bindTarget,
+      delegateTarget,
+      callback
+    )
     this.userCallback2Handler.set(callback, eventHandler)
     if (!this._isEventDIY(event)) {
       weakMapBinder(bindTarget, eventHandler, event)

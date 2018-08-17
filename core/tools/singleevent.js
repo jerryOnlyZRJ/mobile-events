@@ -1,4 +1,5 @@
 const weakMapBinder = require('./weakmap.js')
+const delegateProxyCreator = require('./proxy.js')
 
 class SingleEvent {
   constructor(options) {
@@ -6,11 +7,15 @@ class SingleEvent {
     this.options = options
   }
   bind(bindTarget, callback, delegateTarget) {
-    const eventHandlers = this.options.eventHandlers(
+    // callback = delegateProxyCreator(bindTarget, delegateTarget, callback)
+    let eventHandlers = this.options.eventHandlers(
       bindTarget,
       callback,
       delegateTarget
     )
+    Object.keys(eventHandlers).map(item => {
+      eventHandlers[item] = delegateProxyCreator(bindTarget, delegateTarget, eventHandlers[item])
+    })
     this.eventHandler.set(callback, eventHandlers)
     Object.keys(eventHandlers).map(item => { //touchstart
       weakMapBinder(bindTarget, eventHandlers[item], item)

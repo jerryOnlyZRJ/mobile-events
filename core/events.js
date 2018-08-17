@@ -1,4 +1,3 @@
-const delegateProxyCreator = require('./tools/proxy.js')
 const SingleEvent = require('./tools/singleevent.js')
 const Timer = require('./tools/timer.js')
 const Position = require('./tools/position.js')
@@ -66,23 +65,19 @@ class Events {
         return {
           touchstart: e => {
             e.preventDefault()
-            delegateProxyCreator(bindTarget, delegateTarget, e, () => {
-              position.initClientPos(e)
-              timer.timeoutCreator(300, () => {
-                position.resetClientPos()
-              })
-            })()
+            position.initClientPos(e)
+            timer.timeoutCreator(300, () => {
+              position.resetClientPos()
+            })
           },
           touchend: e => {
-            delegateProxyCreator(bindTarget, delegateTarget, e, () => {
-              if (timer.timer) {
-                if (position.isWithinDistance(e, 50, 50)) {
-                  e.preventDefault()
-                  callback(e)
-                }
+            if (timer.timer) {
+              if (position.isWithinDistance(e, 50, 50)) {
+                e.preventDefault()
+                callback(e)
               }
-              timer.clearTimer()
-            })()
+            }
+            timer.clearTimer()
           }
         }
       }
@@ -102,19 +97,15 @@ class Events {
         return {
           touchstart: e => {
             e.preventDefault()
-            delegateProxyCreator(bindTarget, delegateTarget, e, () => {
-              timer.timeoutCreator(1000)
-            })()
+            timer.timeoutCreator(1000)
           },
           touchend: e => {
-            delegateProxyCreator(bindTarget, delegateTarget, e, () => {
-              if (timer.timer) {
-                shortTapCallback && shortTapCallback(e)
-              } else {
-                longTapCallback(e)
-              }
-              timer.clearTimer()
-            })()
+            if (timer.timer) {
+              shortTapCallback && shortTapCallback(e)
+            } else {
+              longTapCallback(e)
+            }
+            timer.clearTimer()
           }
         }
       }
@@ -128,22 +119,20 @@ class Events {
         let position = new Position()
         return {
           touchend: e => {
-            delegateProxyCreator(bindTarget, delegateTarget, e, () => {
-              if (timer.timer) {
-                timer.clearTimer()
-                if (position.isWithinDistance(e, 100, 100)) {
-                  e.preventDefault()
-                  callback(e)
-                } else {
-                  console.log('Double click in different area!')
-                }
+            if (timer.timer) {
+              timer.clearTimer()
+              if (position.isWithinDistance(e, 100, 100)) {
+                e.preventDefault()
+                callback(e)
               } else {
-                position.initClientPos(e)
-                timer.timeoutCreator(500, () => {
-                  position.resetClientPos()
-                })
+                console.log('Double click in different area!')
               }
-            })()
+            } else {
+              position.initClientPos(e)
+              timer.timeoutCreator(500, () => {
+                position.resetClientPos()
+              })
+            }
           }
         }
       }
@@ -153,20 +142,16 @@ class Events {
         let lastClientObj = null
         return {
           touchstart: e => {
-            delegateProxyCreator(bindTarget, delegateTarget, e, () => {
-              lastClientObj = {
-                lastClientX: e.changedTouches[0].clientX,
-                lastClientY: e.changedTouches[0].clientY
-              }
-            })()
+            lastClientObj = {
+              lastClientX: e.changedTouches[0].clientX,
+              lastClientY: e.changedTouches[0].clientY
+            }
           },
           touchend: e => {
-            delegateProxyCreator(bindTarget, delegateTarget, e, () => {
-              if (callback instanceof Array) {
-                return _arrangeCallbackArr(e, callback, lastClientObj)
-              }
-              callback(e)
-            })()
+            if (callback instanceof Array) {
+              return _arrangeCallbackArr(e, callback, lastClientObj)
+            }
+            callback(e)
           }
         }
       }
@@ -177,18 +162,16 @@ class Events {
         return {
           touchmove: e => {
             e.preventDefault()
-            delegateProxyCreator(bindTarget, delegateTarget, e, () => {
-              if (!lastClientObj) {
-                lastClientObj = {
-                  lastClientX: e.changedTouches[0].clientX,
-                  lastClientY: e.changedTouches[0].clientY
-                }
+            if (!lastClientObj) {
+              lastClientObj = {
+                lastClientX: e.changedTouches[0].clientX,
+                lastClientY: e.changedTouches[0].clientY
               }
-              if (callback instanceof Array) {
-                return _arrangeCallbackArr(e, callback, lastClientObj)
-              }
-              callback(e)
-            })()
+            }
+            if (callback instanceof Array) {
+              return _arrangeCallbackArr(e, callback, lastClientObj)
+            }
+            callback(e)
           }
         }
       }
