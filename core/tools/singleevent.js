@@ -1,4 +1,4 @@
-const weakMapCreator = require('./weakmap.js')
+const weakMapBinder = require('./weakmap.js')
 
 class SingleEvent {
   constructor(options) {
@@ -13,8 +13,7 @@ class SingleEvent {
     )
     this.eventHandler.set(callback, eventHandlers)
     Object.keys(eventHandlers).map(item => { //touchstart
-      const weakmap = weakMapCreator(bindTarget, eventHandlers[item])
-      bindTarget.addEventListener(item, weakmap.get(bindTarget))
+      weakMapBinder(bindTarget, eventHandlers[item], item)
     })
   }
   remove(bindTarget, callback) {
