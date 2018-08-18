@@ -176,6 +176,41 @@ class Events {
         }
       }
     })
+    this.scale = new SingleEvent({
+      eventHandlers: function (callback) {
+        let lastSpaceOf2Touch = 0
+        let timer = new Timer()
+        return {
+          touchmove: e => {
+            e.preventDefault()
+            if (e.touches.length === 2) {
+              if (!lastSpaceOf2Touch) {
+                lastSpaceOf2Touch = Math.sqrt(
+                  Math.pow(e.touches[0].clientX - e.touches[1].clientX, 2) +
+                    Math.pow(e.touches[0].clientY - e.touches[1].clientY, 2)
+                )
+              } else if (!timer.timer) {
+                timer.timeoutCreator(100, () => {
+                  const thisSpaceOf2Touch = Math.sqrt(
+                    Math.pow(e.touches[0].clientX - e.touches[1].clientX, 2) +
+                      Math.pow(e.touches[0].clientY - e.touches[1].clientY, 2)
+                  )
+                  // matrix(0.75, 0, 0, 0.75, 0, 0)
+                  const scale =
+                    Math.floor((thisSpaceOf2Touch * 100) / lastSpaceOf2Touch) /
+                    100
+                  e.scale = scale
+                  callback(e)
+                })
+              }
+            }
+          },
+          touchend: e => {
+            lastSpaceOf2Touch = 0
+          }
+        }
+      }
+    })
   }
 }
 
