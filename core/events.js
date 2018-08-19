@@ -211,6 +211,65 @@ class Events {
         }
       }
     })
+    this.rotate = new SingleEvent({
+      eventHandlers: function (callback) {
+        let lastArrOf2Touch = null
+        let timer = new Timer()
+        return {
+          touchmove: e => {
+            if (e.touches.length === 2) {
+              if (!lastArrOf2Touch) {
+                lastArrOf2Touch = e.touches
+              } else if (!timer.timer) {
+                timer.timeoutCreator(100, () => {
+                  const lastX1 = lastArrOf2Touch[0].clientX
+                  const lastX2 = lastArrOf2Touch[1].clientX
+                  const thisX1 = e.touches[0].clientX
+                  const thisX2 = e.touches[1].clientX
+                  const lastY1 = lastArrOf2Touch[0].clientY
+                  const lastY2 = lastArrOf2Touch[1].clientY
+                  const thisY1 = e.touches[0].clientY
+                  const thisY2 = e.touches[1].clientY
+                  const lengthOfLast = Math.sqrt(
+                    Math.pow(lastX2 - lastX1, 2) + Math.pow(lastY2 - lastY1, 2)
+                  )
+                  const lengthOfThis = Math.sqrt(
+                    Math.pow(thisX2 - thisX1, 2) + Math.pow(thisY2 - thisY1, 2)
+                  )
+                  const rotateAngle =
+                    (Math.acos(
+                      (lastX2 - lastX1)(thisX2 - thisX1) +
+                        (lastY2 - lastY1)(thisY2 - thisY1) /
+                          (lengthOfLast * lengthOfThis)
+                    ) *
+                      90) /
+                    Math.PI
+                  // 顺时针+， 逆时针-
+                  const vectorCross =
+                    (lastX1 - thisX1) * (lastY2 - thisY2) -
+                    (lastX2 - thisX2) * (lastY1 - thisY1)
+                  let rotate = {
+                    rotateAngle
+                  }
+                  if (vectorCross < 0) {
+                    rotate.direction = 'anticlockwise'
+                    rotate.dirt = 0
+                  } else if (vectorCross > 0) {
+                    rotate.direction = 'clockwise'
+                    rotate.dirt = 1
+                  }
+                  e.rotate = rotate
+                  callback(e)
+                })
+              }
+            }
+          },
+          touchend: e => {
+            lastArrOf2Touch = null
+          }
+        }
+      }
+    })
   }
 }
 
