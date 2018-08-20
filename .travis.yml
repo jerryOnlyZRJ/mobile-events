@@ -9,7 +9,8 @@ before_install:
   -in ssh_config.enc -out ssh_config -d
 - cp ssh_config ~/.ssh/config
 - openssl aes-256-cbc -K $encrypted_81d1fc7fdfa5_key -iv $encrypted_81d1fc7fdfa5_iv
-  -in mtevents_travis_key.enc -out /tmp/mtevents_travis_key -d
+  -in mtevents_travis_key.enc -out mtevents_travis_key -d
+- cp mtevents_travis_key /tmp/mtevents_travis_key
 - eval "$(ssh-agent -s)"
 - chmod 600 /tmp/mtevents_travis_key
 - ssh-add /tmp/mtevents_travis_key
