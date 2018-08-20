@@ -7,6 +7,7 @@ cache:
 before_install:
 - openssl aes-256-cbc -K $encrypted_81d1fc7fdfa5_key -iv $encrypted_81d1fc7fdfa5_iv
   -in ssh_config.enc -out ssh_config -d
+- cp ssh_config ~/.ssh/config
 - openssl aes-256-cbc -K $encrypted_81d1fc7fdfa5_key -iv $encrypted_81d1fc7fdfa5_iv
   -in mtevents_travis_key.enc -out /tmp/mtevents_travis_key -d
 - eval "$(ssh-agent -s)"
@@ -14,5 +15,4 @@ before_install:
 - ssh-add /tmp/mtevents_travis_key
 after_success:
 - npm run codecov
-- cp ssh_config ~/.ssh/config
 - scp  -r dist/mtevents.min.js test/test.html bj-server:/usr/local/nginx/html
