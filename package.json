@@ -13,7 +13,7 @@
     "docs": "jsdoc ./core/ -d ./docs/developer",
     "lint": "eslint core/*.js --fix",
     "precommit": "lint-staged",
-    "prepush": "npm t"
+    "prepush": "npm run test:update"
   },
   "lint-staged": {
     "core/*.js": [
