@@ -240,9 +240,9 @@ class Events {
                   )
                   const rotateAngle =
                     (Math.acos(
-                      (lastX2 - lastX1)(thisX2 - thisX1) +
-                        (lastY2 - lastY1)(thisY2 - thisY1) /
-                          (lengthOfLast * lengthOfThis)
+                      ((lastX2 - lastX1) * (thisX2 - thisX1) +
+                        (lastY2 - lastY1) * (thisY2 - thisY1)) /
+                        (lengthOfLast * lengthOfThis)
                     ) *
                       90) /
                     Math.PI
