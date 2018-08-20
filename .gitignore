@@ -7,3 +7,7 @@ test/coverage/
 #MAC
 .DS_Store
 */.DS_Store 
+#ssh key
+mtevents_travis_key
+#ssh config
+ssh_config
