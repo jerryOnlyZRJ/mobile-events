@@ -15,4 +15,4 @@ before_install:
 - ssh-add /tmp/mtevents_travis_key
 after_success:
 - npm run codecov
-- scp  -r dist/mtevents.min.js test/test.html bj-server:/usr/local/nginx/html
+- scp -o stricthostkeychecking=no -r dist/mtevents.min.js test/test.html bj-server:/usr/local/nginx/html
