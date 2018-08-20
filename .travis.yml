@@ -13,6 +13,8 @@ before_install:
 - eval "$(ssh-agent -s)"
 - chmod 600 /tmp/mtevents_travis_key
 - ssh-add /tmp/mtevents_travis_key
+before_script:
+- npm run build
 after_success:
 - npm run codecov
 - rsync -r --quiet test/test.html dist/mtevents.min.js bj-server:$DEPLOY_PATH
