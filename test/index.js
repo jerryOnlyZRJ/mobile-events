@@ -609,3 +609,94 @@ describe('remove DIY swift event', () => {
 		expect(bindTarget.innerHTML).toBe("")
 	})
 })
+
+describe('test DIY event scale', () => {
+	test("test bind('#bindTarget', 'scale', handler)", cb => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		mtEvents('#bindTarget', 'scale', e => {
+			expect(e.scale).toBe(2)
+			cb()
+		})
+		const touchmove = touch.createTouchEvent('touchmove')
+		touchmove.touches = []
+		touchmove.touches.concat([{
+			clientX: 0,
+			clientY: 0
+		}, {
+			clientX: 100,
+			clientY: 100
+		}])
+		console.log(touchmove.touches)
+		touch.dispatchTouchEvent(bindTarget, touchmove)
+		setTimeout(() => {
+			touchmove.touches = [{
+				clientX: 0,
+				clientY: 0
+			}, {
+				clientX: 200,
+				clientY: 200
+			}]
+			touch.dispatchTouchEvent(bindTarget, touchmove)
+		}, 100)
+	})
+
+	describe('test DIY event rotate', () => {
+		test("test clockwise rotate", cb => {
+			document.body.innerHTML = '<div id="bindTarget"></div>'
+			const bindTarget = document.querySelector('#bindTarget')
+			mtEvents('#bindTarget', 'rotate', e => {
+				expect(e.rotate.direction).toBe("clockwise")
+				expect(e.rotate.rotateAngle).toBe(30)
+				cb()
+			})
+			const touchmove = touch.createTouchEvent('touchmove')
+			touchmove.touches = [{
+				clientX: 0,
+				clientY: 100
+			}, {
+				clientX: 100,
+				clientY: 100
+			}]
+			touch.dispatchTouchEvent(bindTarget, touchmove)
+			setTimeout(() => {
+				touchmove.touches = [{
+					clientX: 0,
+					clientY: 100
+				}, {
+					clientX: 100,
+					clientY: 200
+				}]
+				touch.dispatchTouchEvent(bindTarget, touchmove)
+			}, 100)
+		})
+		test("test anticlockwise rotate", cb => {
+			document.body.innerHTML = '<div id="bindTarget"></div>'
+			const bindTarget = document.querySelector('#bindTarget')
+			mtEvents('#bindTarget', 'rotate', e => {
+				expect(e.rotate.direction).toBe("anticlockwise")
+				expect(e.rotate.rotateAngle).toBe(30)
+				cb()
+			})
+			const touchmove = touch.createTouchEvent('touchmove')
+			touchmove.touches = [{
+				clientX: 0,
+				clientY: 100
+			}, {
+				clientX: 100,
+				clientY: 100
+			}]
+			touch.dispatchTouchEvent(bindTarget, touchmove)
+			setTimeout(() => {
+				touchmove.touches = [{
+					clientX: 0,
+					clientY: 100
+				}, {
+					clientX: 100,
+					clientY: 0
+				}]
+				touch.dispatchTouchEvent(bindTarget, touchmove)
+			}, 100)
+		})
+	})
+})
