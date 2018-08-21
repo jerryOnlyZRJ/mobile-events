@@ -220,7 +220,7 @@ class Events {
           touchmove: e => {
             if (e.touches.length === 2) {
               if (!lastArrOf2Touch) {
-                lastArrOf2Touch = e.touches
+                lastArrOf2Touch = Object.assign([], e.touches)
               } else if (!timer.timer) {
                 timer.timeoutCreator(50, () => {
                   if (!lastArrOf2Touch) return
@@ -244,12 +244,12 @@ class Events {
                         (lastY2 - lastY1) * (thisY2 - thisY1)) /
                         (lengthOfLast * lengthOfThis)
                     ) *
-                      90) /
+                      180) /
                     Math.PI
                   // 顺时针+， 逆时针-
                   const vectorCross =
-                    (lastX1 - thisX1) * (lastY2 - thisY2) -
-                    (lastX2 - thisX2) * (lastY1 - thisY1)
+                    (lastX2 - lastX1) * (thisY2 - thisY1) -
+                    (thisX2 - thisX1) * (lastY2 - lastY1)
                   let rotate = {
                     rotateAngle
                   }

@@ -8,7 +8,7 @@ class Touch {
    * @param  {String}     type 事件名称(touchend)
    * @return {Object}      浏览器原生事件对象
    */
-  createTouchEvent (type) {
+  createTouchEvent(type) {
     return new window.TouchEvent(type, {
       bubbles: true,
       cancelable: true
@@ -20,7 +20,7 @@ class Touch {
    * @param  {Object} event       浏览器原生事件对象
    * @return {HTMLDivElement}             事件触发DOM元素
    */
-  dispatchTouchEvent (eventTarget, event) {
+  dispatchTouchEvent(eventTarget, event) {
     if (typeof eventTarget === 'string') {
       eventTarget = document.querySelector(eventTarget)
     }
