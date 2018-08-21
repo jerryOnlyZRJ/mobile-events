@@ -630,18 +630,16 @@ describe('test DIY event scale', () => {
 			clientY: 100
 		})
 		touch.dispatchTouchEvent(bindTarget, touchmove)
-		setTimeout(() => {
-			touchmove.touches.splice(0, 2)
-			touchmove.touches.push({
-				clientX: 0,
-				clientY: 0
-			})
-			touchmove.touches.push({
-				clientX: 200,
-				clientY: 200
-			})
-			touch.dispatchTouchEvent(bindTarget, touchmove)
-		}, 100)
+		touchmove.touches.splice(0, 2)
+		touchmove.touches.push({
+			clientX: 0,
+			clientY: 0
+		})
+		touchmove.touches.push({
+			clientX: 200,
+			clientY: 200
+		})
+		touch.dispatchTouchEvent(bindTarget, touchmove)
 	})
 })
 
