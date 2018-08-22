@@ -617,7 +617,6 @@ describe('test DIY event scale', () => {
 		let scale = 0
 		mtEvents(bindTarget, 'scale', e => {
 			expect(e.scale).toBe(2)
-			cb()
 		})
 		const touchmove = touch.createTouchEvent('touchmove')
 		touchmove.touches = []
@@ -640,6 +639,11 @@ describe('test DIY event scale', () => {
 			clientY: 200
 		})
 		touch.dispatchTouchEvent(bindTarget, touchmove)
+		setTimeout(() => {
+			const touchend = touch.createTouchEvent('touchend')
+			touch.dispatchTouchEvent(bindTarget, touchend)
+			cb()
+		}, 100)
 	})
 })
 
@@ -682,7 +686,6 @@ describe('test DIY event rotate', () => {
 			expect(e.rotate.direction).toBe("anticlockwise")
 			expect(parseInt(e.rotate.rotateAngle)).toBe(45)
 			expect(e.rotate.dirt).toBe(0)
-			cb()
 		})
 		const touchmove = touch.createTouchEvent('touchmove')
 		touchmove.touches = []
@@ -705,5 +708,10 @@ describe('test DIY event rotate', () => {
 			clientY: 0
 		})
 		touch.dispatchTouchEvent(bindTarget, touchmove)
+		setTimeout(() => {
+			const touchend = touch.createTouchEvent('touchend')
+			touch.dispatchTouchEvent(bindTarget, touchend)
+			cb()
+		}, 100)
 	})
 })
