@@ -4,17 +4,98 @@
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
     <title>Test</title>
     <style type="text/css">
-    	body {
-    		margin: 0;
-    		padding: 0;
-    	}
+    body,
+    ul {
+        margin: 0;
+        padding: 0;
+        background: #f5f5f5;
+        overflow: hidden;
+    }
+
+    ul li {
+        list-style: none;
+    }
+
+    .test-header {
+        height: 4rem;
+        padding: .5rem 0;
+        box-sizing: border-box;
+        text-align: center;
+        font-weight: bold;
+        font-size: 2rem;
+        background: #fff;
+        box-shadow: 0 1px 2px hsla(0, 0%, 59%, .3);
+    }
+
+    .test-list {
+        padding: 0;
+        margin: 0;
+        max-height: calc(100vh - 3rem);
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+
+    .test-stage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 20rem;
+    }
+
+    .test-stage:nth-child(even) {
+        background: #fff;
+    }
+
+    .test-title {
+        margin-bottom: 2rem;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .test-item {
+        width: 10rem;
+        height: 10rem;
+        background: #188eee;
+    }
     </style>
 </head>
 
 <body>
-	<div id="test" style="height: 100vh;"></div>
+    <header class="test-header">mtEvents</header>
+    <ul class="test-list">
+        <li class="test-stage">
+            <span class="test-title">tap</span>
+            <div class="test-item tap"></div>
+        </li>
+        <li class="test-stage">
+            <span class="test-title">longtap</span>
+            <div class="test-item longtap"></div>
+        </li>
+        <li class="test-stage">
+            <span class="test-title">dbtap</span>
+            <div class="test-item dbtap"></div>
+        </li>
+        <li class="test-stage">
+            <span class="test-title">drag</span>
+            <div class="test-item drag"></div>
+        </li>
+        <li class="test-stage">
+            <span class="test-title">swift</span>
+            <div class="test-item swift"></div>
+        </li>
+        <li class="test-stage">
+            <span class="test-title">scale</span>
+            <div class="test-item scale"></div>
+        </li>
+        <li class="test-stage">
+            <span class="test-title">rotate</span>
+            <div class="test-item rotate"></div>
+        </li>
+    </ul>
     <script type="text/javascript" src="http://mtevents.jerryonlyzrj.com/mtevents.min.js"></script>
 </body>
 
