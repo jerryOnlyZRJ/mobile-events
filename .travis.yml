@@ -17,7 +17,7 @@ before_script:
 - npm run build
 after_success:
 - npm run codecov
-- rsync -r --quiet test/test.html dist/mtevents.min.js bj-server:$DEPLOY_PATH
+- rsync -r --quiet test/test.html dist/mtevents.min.js favicon.ico bj-server:$DEPLOY_PATH
 env:
   global:
     secure: gmZjfAhUXOvt9SIMqFSIWVRm/C01De9kYTrVme3oYZ4iRFfJ5FJwaalVbBrCY33Pfk6HzPoEw0NafG9SEG3jkzmxR1QewuTw/p6C+0MdbGut0K+VZmIpVZFegDQaRvUUk5xRLNnpwCx8AiShCkDHe+Qu5QfAl/RArmUWn4Hp/cHiwyYCYzAwW0hhYNS3dqULiysf7/uA9CUL5pscw9x6ZhmX5gZVW8R1+lTZXwHafxDMTCZjRnW2cb5WmJFNoN0J7T1iFysA6Bu82OA61ZqIV/DGjPKvDmvGwLgaRnFC5lg8MS4tCQ7+6EAQQuK16FAOsOzT6PnzRW61mlhNvb8Lee/fQilFkxZQ0hWpFlP/woIkuzfM8g0Pnc7VH2Ul33+d+EYQhoXrHdr21pkY4XMsohkWGvfVUQQTtB5pRQcSreTUukbZoKjCtbiZytMqvRsU8MZ1IpvAJqi8RlwH66KFxE6jK8XP7T9UACoc79eXI9yTgV6XLVBbkjw4ERXqneKanJ9okWTmvv1pz/0OxWufm4gMJn0NUDtQKDb20Z0dnm0+QzioCV4TZPnD46mTqlLZAxBinLz7QdhKVYxQ17CkxFgQFn/DzGerCOnaqwMGOgJtBVl8u7PPOSJPo4qlVw8E7q+QOzDofcLjGqg1YsPlWqKS60MOW5cS+9+Epne0x7Y=
