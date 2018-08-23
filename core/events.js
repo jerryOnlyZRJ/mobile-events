@@ -14,6 +14,12 @@ function _arrangeCallbackArr (e, callbackArr, lastClientObj) {
   const { lastClientX, lastClientY } = lastClientObj
   const clientX = e.changedTouches[0].clientX
   const clientY = e.changedTouches[0].clientY
+  const displacementOfX = clientX - lastClientX
+  const displacementOfY = clientY - lastClientY
+  e.displacement = {
+    x: displacementOfX,
+    y: displacementOfY
+  }
   let left, right, up, down
   switch (callbackArr.length) {
     case 1:
