@@ -47,13 +47,13 @@ export default {
 
 #### Event-binding：`mtEvents(bindTarget, delegateTarget, event, callback)`
 
-the `mtEvents` helper function is used for event-binding，the 4 default parameters are：
+the `mtEvents` helper function is used for event-binding，the four default parameters are：
 
 * **bindTarget**
 
   Type：String(Selector) | HTMLElement
 
-  The DOM target of this event-binding; could be a Dom element or a CSS selector string (the **first** element matching the selector will be selected)
+  The DOM target of this event-binding; could be a DOM element or a CSS selector string (the **first** element matching the selector will be selected)
 
 * **delegateTarget** (optional)
 
@@ -73,34 +73,34 @@ the `mtEvents` helper function is used for event-binding，the 4 default paramet
 
   The event callback function; has a native event-target `event` parameter, which will be passed in when the callback gets executed.
 
-#### 事件绑定代码示例
 
-1⃣️**基础用法**：如果您单纯地想为某个元素绑定某个事件的回调，你可以这样使用mtEvents：
+#### Event Binding examples
+
+1⃣️ **basic usage**：If you just want to bind a callback function to an event, use mtEvents as such:
 
 ```js
-//您可以赋予第一个参数一个字符串
+// the first argument could be a string
 mtEvents('#bindTarget', 'click', e => console.log('BindTarget is clicked'))
-//或者直接传入一个DOM对象
+// or a DOM element
 var bindTarget = document.querySelector('#bindTarget')
 mtEvents(bindTarget, 'click', e => console.log('BindTarget is clicked'))
 ```
 
-2⃣️**绑定封装事件**：同理，绑定我们为您封装的事件也是同样的方法：
+2⃣️ **bind an event included in our library**：
 
 ```js
-//此代码将为您的目标元素绑定长按事件
+// bind a callback to the 'longtap' event
 mtEvents('#bindTarget', 'longtap', e => console.log('BindTarget is longtap'))
 ```
 
-3⃣️**使用事件委托**：如果您需要进行事件委托，只需要在第二个参数传入事件触发元素即可：
+3⃣️ **Event Delegation**：pass in the delegate element as the second argument：
 
 ```js
 mtEvents('#bindTarget', '#delegateTarget', 'click', e => console.log('BindTarget is clicked'))
 ```
+This way, the event listener will bind to the DOM element whose ID equals to bindTarget. When `e.target` is delegateTarget or its child element, the callback will be executed.
 
-如此一来，事件监听将会被绑定在id为bindTarget的DOM元素上，当e.target为delegateTarget或其子元素时，才会触发回调。
-
-4⃣️**为单一元素绑定多个事件**：如果您需要为某个元素绑定多个事件回调，我们为您提供了便捷方案：
+4⃣️ **bind multiple events to one element**: pass in an object in which the keys are the event names and the values are the corresponding callbacks.
 
 ```js
 mtEvents(node, {
@@ -109,33 +109,33 @@ mtEvents(node, {
 })
 ```
 
-您可以传入一个事件回调对象，对象的键是事件名称，值为事件对应的回调。
+#### Event Removal：mtEvents.remove(bindTarget, event, callback)
 
-#### 事件移除：mtEvents.remove(bindTarget, event, callback)
-
-工具函数mtEvents上挂载的**remove**方法用于移除您通过mtEvents绑定的事件，它默认可传入三个参数，它们分别是：
+The utility function `mtEvents.remove` should be used to remove the events you have attached with `mtEvents`, the parameters are:
 
 * **bindTarget**
 
-  Type：String(Selector) | HTMLElement
+  Type: (Selector) | HTMLElement
 
-  同理事件绑定方法，事件绑定的DOM元素对象，传入的值可以是一个DOM元素或者符合CSS选择器规范的字符串，工具会自动选取被选择器选中的**第一个**DOM元素。
+  Same as the bindTarget parameter for Event Binding:
+  The DOM target of this event-binding; could be a DOM element or a CSS selector string (the **first** element matching the selector will be selected).
 
 * **event**
 
   Type：String
 
-  同理事件绑定，您绑定在元素上的事件名称。
+  Same as the event parameter for Event Binding:
+  The event name you have bound to the element.
 
 * **callback**
 
   Type：Function
 
-  相应事件触发时执行的回调函数。
+  The event callback function
 
-#### 事件移除代码示例：
+#### Event Removal example：
 
-同理事件绑定，您可以使用基础用法移除某个元素上的绑定事件：
+The basic usage is the following:
 
 ```js
 const handler = () => console.log('handler')
@@ -143,9 +143,9 @@ mtEvents('#bindTarget', 'click', handler)
 mtEvents.remove('#bindTarget', 'click', handler)
 ```
 
-**特别注意：如果您后续需要移除事件，在事件绑定时请不要使用匿名函数！！！否则将无法正常移除事件。**
+**Note: If you need to remove an event, do not use an anonymous function for event binding. If you do, the event could be not properly removed.**
 
-您也可以像事件绑定时那样传入一个事件回调对象来移除多个事件绑定：
+To remove more than one event, pass in an object just like for Event Binding ：
 
 ```js
 const clickHandler = () => console.log('clickHandler')
@@ -156,11 +156,11 @@ mtEvents.remove(node, {
 })
 ```
 
-## 封装事件
+## Custom Events
 
-#### tap
+### tap
 
-移动端单击事件，通过监听 touchstart 和 touchend 判断用户 touch 的时间是否超过指定阈值（默认为300ms）触发事件，使用方法：
+The mobile tap event. We listen for the touchstart and touchend mobile event to determine if the touch duration exceeds a certain threshold (default to 300ms). Usage:
 
 ```js
 mtEvents('#bindTarget', 'tap', e => console.log('BindTarget is tap'))
@@ -168,13 +168,13 @@ mtEvents('#bindTarget', 'tap', e => console.log('BindTarget is tap'))
 
 ### longtap
 
-移动端长按事件，通过监听touchstart和touchend判断用户touch的时间是否超过指定阈值（默认为1s）触发事件，使用方法：
+The mobile long-tap event. We listen for the touchstart and touchend mobile event to determine if the touch duration exceeds a certain threshold (default to 1s). Usage:
 
 ```js
 mtEvents('#bindTarget', 'longtap', e => console.log('BindTarget is longtap'))
 ```
 
-封装事件longtap的callback还可以接受一个数组，您也可以使用如下方法传入callback：
+the callback parameter could also be an array：
 
 ```js
 const longtap = e => console.log('BindTarget is longtap')
@@ -182,11 +182,11 @@ const shorttap = e => console.log('BindTarget is shorttap')
 mtEvents('#bindTarget', 'longtap', [longtap, shorttap])
 ```
 
-这么一来，用户如果长按，将触发长按事件，如果短按，将触发短按事件。
+This way you could listen for both short and long tap at the same time.
 
 ### dbtap
 
-移动端双击事件，通过监听两次tap的间隔时间和位置判断用户是否在某一范围内双击屏幕，使用方法：
+The mobile double-tap event. We listen for the time duration and location differences between two taps to determine if the user is double-clicking in a certain area. Usage:
 
 ```js
 mtEvents('#bindTarget', 'dbtap', e => console.log('BindTarget is dbtap'))
@@ -194,30 +194,37 @@ mtEvents('#bindTarget', 'dbtap', e => console.log('BindTarget is dbtap'))
 
 ### drag
 
-移动端拖拽事件，通过监听touchstart和touchend的位置判断用户的手势发生了哪些偏移，执行相应回调，具体使用方法：
+The mobile drag event. We listen for the touchstart and touchend mobile event to determine if the user's touch has moved. Usage：
 
 ```js
 mtEvents('#bindTarget', 'drag', e => console.log('BindTarget is drag'))
 ```
 
-您可以为callback传入一个回调，分别表示用户进行上下左右拖拽时执行的回调函数：
+You could pass an array of callbacks for drag events in all four directions:
 
 ```js
 const up = e => console.log('up')
 const down = e => console.log('down')
 const left = e => console.log('left')
 const right = e => console.log('right')
+const vertical = e => console.log('vertical')
+const horizontal = e => console.log('horizontal')
+const move = e => console.log('move')
+// 4 params
 mtEvents('#bindTarget', 'drag', [up, right, down, left])
+// 3 params
+mtEvents('#bindTarget', 'drag', [up, horizontal, down])
+// 2 params
+mtEvents('#bindTarget', 'drag', [vertical, horizontal])
+// 1 param
+mtEvents('#bindTarget', 'drag', [move])
 ```
 
-**callback数组的顺序是顺时针方向即“上右下左”，如果传入只有一个callback的callback数组则与单纯传入一个callback function同样的效果；如果数组内有两个callback，则数组第一项为纵向事件拖拽回调，第二项为横向拖拽回调；如果数组有三项，则第一项为up拖拽回调，第二项为横向拖拽回调，第三项为down拖拽回调；**
+**Special Notice: the priority of horizontal drags is higher than that of vertical drags, which means horizontal callbacks will be executed first.**
 
-**特别注意：横向事件的回调执行优先级大于纵向事件的回调执行优先级，即横向事件的回调会先于纵向事件的回调先行触发。**
+### swipe
 
-### swift
+The mobile swipe event. We listen for the mobile touchmove event to determine the path of the swipe.
 
-移动端滑动事件，通过监听touchmove判断用户手势发生了哪些偏移，执行相应回调。
-
-**swift与drag的不同**：swift会持续监听用户手势，只要发生移动就持续触发事件，而drag值关注用户手势的初始位置和结束为止，只会在touchend的时候触发一次事件。
-
-用法完全类同drag，这里就不再做相关描述。
+**difference between swipe and drag**：
+swipe listens for the user's gesture continuously, and executes the callback whenever the swipe moves; drag only cares about the beginning and end position of the drag, and only executes the callback on touchend.
