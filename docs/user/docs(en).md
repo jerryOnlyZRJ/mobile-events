@@ -192,15 +192,15 @@ The mobile double-tap event. We listen for the time duration and location differ
 mtEvents('#bindTarget', 'dbtap', e => console.log('BindTarget is dbtap'))
 ```
 
-### drag
+### swipe
 
-The mobile drag event. We listen for the touchstart and touchend mobile event to determine if the user's touch has moved. Usage：
+The mobile swipe event. We listen for the touchstart and touchend mobile event to determine if the user's touch has moved. Usage：
 
 ```js
 mtEvents('#bindTarget', 'drag', e => console.log('BindTarget is drag'))
 ```
 
-You could pass an array of callbacks for drag events in all four directions:
+You could pass an array of callbacks for swipe events in all four directions:
 
 ```js
 const up = e => console.log('up')
@@ -220,11 +220,11 @@ mtEvents('#bindTarget', 'drag', [vertical, horizontal])
 mtEvents('#bindTarget', 'drag', [move])
 ```
 
-**Special Notice: the priority of horizontal drags is higher than that of vertical drags, which means horizontal callbacks will be executed first.**
+**Special Notice: the priority of horizontal swipes is higher than that of vertical swipes, which means horizontal callbacks will be executed first.**
 
-### swipe
+### drag
 
-The mobile swipe event. We listen for the mobile touchmove event to determine the path of the swipe.
+The mobile drag event. We listen for the mobile touchmove event to determine the path of the drag.
 
-**difference between swipe and drag**：
-swipe listens for the user's gesture continuously, and executes the callback whenever the swipe moves; drag only cares about the beginning and end position of the drag, and only executes the callback on touchend.
+**difference between drag and swipe**：
+drag listens for the user's gesture continuously, and executes the callback whenever the drag moves; drag only cares about the beginning and end position of the drag, and only executes the callback on touchend.

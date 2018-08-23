@@ -35,7 +35,7 @@ function delay4Longtap(bindTarget, delay) {
 	})
 }
 
-function dragTouch(bindTarget, clientX, clientY, delay) {
+function swipeTouch(bindTarget, clientX, clientY, delay) {
 	let clientx = clientX,
 		clienty = clientY;
 	return new Promise((resolve, reject) => {
@@ -59,7 +59,7 @@ function dragTouch(bindTarget, clientX, clientY, delay) {
 	})
 }
 
-function swiftTouch(bindTarget, clientX, clientY, delay) {
+function dragTouch(bindTarget, clientX, clientY, delay) {
 	let clientx = clientX,
 		clienty = clientY;
 	return new Promise((resolve, reject) => {
@@ -456,6 +456,83 @@ describe('remove DIY dbtap event', () => {
 	})
 })
 
+describe('test DIY event swipe', () => {
+	test("test bind('#bindTarget', 'swipe', handler)", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		mtEvents(bindTarget, 'swipe', e => {
+			bindTarget.innerHTML = 'swipe'
+		})
+		await swipeTouch('#bindTarget', 100, 100, 50)
+		expect(bindTarget.innerHTML).toBe("swipe")
+	})
+	test("test bind('#bindTarget', 'swipe', [upHandler])", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		mtEvents(bindTarget, 'swipe', [e => {
+			bindTarget.innerHTML += 'down'
+		}])
+		await swipeTouch('#bindTarget', 100, 100, 10)
+		expect(bindTarget.innerHTML).toBe("downdown")
+	})
+	test("test bind('#bindTarget', 'swipe', [upHandler, rightHandler])", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		mtEvents(bindTarget, 'swipe', [e => {
+			bindTarget.innerHTML += 'up'
+		}, e => {
+			bindTarget.innerHTML += 'right'
+		}])
+		await swipeTouch('#bindTarget', 100, 100, 5)
+		expect(bindTarget.innerHTML).toBe("rightup")
+	})
+	test("test bind('#bindTarget', 'swipe', [upHandler, rightHandler, downHandler])", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		mtEvents(bindTarget, 'swipe', [e => {
+			bindTarget.innerHTML += 'up'
+		}, e => {
+			bindTarget.innerHTML += 'right'
+		}, e => {
+			bindTarget.innerHTML += 'down'
+		}])
+		await swipeTouch('#bindTarget', 100, 100, 3)
+		expect(bindTarget.innerHTML).toBe("rightdown")
+	})
+	test("test bind('#bindTarget', 'swipe', [upHandler, rightHandler, downHandler, leftHandler])", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		mtEvents(bindTarget, 'swipe', [e => {
+			bindTarget.innerHTML += 'up'
+		}, e => {
+			bindTarget.innerHTML += 'right'
+		}, e => {
+			bindTarget.innerHTML += 'down'
+		}, e => {
+			bindTarget.innerHTML += 'left'
+		}])
+		await swipeTouch('#bindTarget', 100, 100, 20)
+		expect(bindTarget.innerHTML).toBe("rightdown")
+		bindTarget.innerHTML = ""
+		await swipeTouch('#bindTarget', 400, 400, 15)
+		expect(bindTarget.innerHTML).toBe("leftup")
+	})
+})
+
+describe('remove DIY swipe event', () => {
+	test("test remove('#bindTarget', 'swipe', handler)", async () => {
+		document.body.innerHTML = '<div id="bindTarget"></div>'
+		const bindTarget = document.querySelector('#bindTarget')
+		const swipeHandler = e => {
+			bindTarget.innerHTML = 'swipe'
+		}
+		mtEvents(bindTarget, 'swipe', swipeHandler)
+		mtEvents.remove(bindTarget, 'swipe', swipeHandler)
+		await swipeTouch('#bindTarget', 100, 100, 20)
+		expect(bindTarget.innerHTML).toBe("")
+	})
+})
+
 describe('test DIY event drag', () => {
 	test("test bind('#bindTarget', 'drag', handler)", async () => {
 		document.body.innerHTML = '<div id="bindTarget"></div>'
@@ -497,7 +574,7 @@ describe('test DIY event drag', () => {
 			bindTarget.innerHTML += 'down'
 		}])
 		await dragTouch('#bindTarget', 100, 100, 3)
-		expect(bindTarget.innerHTML).toBe("rightdown")
+		expect(bindTarget.innerHTML).toBe("rightup")
 	})
 	test("test bind('#bindTarget', 'drag', [upHandler, rightHandler, downHandler, leftHandler])", async () => {
 		document.body.innerHTML = '<div id="bindTarget"></div>'
@@ -512,7 +589,7 @@ describe('test DIY event drag', () => {
 			bindTarget.innerHTML += 'left'
 		}])
 		await dragTouch('#bindTarget', 100, 100, 20)
-		expect(bindTarget.innerHTML).toBe("rightdown")
+		expect(bindTarget.innerHTML).toBe("leftup")
 		bindTarget.innerHTML = ""
 		await dragTouch('#bindTarget', 400, 400, 15)
 		expect(bindTarget.innerHTML).toBe("leftup")
@@ -523,89 +600,12 @@ describe('remove DIY drag event', () => {
 	test("test remove('#bindTarget', 'drag', handler)", async () => {
 		document.body.innerHTML = '<div id="bindTarget"></div>'
 		const bindTarget = document.querySelector('#bindTarget')
-		const dragHandler = e => {
+		const swipeHandler = e => {
 			bindTarget.innerHTML = 'drag'
 		}
-		mtEvents(bindTarget, 'drag', dragHandler)
-		mtEvents.remove(bindTarget, 'drag', dragHandler)
+		mtEvents(bindTarget, 'drag', swipeHandler)
+		mtEvents.remove(bindTarget, 'drag', swipeHandler)
 		await dragTouch('#bindTarget', 100, 100, 20)
-		expect(bindTarget.innerHTML).toBe("")
-	})
-})
-
-describe('test DIY event swift', () => {
-	test("test bind('#bindTarget', 'swift', handler)", async () => {
-		document.body.innerHTML = '<div id="bindTarget"></div>'
-		const bindTarget = document.querySelector('#bindTarget')
-		mtEvents(bindTarget, 'swift', e => {
-			bindTarget.innerHTML = 'swift'
-		})
-		await swiftTouch('#bindTarget', 100, 100, 50)
-		expect(bindTarget.innerHTML).toBe("swift")
-	})
-	test("test bind('#bindTarget', 'swift', [upHandler])", async () => {
-		document.body.innerHTML = '<div id="bindTarget"></div>'
-		const bindTarget = document.querySelector('#bindTarget')
-		mtEvents(bindTarget, 'swift', [e => {
-			bindTarget.innerHTML += 'down'
-		}])
-		await swiftTouch('#bindTarget', 100, 100, 10)
-		expect(bindTarget.innerHTML).toBe("downdown")
-	})
-	test("test bind('#bindTarget', 'swift', [upHandler, rightHandler])", async () => {
-		document.body.innerHTML = '<div id="bindTarget"></div>'
-		const bindTarget = document.querySelector('#bindTarget')
-		mtEvents(bindTarget, 'swift', [e => {
-			bindTarget.innerHTML += 'up'
-		}, e => {
-			bindTarget.innerHTML += 'right'
-		}])
-		await swiftTouch('#bindTarget', 100, 100, 5)
-		expect(bindTarget.innerHTML).toBe("rightup")
-	})
-	test("test bind('#bindTarget', 'swift', [upHandler, rightHandler, downHandler])", async () => {
-		document.body.innerHTML = '<div id="bindTarget"></div>'
-		const bindTarget = document.querySelector('#bindTarget')
-		mtEvents(bindTarget, 'swift', [e => {
-			bindTarget.innerHTML += 'up'
-		}, e => {
-			bindTarget.innerHTML += 'right'
-		}, e => {
-			bindTarget.innerHTML += 'down'
-		}])
-		await swiftTouch('#bindTarget', 100, 100, 3)
-		expect(bindTarget.innerHTML).toBe("rightup")
-	})
-	test("test bind('#bindTarget', 'swift', [upHandler, rightHandler, downHandler, leftHandler])", async () => {
-		document.body.innerHTML = '<div id="bindTarget"></div>'
-		const bindTarget = document.querySelector('#bindTarget')
-		mtEvents(bindTarget, 'swift', [e => {
-			bindTarget.innerHTML += 'up'
-		}, e => {
-			bindTarget.innerHTML += 'right'
-		}, e => {
-			bindTarget.innerHTML += 'down'
-		}, e => {
-			bindTarget.innerHTML += 'left'
-		}])
-		await swiftTouch('#bindTarget', 100, 100, 20)
-		expect(bindTarget.innerHTML).toBe("leftup")
-		bindTarget.innerHTML = ""
-		await swiftTouch('#bindTarget', 400, 400, 15)
-		expect(bindTarget.innerHTML).toBe("leftup")
-	})
-})
-
-describe('remove DIY swift event', () => {
-	test("test remove('#bindTarget', 'swift', handler)", async () => {
-		document.body.innerHTML = '<div id="bindTarget"></div>'
-		const bindTarget = document.querySelector('#bindTarget')
-		const dragHandler = e => {
-			bindTarget.innerHTML = 'swift'
-		}
-		mtEvents(bindTarget, 'swift', dragHandler)
-		mtEvents.remove(bindTarget, 'swift', dragHandler)
-		await swiftTouch('#bindTarget', 100, 100, 20)
 		expect(bindTarget.innerHTML).toBe("")
 	})
 })

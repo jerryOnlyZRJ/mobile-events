@@ -154,7 +154,7 @@ class Events {
         }
       }
     })
-    this.drag = new SingleEvent({
+    this.swipe = new SingleEvent({
       eventHandlers: function (callback) {
         let lastClientObj = null
         return {
@@ -173,7 +173,7 @@ class Events {
         }
       }
     })
-    this.swift = new SingleEvent({
+    this.drag = new SingleEvent({
       eventHandlers: function (callback) {
         let lastClientObj = null
         return {

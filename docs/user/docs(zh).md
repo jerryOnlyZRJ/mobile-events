@@ -194,7 +194,7 @@ mtEvents('#bindTarget', 'longtap', [longtap, shorttap])
 mtEvents('#bindTarget', 'dbtap', e => console.log('BindTarget is dbtap'))
 ```
 
-### drag
+### swipe
 
 移动端拖拽事件，通过监听touchstart和touchend的位置判断用户的手势发生了哪些偏移，执行相应回调，具体使用方法：
 
@@ -209,17 +209,17 @@ const up = e => console.log('up')
 const down = e => console.log('down')
 const left = e => console.log('left')
 const right = e => console.log('right')
-mtEvents('#bindTarget', 'drag', [up, right, down, left])
+mtEvents('#bindTarget', 'swipe', [up, right, down, left])
 ```
 
 **callback数组的顺序是顺时针方向即“上右下左”，如果传入只有一个callback的callback数组则与单纯传入一个callback function同样的效果；如果数组内有两个callback，则数组第一项为纵向事件拖拽回调，第二项为横向拖拽回调；如果数组有三项，则第一项为up拖拽回调，第二项为横向拖拽回调，第三项为down拖拽回调；**
 
 **特别注意：横向事件的回调执行优先级大于纵向事件的回调执行优先级，即横向事件的回调会先于纵向事件的回调先行触发。**
 
-### swift
+### drag
 
 移动端滑动事件，通过监听touchmove判断用户手势发生了哪些偏移，执行相应回调。
 
-**swift与drag的不同**：swift会持续监听用户手势，只要发生移动就持续触发事件，而drag值关注用户手势的初始位置和结束为止，只会在touchend的时候触发一次事件。
+**drag与swipe的不同**：drag会持续监听用户手势，只要发生移动就持续触发事件，而swipe值关注用户手势的初始位置和结束为止，只会在touchend的时候触发一次事件。
 
-用法完全类同drag，这里就不再做相关描述。
+用法完全类同swipe，这里就不再做相关描述。
