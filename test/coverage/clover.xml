@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1535210426152" clover="3.2.0">
-  <project timestamp="1535210426152" name="All files">
+<coverage generated="1535210534482" clover="3.2.0">
+  <project timestamp="1535210534482" name="All files">
     <metrics statements="216" coveredstatements="216" conditionals="71" coveredconditionals="64" methods="51" coveredmethods="51" elements="338" coveredelements="331" complexity="0" loc="216" ncloc="216" packages="3" files="7" classes="7">
       <package name="lib">
         <metrics statements="171" coveredstatements="171" conditionals="58" coveredconditionals="51" methods="37" coveredmethods="37"/>
@@ -240,10 +240,10 @@
         <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <file name="touch.js" path="/Users/ranjayzheng/Desktop/mobile-events/test/tools/touch.js">
           <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-          <line num="12" count="77" type="stmt"/>
-          <line num="24" count="79" type="cond" truecount="2" falsecount="0"/>
-          <line num="25" count="51" type="stmt"/>
-          <line num="27" count="79" type="stmt"/>
+          <line num="12" count="75" type="stmt"/>
+          <line num="24" count="78" type="cond" truecount="2" falsecount="0"/>
+          <line num="25" count="50" type="stmt"/>
+          <line num="27" count="78" type="stmt"/>
           <line num="28" count="78" type="stmt"/>
           <line num="32" count="1" type="stmt"/>
         </file>

@@ -398,31 +398,26 @@ describe('test DIY event swipe', () => {
 })
 
 describe('test DIY event drag', () => {
-	function dragTouch(bindTarget) {
-		return new Promise((resolve, reject) => {
-			const touchstart = touch.createTouchEvent('touchstart')
-			touchstart.changedTouches = [];
-			touchstart.changedTouches.push({
-				'clientX': 100,
-				'clientY': 100
-			})
-			touch.dispatchTouchEvent(bindTarget, touchstart)
-			const touchmove = touch.createTouchEvent('touchmove')
-			touchmove.changedTouches = [];
-			touchmove.changedTouches.push({
-				'clientX': 300,
-				'clientY': 300
-			})
-			touch.dispatchTouchEvent(bindTarget, touchmove)
-		})
-	}
 	test("test bind('#bindTarget', 'drag', handler)", async () => {
 		document.body.innerHTML = '<div id="bindTarget-drag"></div>'
 		const bindTarget = document.querySelector('#bindTarget-drag')
 		mtEvents(bindTarget, 'drag', e => {
 			bindTarget.innerHTML = `drag x:${e.displacement.x}, y:${e.displacement.y}`
 		})
-		await dragTouch(bindTarget)
+		const touchstart = touch.createTouchEvent('touchstart')
+		touchstart.changedTouches = [];
+		touchstart.changedTouches.push({
+			'clientX': 100,
+			'clientY': 100
+		})
+		touch.dispatchTouchEvent(bindTarget, touchstart)
+		const touchmove = touch.createTouchEvent('touchmove')
+		touchmove.changedTouches = [];
+		touchmove.changedTouches.push({
+			'clientX': 300,
+			'clientY': 300
+		})
+		touch.dispatchTouchEvent(bindTarget, touchmove)
 		expect(bindTarget.innerHTML).toBe("drag x:200, y:200")
 	})
 })
