@@ -4,55 +4,6 @@ const Timer = require('./tools/timer.js')
 function getVectorLength (x1, y1, x2, y2) {
   return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2))
 }
-/**
- * _arrangeCallbackArr 处理用户传入回调数组
- * @param  {Object} e             原生事件对象
- * @param  {Array} callbackArr   回调数组
- * @param  {Object} lastClientObj 上一次的事件位置信息
- */
-function _arrangeCallbackArr (e, callbackArr, lastClientObj) {
-  const { lastClientX, lastClientY } = lastClientObj
-  const clientX = e.changedTouches[0].clientX
-  const clientY = e.changedTouches[0].clientY
-  const displacementOfX = clientX - lastClientX
-  const displacementOfY = clientY - lastClientY
-  e.displacement = {
-    x: displacementOfX,
-    y: displacementOfY
-  }
-  let left, right, up, down
-  switch (callbackArr.length) {
-    case 1:
-      up = right = down = left = callbackArr[0]
-      break
-    case 2:
-      up = down = callbackArr[0]
-      right = left = callbackArr[1]
-      break
-    case 3:
-      up = callbackArr[0]
-      right = left = callbackArr[1]
-      down = callbackArr[2]
-      break
-    case 4:
-      up = callbackArr[0]
-      right = callbackArr[1]
-      down = callbackArr[2]
-      left = callbackArr[3]
-  }
-  if (clientX > lastClientX) {
-    right(e)
-  } else {
-    left(e)
-  }
-  if (clientY > lastClientY) {
-    down(e)
-  } else {
-    up(e)
-  }
-  lastClientObj.lastClientX = clientX
-  lastClientObj.lastClientY = clientY
-}
 
 /**
  * 自定义事件处理句柄生成器
@@ -171,8 +122,14 @@ class Events {
             }
           },
           touchend: e => {
-            if (callback instanceof Array) {
-              return _arrangeCallbackArr(e, callback, lastClientObj)
+            const { lastClientX, lastClientY } = lastClientObj
+            const clientX = e.changedTouches[0].clientX
+            const clientY = e.changedTouches[0].clientY
+            const displacementOfX = clientX - lastClientX
+            const displacementOfY = clientY - lastClientY
+            e.displacement = {
+              x: displacementOfX,
+              y: displacementOfY
             }
             callback(e)
           }
@@ -183,16 +140,26 @@ class Events {
       eventHandlers: function (callback) {
         let lastClientObj = null
         return {
+          touchstart: e => {
+            lastClientObj = {
+              lastClientX: e.changedTouches[0].clientX,
+              lastClientY: e.changedTouches[0].clientY
+            }
+          },
           touchmove: e => {
             e.preventDefault()
-            if (!lastClientObj) {
-              lastClientObj = {
-                lastClientX: e.changedTouches[0].clientX,
-                lastClientY: e.changedTouches[0].clientY
-              }
+            const { lastClientX, lastClientY } = lastClientObj
+            const clientX = e.changedTouches[0].clientX
+            const clientY = e.changedTouches[0].clientY
+            const displacementOfX = clientX - lastClientX
+            const displacementOfY = clientY - lastClientY
+            e.displacement = {
+              x: displacementOfX,
+              y: displacementOfY
             }
-            if (callback instanceof Array) {
-              return _arrangeCallbackArr(e, callback, lastClientObj)
+            lastClientObj = {
+              lastClientX: clientX,
+              lastClientY: clientY
             }
             callback(e)
           }
