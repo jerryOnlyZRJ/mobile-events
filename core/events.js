@@ -26,8 +26,8 @@ class Events {
         return {
           touchstart: e => {
             e.preventDefault()
-            lastClientX = e.changedTouches[0].clientX
-            lastClientY = e.changedTouches[0].clientY
+            lastClientX = e.touches[0].clientX
+            lastClientY = e.touches[0].clientY
             timer.timeoutCreator(300, () => {
               lastClientX = null
               lastClientY = null
@@ -117,8 +117,8 @@ class Events {
         return {
           touchstart: e => {
             lastClientObj = {
-              lastClientX: e.changedTouches[0].clientX,
-              lastClientY: e.changedTouches[0].clientY
+              lastClientX: e.touches[0].clientX,
+              lastClientY: e.touches[0].clientY
             }
           },
           touchend: e => {
@@ -142,15 +142,15 @@ class Events {
         return {
           touchstart: e => {
             lastClientObj = {
-              lastClientX: e.changedTouches[0].clientX,
-              lastClientY: e.changedTouches[0].clientY
+              lastClientX: e.touches[0].clientX,
+              lastClientY: e.touches[0].clientY
             }
           },
           touchmove: e => {
             e.preventDefault()
             const { lastClientX, lastClientY } = lastClientObj
-            const clientX = e.changedTouches[0].clientX
-            const clientY = e.changedTouches[0].clientY
+            const clientX = e.touches[0].clientX
+            const clientY = e.touches[0].clientY
             const displacementOfX = clientX - lastClientX
             const displacementOfY = clientY - lastClientY
             e.displacement = {

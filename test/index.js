@@ -4,8 +4,8 @@ const touch = require('./tools/touch.js')
 function delay4tap(bindTarget, clientX, clientY, delay) {
 	return new Promise((resolve, reject) => {
 		const touchstart = touch.createTouchEvent('touchstart')
-		touchstart.changedTouches = [];
-		touchstart.changedTouches.push({
+		touchstart.touches = [];
+		touchstart.touches.push({
 			'clientX': clientX,
 			'clientY': clientY
 		})
@@ -38,8 +38,8 @@ function delay4Longtap(bindTarget, delay) {
 function swipeTouch(bindTarget, delay) {
 	return new Promise((resolve, reject) => {
 		const touchstart = touch.createTouchEvent('touchstart')
-		touchstart.changedTouches = [];
-		touchstart.changedTouches.push({
+		touchstart.touches = [];
+		touchstart.touches.push({
 			'clientX': 100,
 			'clientY': 100
 		})
@@ -405,15 +405,15 @@ describe('test DIY event drag', () => {
 			bindTarget.innerHTML = `drag x:${e.displacement.x}, y:${e.displacement.y}`
 		})
 		const touchstart = touch.createTouchEvent('touchstart')
-		touchstart.changedTouches = [];
-		touchstart.changedTouches.push({
+		touchstart.touches = [];
+		touchstart.touches.push({
 			'clientX': 100,
 			'clientY': 100
 		})
 		touch.dispatchTouchEvent(bindTarget, touchstart)
 		const touchmove = touch.createTouchEvent('touchmove')
-		touchmove.changedTouches = [];
-		touchmove.changedTouches.push({
+		touchmove.touches = [];
+		touchmove.touches.push({
 			'clientX': 300,
 			'clientY': 300
 		})
