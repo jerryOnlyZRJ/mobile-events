@@ -57,23 +57,26 @@ class Events {
      */
     this.longtap = new SingleEvent({
       eventHandlers: function (callback) {
-        let longTapCallback = callback
-        let shortTapCallback = null
-        let timer = new Timer()
-        if (typeof callback === 'object') {
-          longTapCallback = callback[0]
-          shortTapCallback = callback[1]
-        }
+        const timer = new Timer()
+        // const position = new Position()
         return {
           touchstart: e => {
             e.preventDefault()
+            // position.initLastClientObjs([{
+            //   x: e.touches[0].clientX,
+            //   y: e.touches[0].clientY
+            // }])
             timer.timeoutCreator(1000)
           },
           touchend: e => {
-            if (timer.timer) {
-              shortTapCallback && shortTapCallback(e)
-            } else {
-              longTapCallback(e)
+            if (!timer.timer) {
+              // const changeObj = position.getDisplacement(e.changedTouches)[0]
+              // const x = Math.abs(changeObj.x)
+              // const y = Math.abs(changeObj.y)
+              // if (x <= 100 && y <= 100) {
+              //   e.preventDefault()
+              callback(e)
+              // }
             }
             timer.clearTimer()
           }

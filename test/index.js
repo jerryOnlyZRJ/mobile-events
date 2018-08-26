@@ -241,19 +241,6 @@ describe('test DIY event longtap', () => {
 		await delay4Longtap(bindTarget, 1200)
 		expect(bindTarget.innerHTML).toBe("longtap")
 	})
-	test("test bind('#bindTarget', 'longtap', [longtapHandler, shorttapHandler])", async () => {
-		document.body.innerHTML = '<div id="bindTarget"></div>'
-		const bindTarget = document.querySelector('#bindTarget')
-		mtEvents(bindTarget, 'longtap', [e => {
-			bindTarget.innerHTML = 'longtap'
-		}, e => {
-			bindTarget.innerHTML = 'shorttap'
-		}])
-		await delay4Longtap('#bindTarget', 500)
-		expect(bindTarget.innerHTML).toBe("shorttap")
-		await delay4Longtap(bindTarget, 1200)
-		expect(bindTarget.innerHTML).toBe("longtap")
-	})
 	test("test bind('#bindTarget', '#delegateTarget', 'longtap', handler) nothing done", async () => {
 		document.body.innerHTML = '<div id="bindTarget"><div id="delegateParent"><div id="delegateTarget"><div id="delegateChild"></div></div></div></div><div id="output"></div>'
 		const bindTarget = document.querySelector('#bindTarget')
@@ -282,17 +269,11 @@ describe('test DIY event longtap', () => {
 		const delegateTarget = document.querySelector('#delegateTarget')
 		const delegateChild = document.querySelector('#delegateChild')
 		const output = document.querySelector('#output')
-		mtEvents(bindTarget, "#delegateTarget", 'longtap', [e => {
+		mtEvents(bindTarget, "#delegateTarget", 'longtap', e => {
 			output.innerHTML = 'longtap'
-		}, e => {
-			output.innerHTML = 'shorttap'
-		}])
-		await delay4Longtap(delegateTarget, 500)
-		expect(output.innerHTML).toBe("shorttap")
+		})
 		await delay4Longtap(delegateTarget, 1200)
 		expect(output.innerHTML).toBe("longtap")
-		await delay4Longtap(delegateChild, 500)
-		expect(output.innerHTML).toBe("shorttap")
 		await delay4Longtap(delegateChild, 1200)
 		expect(output.innerHTML).toBe("longtap")
 	})
