@@ -134,6 +134,10 @@
         dragContainer.style.transform = `matrix(1, 0, 0, 1, ${dragDisX += e.displacement.x}, ${dragDisY += e.displacement.y})`
     })
     dragContainer.addEventListener('touchend', e => dragContainer.style.transform = `matrix(1, 0, 0, 1, 0, 0)`)
+    mtEvents(scaleContainer, 'scale', e => scaleContainer.style.transform = `matrix(${e.scale}, 0, 0, ${e.scale}, 0, 0)`)
+    scaleContainer.addEventListener('touchend', e => scaleContainer.style.transform = "")
+    mtEvents(rotateContainer, 'rotate', e => rotateContainer.style.transform = `rotate(${e.rotate.dirt ? e.rotate.rotateAngle : '-' + e.rotate.rotateAngle}deg)`)
+    rotateContainer.addEventListener('touchend', e => rotateContainer.style.transform = "")
     </script>
 </body>
 
