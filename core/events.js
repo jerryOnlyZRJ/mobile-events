@@ -1,5 +1,6 @@
 const SingleEvent = require('./tools/singleevent.js')
 const Timer = require('./tools/timer.js')
+const Position = require('./tools/position.js')
 
 function getVectorLength (x1, y1, x2, y2) {
   return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2))
@@ -20,25 +21,27 @@ class Events {
      */
     this.tap = new SingleEvent({
       eventHandlers: function (callback) {
-        let timer = new Timer()
-        let lastClientX
-        let lastClientY
+        const timer = new Timer()
+        const position = new Position()
         return {
           touchstart: e => {
             e.preventDefault()
-            lastClientX = e.touches[0].clientX
-            lastClientY = e.touches[0].clientY
+            position.initLastClientObjs([
+              {
+                x: e.touches[0].clientX,
+                y: e.touches[0].clientY
+              }
+            ])
             timer.timeoutCreator(300, () => {
-              lastClientX = null
-              lastClientY = null
+              timer.clearTimer()
+              position.initLastClientObjs(null)
             })
           },
           touchend: e => {
             if (timer.timer) {
-              const thisClientX = e.changedTouches[0].clientX
-              const thisClientY = e.changedTouches[0].clientY
-              const x = Math.abs(thisClientX - lastClientX)
-              const y = Math.abs(thisClientY - lastClientY)
+              const changeObj = position.getDisplacement(e.changedTouches)[0]
+              const x = Math.abs(changeObj.x)
+              const y = Math.abs(changeObj.y)
               if (x <= 50 && y <= 50) {
                 e.preventDefault()
                 callback(e)

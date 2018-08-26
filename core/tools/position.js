@@ -6,7 +6,18 @@ class Position {
 		this.lastClientObjs = Object.assign([], lastClientObjs)
 	}
 	getDisplacement(thisClientObjs) {
-		Object.keys(thisClientObjs)
+		if (this.lastClientObjs) {
+			return thisClientObjs.map((item, index) => {
+				const {
+					x,
+					y
+				} = this.lastClientObjs[index]
+				return {
+					x: item.clientX - x,
+					y: item.clientY - y
+				}
+			})
+		}
 	}
 }
 
