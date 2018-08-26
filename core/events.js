@@ -89,16 +89,14 @@ class Events {
     this.dbtap = new SingleEvent({
       eventHandlers: function (callback) {
         let timer = new Timer()
-        let lastClientX
-        let lastClientY
+        const position = new Position()
         return {
           touchend: e => {
             if (timer.timer) {
               timer.clearTimer()
-              const thisClientX = e.changedTouches[0].clientX
-              const thisClientY = e.changedTouches[0].clientY
-              const x = Math.abs(thisClientX - lastClientX)
-              const y = Math.abs(thisClientY - lastClientY)
+              const changeObj = position.getDisplacement(e.changedTouches)[0]
+              const x = Math.abs(changeObj.x)
+              const y = Math.abs(changeObj.y)
               if (x <= 100 && y <= 100) {
                 e.preventDefault()
                 callback(e)
@@ -106,11 +104,14 @@ class Events {
                 console.log('Double click in different area!')
               }
             } else {
-              lastClientX = e.changedTouches[0].clientX
-              lastClientY = e.changedTouches[0].clientY
+              position.initLastClientObjs([
+                {
+                  x: e.changedTouches[0].clientX,
+                  y: e.changedTouches[0].clientY
+                }
+              ])
               timer.timeoutCreator(500, () => {
-                lastClientX = null
-                lastClientY = null
+                position.initLastClientObjs(null)
               })
             }
           }
@@ -119,24 +120,18 @@ class Events {
     })
     this.swipe = new SingleEvent({
       eventHandlers: function (callback) {
-        let lastClientObj = null
+        const position = new Position()
         return {
           touchstart: e => {
-            lastClientObj = {
-              lastClientX: e.touches[0].clientX,
-              lastClientY: e.touches[0].clientY
-            }
+            position.initLastClientObjs([
+              {
+                x: e.touches[0].clientX,
+                y: e.touches[0].clientY
+              }
+            ])
           },
           touchend: e => {
-            const { lastClientX, lastClientY } = lastClientObj
-            const clientX = e.changedTouches[0].clientX
-            const clientY = e.changedTouches[0].clientY
-            const displacementOfX = clientX - lastClientX
-            const displacementOfY = clientY - lastClientY
-            e.displacement = {
-              x: displacementOfX,
-              y: displacementOfY
-            }
+            e.displacement = position.getDisplacement(e.changedTouches)[0]
             callback(e)
           }
         }
