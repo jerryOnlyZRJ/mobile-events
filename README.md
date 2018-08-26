@@ -3,6 +3,9 @@ Handle mobile events on the web easily
 
 ![Travis (.org)](https://img.shields.io/travis/jerryOnlyZRJ/mobile-events.svg) [![codecov](https://codecov.io/gh/jerryOnlyZRJ/mobile-events/branch/master/graph/badge.svg)](https://codecov.io/gh/jerryOnlyZRJ/mobile-events)  [![npm](https://img.shields.io/npm/v/mt-events.svg)](https://www.npmjs.com/package/mt-events)   [![npm](https://img.shields.io/npm/dw/mt-events.svg)](https://www.npmjs.com/package/mt-events)  ![GitHub](https://img.shields.io/github/license/jerryOnlyZRJ/mobile-events.svg)  ![GitHub language count](https://img.shields.io/badge/language-JavaScript-yellow.svg)
 
+#Preview
+You can try it just now by this -> http://mtevents.jerryonlyzrj.com/test.html
+
 ## Features
 
 * Supports widely-used mobile terminal events such as double tap and long tap, in addition to native web events like clicking. With mt-events, you could listen for these mobile/web events just the way you would using the native `addEventListener` web API or JQuery.
