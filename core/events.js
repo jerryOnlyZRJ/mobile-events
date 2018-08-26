@@ -32,7 +32,7 @@ class Events {
                 y: e.touches[0].clientY
               }
             ])
-            timer.timeoutCreator(300, () => {
+            timer.timeoutCreator(200, () => {
               timer.clearTimer()
               position.initLastClientObjs(null)
             })

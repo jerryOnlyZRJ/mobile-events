@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1535284699131" clover="3.2.0">
-  <project timestamp="1535284699131" name="All files">
-    <metrics statements="210" coveredstatements="210" conditionals="71" coveredconditionals="66" methods="55" coveredmethods="55" elements="336" coveredelements="331" complexity="0" loc="210" ncloc="210" packages="3" files="8" classes="8">
+<coverage generated="1535284984219" clover="3.2.0">
+  <project timestamp="1535284984219" name="All files">
+    <metrics statements="211" coveredstatements="211" conditionals="71" coveredconditionals="66" methods="55" coveredmethods="55" elements="337" coveredelements="332" complexity="0" loc="211" ncloc="211" packages="3" files="8" classes="8">
       <package name="lib">
         <metrics statements="159" coveredstatements="159" conditionals="58" coveredconditionals="53" methods="37" coveredmethods="37"/>
         <file name="events.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/events.js">
@@ -171,15 +171,16 @@
         </file>
       </package>
       <package name="lib.tools">
-        <metrics statements="45" coveredstatements="45" conditionals="11" coveredconditionals="11" methods="16" coveredmethods="16"/>
+        <metrics statements="46" coveredstatements="46" conditionals="11" coveredconditionals="11" methods="16" coveredmethods="16"/>
         <file name="position.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/tools/position.js">
-          <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+          <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
           <line num="3" count="14" type="stmt"/>
           <line num="6" count="20" type="stmt"/>
           <line num="9" count="14" type="stmt"/>
-          <line num="13" count="14" type="stmt"/>
+          <line num="10" count="14" type="stmt"/>
           <line num="14" count="14" type="stmt"/>
-          <line num="22" count="1" type="stmt"/>
+          <line num="15" count="14" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
         </file>
         <file name="proxy.js" path="/Users/ranjayzheng/Desktop/mobile-events/lib/tools/proxy.js">
           <metrics statements="13" coveredstatements="13" conditionals="9" coveredconditionals="9" methods="2" coveredmethods="2"/>

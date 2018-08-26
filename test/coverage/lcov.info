@@ -312,7 +312,7 @@ SF:/Users/ranjayzheng/Desktop/mobile-events/lib/tools/position.js
 FN:2,(anonymous_0)
 FN:5,(anonymous_1)
 FN:8,(anonymous_2)
-FN:9,(anonymous_3)
+FN:10,(anonymous_3)
 FNF:4
 FNH:4
 FNDA:14,(anonymous_0)
@@ -322,11 +322,12 @@ FNDA:14,(anonymous_3)
 DA:3,14
 DA:6,20
 DA:9,14
-DA:13,14
+DA:10,14
 DA:14,14
-DA:22,1
-LF:6
-LH:6
+DA:15,14
+DA:23,1
+LF:7
+LH:7
 BRF:0
 BRH:0
 end_of_record

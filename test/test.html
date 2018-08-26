@@ -69,6 +69,16 @@
     .grayscale {
         filter: grayscale(.8);
     }
+
+    .scale-2 {
+        transform: matrix(1.5, 0, 0, 1.5, 0, 0);
+        opacity: .7;
+        transition: all .3s;
+    }
+
+    .swipe {
+        transition: all .3s;
+    }
     </style>
 </head>
 
@@ -104,17 +114,27 @@
             <div class="test-item rotate"></div>
         </li>
     </ul>
+    <script type="text/javascript" src="http://mtevents.jerryonlyzrj.com/mtevents.min.js"></script>
+    <!-- <script type="text/javascript" src="../dist/mtevents.min.js"></script> -->
     <script type="text/javascript">
-        var tapContainer = document.querySelector('.tap')
-        var longtapContainer = document.querySelector('.longtap')
-        var dbtapContainer = document.querySelector('.dbtap')
-        var swipeContainer = document.querySelector('.swipe')
-        var dragContainer = document.querySelector('.drag')
-        var scaleContainer = document.querySelector('.scale')
-        var rotateContainer = document.querySelector('.rotate')
+    var tapContainer = document.querySelector('.tap')
+    var longtapContainer = document.querySelector('.longtap')
+    var dbtapContainer = document.querySelector('.dbtap')
+    var swipeContainer = document.querySelector('.swipe')
+    var dragContainer = document.querySelector('.drag')
+    var scaleContainer = document.querySelector('.scale')
+    var rotateContainer = document.querySelector('.rotate')
+    mtEvents(tapContainer, 'tap', e => tapContainer.classList.toggle('grayscale'))
+    mtEvents(longtapContainer, 'longtap', e => longtapContainer.classList.toggle('grayscale'))
+    mtEvents(dbtapContainer, 'dbtap', e => dbtapContainer.classList.toggle('scale-2'))
+    mtEvents(swipeContainer, 'swipe', e => swipeContainer.style.transform = `matrix(1, 0, 0, 1, ${e.displacement.x}, ${e.displacement.y})`)
+    var dragDisX = 0
+    var dragDisY = 0
+    mtEvents(dragContainer, 'drag', e => {
+        dragContainer.style.transform = `matrix(1, 0, 0, 1, ${dragDisX += e.displacement.x}, ${dragDisY += e.displacement.y})`
+    })
+    dragContainer.addEventListener('touchend', e => dragContainer.style.transform = `matrix(1, 0, 0, 1, 0, 0)`)
     </script>
-    <!-- <script type="text/javascript" src="http://mtevents.jerryonlyzrj.com/mtevents.min.js"></script> -->
-    <script type="text/javascript" src="../dist/mtevents.min.js"></script>
 </body>
 
 </html>
