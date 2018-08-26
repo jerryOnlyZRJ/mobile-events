@@ -65,6 +65,10 @@
         height: 10rem;
         background: #188eee;
     }
+
+    .grayscale {
+        filter: grayscale(.8);
+    }
     </style>
 </head>
 
@@ -84,12 +88,12 @@
             <div class="test-item dbtap"></div>
         </li>
         <li class="test-stage">
-            <span class="test-title">drag</span>
-            <div class="test-item drag"></div>
+            <span class="test-title">swipe</span>
+            <div class="test-item swipe"></div>
         </li>
         <li class="test-stage">
-            <span class="test-title">swift</span>
-            <div class="test-item swift"></div>
+            <span class="test-title">drag</span>
+            <div class="test-item drag"></div>
         </li>
         <li class="test-stage">
             <span class="test-title">scale</span>
@@ -100,6 +104,15 @@
             <div class="test-item rotate"></div>
         </li>
     </ul>
+    <script type="text/javascript">
+        var tapContainer = document.querySelector('.tap')
+        var longtapContainer = document.querySelector('.longtap')
+        var dbtapContainer = document.querySelector('.dbtap')
+        var swipeContainer = document.querySelector('.swipe')
+        var dragContainer = document.querySelector('.drag')
+        var scaleContainer = document.querySelector('.scale')
+        var rotateContainer = document.querySelector('.rotate')
+    </script>
     <script type="text/javascript" src="http://mtevents.jerryonlyzrj.com/mtevents.min.js"></script>
     <!-- <script type="text/javascript" src="../dist/mtevents.min.js"></script> -->
 </body>
