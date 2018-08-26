@@ -236,9 +236,11 @@ describe('test DIY event longtap', () => {
 		mtEvents(bindTarget, 'longtap', e => {
 			bindTarget.innerHTML = 'longtap'
 		})
-		await delay4Longtap('#bindTarget', 500)
+		await delay4tap('#bindTarget', 50, 50, 500)
 		expect(bindTarget.innerHTML).toBe("")
-		await delay4Longtap(bindTarget, 1200)
+		await delay4tap('#bindTarget', 300, 300, 1200)
+		expect(bindTarget.innerHTML).toBe("")
+		await delay4tap(bindTarget, 50, 50, 1200)
 		expect(bindTarget.innerHTML).toBe("longtap")
 	})
 	test("test bind('#bindTarget', '#delegateTarget', 'longtap', handler) nothing done", async () => {
@@ -253,13 +255,13 @@ describe('test DIY event longtap', () => {
 		}, e => {
 			output.innerHTML = 'shorttap'
 		}])
-		await delay4Longtap('#bindTarget', 500)
+		await delay4tap('#bindTarget', 50, 50, 500)
 		expect(output.innerHTML).toBe("")
-		await delay4Longtap(bindTarget, 1200)
+		await delay4tap(bindTarget, 50, 50, 1200)
 		expect(output.innerHTML).toBe("")
-		await delay4Longtap(delegateParent, 500)
+		await delay4tap(delegateParent, 50, 50, 500)
 		expect(output.innerHTML).toBe("")
-		await delay4Longtap(delegateParent, 1200)
+		await delay4tap(delegateParent, 50, 50, 1200)
 		expect(output.innerHTML).toBe("")
 	})
 	test("test bind('#bindTarget', '#delegateTarget', 'longtap', handler) make difference", async () => {
@@ -272,9 +274,9 @@ describe('test DIY event longtap', () => {
 		mtEvents(bindTarget, "#delegateTarget", 'longtap', e => {
 			output.innerHTML = 'longtap'
 		})
-		await delay4Longtap(delegateTarget, 1200)
+		await delay4tap(delegateTarget, 50, 50, 1200)
 		expect(output.innerHTML).toBe("longtap")
-		await delay4Longtap(delegateChild, 1200)
+		await delay4tap(delegateChild, 50, 50, 1200)
 		expect(output.innerHTML).toBe("longtap")
 	})
 })
