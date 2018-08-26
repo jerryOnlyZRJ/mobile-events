@@ -236,9 +236,11 @@ describe('test DIY event longtap', () => {
 		mtEvents(bindTarget, 'longtap', e => {
 			bindTarget.innerHTML = 'longtap'
 		})
-		await delay4Longtap('#bindTarget', 500)
+		await delay4tap('#bindTarget', 50, 50, 500)
 		expect(bindTarget.innerHTML).toBe("")
-		await delay4Longtap(bindTarget, 1200)
+		await delay4tap('#bindTarget', 300, 300, 1200)
+		expect(bindTarget.innerHTML).toBe("")
+		await delay4tap(bindTarget, 50, 50, 1200)
 		expect(bindTarget.innerHTML).toBe("longtap")
 	})
 	test("test bind('#bindTarget', '#delegateTarget', 'longtap', handler) nothing done", async () => {
@@ -253,13 +255,13 @@ describe('test DIY event longtap', () => {
 		}, e => {
 			output.innerHTML = 'shorttap'
 		}])
-		await delay4Longtap('#bindTarget', 500)
+		await delay4tap('#bindTarget', 50, 50, 500)
 		expect(output.innerHTML).toBe("")
-		await delay4Longtap(bindTarget, 1200)
+		await delay4tap(bindTarget, 50, 50, 1200)
 		expect(output.innerHTML).toBe("")
-		await delay4Longtap(delegateParent, 500)
+		await delay4tap(delegateParent, 50, 50, 500)
 		expect(output.innerHTML).toBe("")
-		await delay4Longtap(delegateParent, 1200)
+		await delay4tap(delegateParent, 50, 50, 1200)
 		expect(output.innerHTML).toBe("")
 	})
 	test("test bind('#bindTarget', '#delegateTarget', 'longtap', handler) make difference", async () => {
@@ -272,9 +274,9 @@ describe('test DIY event longtap', () => {
 		mtEvents(bindTarget, "#delegateTarget", 'longtap', e => {
 			output.innerHTML = 'longtap'
 		})
-		await delay4Longtap(delegateTarget, 1200)
+		await delay4tap(delegateTarget, 50, 50, 1200)
 		expect(output.innerHTML).toBe("longtap")
-		await delay4Longtap(delegateChild, 1200)
+		await delay4tap(delegateChild, 50, 50, 1200)
 		expect(output.innerHTML).toBe("longtap")
 	})
 })
@@ -410,6 +412,9 @@ describe('test DIY event scale', () => {
 		let scale = 0
 		mtEvents(bindTarget, 'scale', e => {
 			expect(e.scale).toBe(2)
+			const touchmove = touch.createTouchEvent('touchmove')
+			touch.dispatchTouchEvent(bindTarget, touchmove)
+			cb()
 		})
 		const touchmove = touch.createTouchEvent('touchmove')
 		touchmove.touches = []
@@ -435,7 +440,6 @@ describe('test DIY event scale', () => {
 		setTimeout(() => {
 			const touchend = touch.createTouchEvent('touchend')
 			touch.dispatchTouchEvent(bindTarget, touchend)
-			cb()
 		}, 100)
 	})
 })
@@ -448,6 +452,10 @@ describe('test DIY event rotate', () => {
 			expect(e.rotate.direction).toBe("clockwise")
 			expect(parseInt(e.rotate.rotateAngle)).toBe(45)
 			expect(e.rotate.dirt).toBe(1)
+			const touchmove = touch.createTouchEvent('touchmove')
+			touch.dispatchTouchEvent(bindTarget, touchmove)
+			const touchend = touch.createTouchEvent('touchend')
+			touch.dispatchTouchEvent(bindTarget, touchend)
 			cb()
 		})
 		const touchmove = touch.createTouchEvent('touchmove')
@@ -479,6 +487,11 @@ describe('test DIY event rotate', () => {
 			expect(e.rotate.direction).toBe("anticlockwise")
 			expect(parseInt(e.rotate.rotateAngle)).toBe(45)
 			expect(e.rotate.dirt).toBe(0)
+			const touchmove = touch.createTouchEvent('touchmove')
+			touch.dispatchTouchEvent(bindTarget, touchmove)
+			const touchend = touch.createTouchEvent('touchend')
+			touch.dispatchTouchEvent(bindTarget, touchend)
+			cb()
 		})
 		const touchmove = touch.createTouchEvent('touchmove')
 		touchmove.touches = []
@@ -504,7 +517,6 @@ describe('test DIY event rotate', () => {
 		setTimeout(() => {
 			const touchend = touch.createTouchEvent('touchend')
 			touch.dispatchTouchEvent(bindTarget, touchend)
-			cb()
 		}, 100)
 	})
 })

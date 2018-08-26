@@ -58,25 +58,27 @@ class Events {
     this.longtap = new SingleEvent({
       eventHandlers: function (callback) {
         const timer = new Timer()
-        // const position = new Position()
+        const position = new Position()
         return {
           touchstart: e => {
             e.preventDefault()
-            // position.initLastClientObjs([{
-            //   x: e.touches[0].clientX,
-            //   y: e.touches[0].clientY
-            // }])
+            position.initLastClientObjs([
+              {
+                x: e.touches[0].clientX,
+                y: e.touches[0].clientY
+              }
+            ])
             timer.timeoutCreator(1000)
           },
           touchend: e => {
             if (!timer.timer) {
-              // const changeObj = position.getDisplacement(e.changedTouches)[0]
-              // const x = Math.abs(changeObj.x)
-              // const y = Math.abs(changeObj.y)
-              // if (x <= 100 && y <= 100) {
-              //   e.preventDefault()
-              callback(e)
-              // }
+              const changeObj = position.getDisplacement(e.changedTouches)[0]
+              const x = Math.abs(changeObj.x)
+              const y = Math.abs(changeObj.y)
+              if (x <= 100 && y <= 100) {
+                e.preventDefault()
+                callback(e)
+              }
             }
             timer.clearTimer()
           }
@@ -100,8 +102,6 @@ class Events {
               if (x <= 100 && y <= 100) {
                 e.preventDefault()
                 callback(e)
-              } else {
-                console.log('Double click in different area!')
               }
             } else {
               position.initLastClientObjs([
