@@ -225,7 +225,7 @@ mtEvents('#bindTarget', 'scale', e => console.log('BindTarget is scale'))
 
 mtEvents会在事件的原生对象上挂载元素缩放比例（scale）：
 
-![scale](/Users/ranjayzheng/Desktop/mobile-events/docs/user/images/scale.png)
+![scale](images/scale.png)
 
 #### Rotate
 
@@ -237,7 +237,7 @@ mtEvents('#bindTarget', 'rotate', e => console.log('BindTarget is rotate'))
 
 mtEvents会在事件的原生对象上挂载元素旋转对象（rotate）：
 
-![rotate](/Users/ranjayzheng/Desktop/mobile-events/docs/user/images/rotate.png)
+![rotate](images/rotate.png)
 
 rotate对象内包含三组键值，它们的含义分别是：
 
