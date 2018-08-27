@@ -158,7 +158,9 @@ mtEvents.remove(node, {
 
 ## Custom Events
 
-### tap
+### 单点触控事件
+
+#### tap
 
 The mobile tap event. We listen for the touchstart and touchend mobile event to determine if the touch duration exceeds a certain threshold (default to 300ms). Usage:
 
@@ -166,7 +168,7 @@ The mobile tap event. We listen for the touchstart and touchend mobile event to 
 mtEvents('#bindTarget', 'tap', e => console.log('BindTarget is tap'))
 ```
 
-### longtap
+#### longtap
 
 The mobile long-tap event. We listen for the touchstart and touchend mobile event to determine if the touch duration exceeds a certain threshold (default to 1s). Usage:
 
@@ -184,7 +186,7 @@ mtEvents('#bindTarget', 'longtap', [longtap, shorttap])
 
 This way you could listen for both short and long tap at the same time.
 
-### dbtap
+#### dbtap
 
 The mobile double-tap event. We listen for the time duration and location differences between two taps to determine if the user is double-clicking in a certain area. Usage:
 
@@ -192,7 +194,7 @@ The mobile double-tap event. We listen for the time duration and location differ
 mtEvents('#bindTarget', 'dbtap', e => console.log('BindTarget is dbtap'))
 ```
 
-### swipe
+#### swipe
 
 The mobile swipe event. We listen for the touchstart and touchend mobile event to determine if the user's touch has moved. Usage：
 
@@ -200,31 +202,45 @@ The mobile swipe event. We listen for the touchstart and touchend mobile event t
 mtEvents('#bindTarget', 'drag', e => console.log('BindTarget is drag'))
 ```
 
-You could pass an array of callbacks for swipe events in all four directions:
+mtEvents会在事件的原生对象上挂载元素偏移对象（displacement），其中包含了元素在x轴和y轴上的偏移量:
 
-```js
-const up = e => console.log('up')
-const down = e => console.log('down')
-const left = e => console.log('left')
-const right = e => console.log('right')
-const vertical = e => console.log('vertical')
-const horizontal = e => console.log('horizontal')
-const move = e => console.log('move')
-// 4 params
-mtEvents('#bindTarget', 'drag', [up, right, down, left])
-// 3 params
-mtEvents('#bindTarget', 'drag', [up, horizontal, down])
-// 2 params
-mtEvents('#bindTarget', 'drag', [vertical, horizontal])
-// 1 param
-mtEvents('#bindTarget', 'drag', [move])
-```
+![displacement](images/displacement.png)
 
-**Special Notice: the priority of horizontal swipes is higher than that of vertical swipes, which means horizontal callbacks will be executed first.**
-
-### drag
+#### drag
 
 The mobile drag event. We listen for the mobile touchmove event to determine the path of the drag.
 
 **difference between drag and swipe**：
 drag listens for the user's gesture continuously, and executes the callback whenever the drag moves; drag only cares about the beginning and end position of the drag, and only executes the callback on touchend.
+
+### 多点触控事件（双指）
+
+#### Scale
+
+移动端缩放事件，监听用户双指缩放手势，计算出缩放比例并挂载在原生事件对象event上供用户使用，使用方法：
+
+```js
+mtEvents('#bindTarget', 'scale', e => console.log('BindTarget is scale'))
+```
+
+mtEvents会在事件的原生对象上挂载元素缩放比例（scale）：
+
+![scale](/Users/ranjayzheng/Desktop/mobile-events/docs/user/images/scale.png)
+
+#### Rotate
+
+移动端旋转事件，监听用户双指旋转手势，计算出旋转角度及旋转方向并挂载在原生对象上供用户使用，使用方法：
+
+```js
+mtEvents('#bindTarget', 'rotate', e => console.log('BindTarget is rotate'))
+```
+
+mtEvents会在事件的原生对象上挂载元素旋转对象（rotate）：
+
+![rotate](/Users/ranjayzheng/Desktop/mobile-events/docs/user/images/rotate.png)
+
+rotate对象内包含三组键值，它们的含义分别是：
+
+- **direction**：旋转方向书面术语，clockwise（顺时针）|| anti clockwise（逆时针）
+- **dirt**：旋转方向数学符号，顺时针为1，逆时针为0
+- **rotateAngle**：旋转角度
