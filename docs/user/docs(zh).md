@@ -160,7 +160,9 @@ mtEvents.remove(node, {
 
 ## 封装事件
 
-### tap
+### 单点触控事件
+
+#### Tap
 
 移动端单击事件，通过监听 touchstart 和 touchend 判断用户 touch 的时间是否超过指定阈值（默认为300ms）触发事件，使用方法：
 
@@ -168,7 +170,7 @@ mtEvents.remove(node, {
 mtEvents('#bindTarget', 'tap', e => console.log('BindTarget is tap'))
 ```
 
-### longtap
+#### Longtap
 
 移动端长按事件，通过监听touchstart和touchend判断用户touch的时间是否超过指定阈值（默认为1s）触发事件，使用方法：
 
@@ -186,7 +188,7 @@ mtEvents('#bindTarget', 'longtap', [longtap, shorttap])
 
 这么一来，用户如果长按，将触发长按事件，如果短按，将触发短按事件。
 
-### dbtap
+#### Dbtap
 
 移动端双击事件，通过监听两次tap的间隔时间和位置判断用户是否在某一范围内双击屏幕，使用方法：
 
@@ -194,32 +196,54 @@ mtEvents('#bindTarget', 'longtap', [longtap, shorttap])
 mtEvents('#bindTarget', 'dbtap', e => console.log('BindTarget is dbtap'))
 ```
 
-### swipe
+#### Swipe
 
-移动端拖拽事件，通过监听touchstart和touchend的位置判断用户的手势发生了哪些偏移，执行相应回调，具体使用方法：
+移动端滑动事件，通过监听touchstart和touchend的位置判断用户的手势发生了哪些偏移，执行相应回调，具体使用方法：
 
 ```js
 mtEvents('#bindTarget', 'drag', e => console.log('BindTarget is drag'))
 ```
 
-您可以为callback传入一个回调，分别表示用户进行上下左右拖拽时执行的回调函数：
+mtEvents会在事件的原生对象上挂载元素偏移对象（displacement），其中包含了元素在x轴和y轴上的偏移量:
 
-```js
-const up = e => console.log('up')
-const down = e => console.log('down')
-const left = e => console.log('left')
-const right = e => console.log('right')
-mtEvents('#bindTarget', 'swipe', [up, right, down, left])
-```
+![displacement](images/displacement.png)
 
-**callback数组的顺序是顺时针方向即“上右下左”，如果传入只有一个callback的callback数组则与单纯传入一个callback function同样的效果；如果数组内有两个callback，则数组第一项为纵向事件拖拽回调，第二项为横向拖拽回调；如果数组有三项，则第一项为up拖拽回调，第二项为横向拖拽回调，第三项为down拖拽回调；**
+#### Drag
 
-**特别注意：横向事件的回调执行优先级大于纵向事件的回调执行优先级，即横向事件的回调会先于纵向事件的回调先行触发。**
-
-### drag
-
-移动端滑动事件，通过监听touchmove判断用户手势发生了哪些偏移，执行相应回调。
+移动端拖拽事件，通过监听touchmove判断用户手势发生了哪些偏移，执行相应回调。
 
 **drag与swipe的不同**：drag会持续监听用户手势，只要发生移动就持续触发事件，而swipe值关注用户手势的初始位置和结束为止，只会在touchend的时候触发一次事件。
 
 用法完全类同swipe，这里就不再做相关描述。
+
+### 多点触控事件（双指）
+
+#### Scale
+
+移动端缩放事件，监听用户双指缩放手势，计算出缩放比例并挂载在原生事件对象event上供用户使用，使用方法：
+
+```js
+mtEvents('#bindTarget', 'scale', e => console.log('BindTarget is scale'))
+```
+
+mtEvents会在事件的原生对象上挂载元素缩放比例（scale）：
+
+![scale](images/scale.png)
+
+#### Rotate
+
+移动端旋转事件，监听用户双指旋转手势，计算出旋转角度及旋转方向并挂载在原生对象上供用户使用，使用方法：
+
+```js
+mtEvents('#bindTarget', 'rotate', e => console.log('BindTarget is rotate'))
+```
+
+mtEvents会在事件的原生对象上挂载元素旋转对象（rotate）：
+
+![rotate](images/rotate.png)
+
+rotate对象内包含三组键值，它们的含义分别是：
+
+* **direction**：旋转方向书面术语，clockwise（顺时针）|| anti clockwise（逆时针）
+* **dirt**：旋转方向数学符号，顺时针为1，逆时针为0
+* **rotateAngle**：旋转角度
