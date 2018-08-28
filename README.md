@@ -5,7 +5,7 @@ Handle mobile events on the web easily
 
 # Preview
 
-You can try it just now by this -> http://mtevents.jerryonlyzrj.com/test.html
+You can try it on your phone now here -> http://mtevents.jerryonlyzrj.com/test.html
 
 ## Features
 
@@ -89,4 +89,3 @@ Run the command below to create the **developer** sub-directory inside the **doc
 ```shell
 npm run docs
 ```
-
