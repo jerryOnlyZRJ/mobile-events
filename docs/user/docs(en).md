@@ -158,7 +158,7 @@ mtEvents.remove(node, {
 
 ## Custom Events
 
-### 单点触控事件
+### Single-point touch events
 
 #### tap
 
@@ -202,7 +202,7 @@ The mobile swipe event. We listen for the touchstart and touchend mobile event t
 mtEvents('#bindTarget', 'drag', e => console.log('BindTarget is drag'))
 ```
 
-mtEvents会在事件的原生对象上挂载元素偏移对象（displacement），其中包含了元素在x轴和y轴上的偏移量:
+mtEvents will attach a **displacement** object on the native element, which contains the x and y displacement of the element:
 
 ![displacement](images/displacement.png)
 
@@ -213,34 +213,34 @@ The mobile drag event. We listen for the mobile touchmove event to determine the
 **difference between drag and swipe**：
 drag listens for the user's gesture continuously, and executes the callback whenever the drag moves; drag only cares about the beginning and end position of the drag, and only executes the callback on touchend.
 
-### 多点触控事件（双指）
+### Multi-point touch events (two-finger)
 
 #### Scale
 
-移动端缩放事件，监听用户双指缩放手势，计算出缩放比例并挂载在原生事件对象event上供用户使用，使用方法：
+The mobile scale event. We listen for the user's two-finger scaling gesture, calculate the proportion of the scaling, and attach that proportion on the native element. Usage:
 
 ```js
 mtEvents('#bindTarget', 'scale', e => console.log('BindTarget is scale'))
 ```
 
-mtEvents会在事件的原生对象上挂载元素缩放比例（scale）：
+An example of the scaled element：
 
 ![scale](images/scale.png)
 
 #### Rotate
 
-移动端旋转事件，监听用户双指旋转手势，计算出旋转角度及旋转方向并挂载在原生对象上供用户使用，使用方法：
+The mobile rotate event. We listen for the user's two-finger rotation gesture, calculate the degree of rotational angle and attach that value to the native element. Usage:
 
 ```js
 mtEvents('#bindTarget', 'rotate', e => console.log('BindTarget is rotate'))
 ```
 
-mtEvents会在事件的原生对象上挂载元素旋转对象（rotate）：
+An example of the rotated element：
 
 ![rotate](images/rotate.png)
 
-rotate对象内包含三组键值，它们的含义分别是：
+The rotate object has three key-value pairs：
 
-- **direction**：旋转方向书面术语，clockwise（顺时针）|| anti clockwise（逆时针）
-- **dirt**：旋转方向数学符号，顺时针为1，逆时针为0
-- **rotateAngle**：旋转角度
+- **direction, String**：'clockwise' or 'anti clockwise'
+- **dirt, Number**：1 for clockwise，0 for anti-clockwise
+- **rotateAngle, Number**
