@@ -7,9 +7,10 @@
     "test": "jest --coverage",
     "codecov": "codecov",
     "test:update": "npm run build && jest --coverage",
-    "build": "npm run build:browser &&  npm run build:npm && webpack",
+    "build": "npm run build:browser &&  npm run build:npm && webpack && npm run build:lts",
     "build:browser": "rollup --config --platform Browser",
     "build:npm": "rollup --config --platform npm",
+    "build:lts": "webpack --type lts",
     "docs": "jsdoc ./core/ -d ./docs/developer",
     "lint": "eslint core/*.js --fix",
     "precommit": "lint-staged",
@@ -37,7 +38,11 @@
   },
   "homepage": "https://github.com/jerryOnlyZRJ/mobile-events#readme",
   "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
     "args-parser": "^1.1.0",
+    "babel-loader": "^8.0.2",
     "codecov": "^3.0.4",
     "eslint": "^5.3.0",
     "eslint-config-standard": "^12.0.0-alpha.0",
@@ -54,6 +59,11 @@
     "rollup-plugin-copy": "^0.2.3",
     "rollup-plugin-replace": "^2.0.0",
     "webpack": "^4.16.3",
-    "webpack-cli": "^3.1.0"
+    "webpack-cli": "^3.1.0",
+    "webpack-merge": "^4.1.4",
+    "yargs-parser": "^10.1.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0"
   }
 }
