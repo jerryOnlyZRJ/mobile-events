@@ -11,14 +11,14 @@ You can try it on your phone now here -> http://mtevents.jerryonlyzrj.com/test.h
 
 * Supports widely-used mobile terminal events such as double tap and long tap, in addition to native web events like clicking. With mt-events, you could listen for these mobile/web events just the way you would using the native `addEventListener` web API or JQuery.
 * Allows for event delegation. All you need to do is adding an extra argument like `$.on` in JQuery.
-* The whole library is only 2KB after gzip. We will deploy the script to our CDN as soon as possible.
+* The whole library is only 1.8KB after gzip. We will deploy the script to our CDN as soon as possible.
 * Use **WeakMap** to manage the reference of HTMLElement and its event handler, so there is no need for you to remove the event handler after you remove a HTMLElement, the weak reference will be recycled by GC.
 
 ## Browser Support
 
-![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) |
---- | --- | --- | --- | --- | --- |
-Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | 11 ✔ |
+![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) |
+--- | --- | --- | --- | --- |
+Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
 ![browser-support](./docs/user/images/browser-support.png)
 
