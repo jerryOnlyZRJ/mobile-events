@@ -11,3 +11,5 @@ test/coverage/
 mtevents_travis_key
 #ssh config
 ssh_config
+# logs
+logs/
