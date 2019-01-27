@@ -4,13 +4,11 @@ const touch = require('./tools/touch.js')
 function delay4tap(bindTarget, clientX, clientY, delay) {
 	return new Promise((resolve, reject) => {
 		const touchstart = touch.createTouchEvent('touchstart')
-		touchstart.touches = [];
 		touchstart.touches.push({
 			'clientX': clientX,
 			'clientY': clientY
 		})
 		const touchend = touch.createTouchEvent('touchend')
-		touchend.changedTouches = [];
 		touchend.changedTouches.push({
 			'clientX': 100,
 			'clientY': 100
@@ -38,7 +36,6 @@ function delay4Longtap(bindTarget, delay) {
 function swipeTouch(bindTarget, delay) {
 	return new Promise((resolve, reject) => {
 		const touchstart = touch.createTouchEvent('touchstart')
-		touchstart.touches = [];
 		touchstart.touches.push({
 			'clientX': 100,
 			'clientY': 100
@@ -46,7 +43,6 @@ function swipeTouch(bindTarget, delay) {
 		touch.dispatchTouchEvent(bindTarget, touchstart)
 		setTimeout(() => {
 			const touchend = touch.createTouchEvent('touchend')
-			touchend.changedTouches = [];
 			touchend.changedTouches.push({
 				'clientX': 300,
 				'clientY': 300
@@ -302,7 +298,6 @@ describe('test DIY event dbtap', () => {
 		return new Promise((resolve, reject) => {
 			const touchstart = touch.createTouchEvent('touchstart')
 			const touchend = touch.createTouchEvent('touchend')
-			touchend.changedTouches = [];
 			touchend.changedTouches.push({
 				'clientX': 200,
 				'clientY': 100
@@ -388,14 +383,12 @@ describe('test DIY event drag', () => {
 			bindTarget.innerHTML = `drag x:${e.displacement.x}, y:${e.displacement.y}`
 		})
 		const touchstart = touch.createTouchEvent('touchstart')
-		touchstart.touches = [];
 		touchstart.touches.push({
 			'clientX': 100,
 			'clientY': 100
 		})
 		touch.dispatchTouchEvent(bindTarget, touchstart)
 		const touchmove = touch.createTouchEvent('touchmove')
-		touchmove.touches = [];
 		touchmove.touches.push({
 			'clientX': 300,
 			'clientY': 300
@@ -417,7 +410,6 @@ describe('test DIY event scale', () => {
 			cb()
 		})
 		const touchmove = touch.createTouchEvent('touchmove')
-		touchmove.touches = []
 		touchmove.touches.push({
 			clientX: 0,
 			clientY: 0
@@ -459,7 +451,6 @@ describe('test DIY event rotate', () => {
 			cb()
 		})
 		const touchmove = touch.createTouchEvent('touchmove')
-		touchmove.touches = []
 		touchmove.touches.push({
 			clientX: 0,
 			clientY: 100
@@ -494,7 +485,6 @@ describe('test DIY event rotate', () => {
 			cb()
 		})
 		const touchmove = touch.createTouchEvent('touchmove')
-		touchmove.touches = []
 		touchmove.touches.push({
 			clientX: 0,
 			clientY: 100

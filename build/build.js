@@ -43,11 +43,11 @@ async function build () {
   fs.writeFileSync(path.join(cwd, 'dist/mtevents.js'), developmentCode)
   fs.writeFileSync(path.join(cwd, 'dist/mtevents.min.js'), productionCode)
 
-  console.log('Moon development -> ' + developmentCode.length / 1000 + 'kb')
-  console.log('Moon production -> ' + productionCode.length / 1000 + 'kb')
+  console.log('mtevents development -> ' + developmentCode.length / 1000 + 'kb')
+  console.log('mtevents production -> ' + productionCode.length / 1000 + 'kb')
   console.log('')
-  console.log('Moon development (gzipped) -> ' + gzipSize.sync(developmentCode) / 1000 + 'kb')
-  console.log('Moon production (gzipped) -> ' + gzipSize.sync(productionCode) / 1000 + 'kb')
+  console.log('mtevents development (gzipped) -> ' + gzipSize.sync(developmentCode) / 1000 + 'kb')
+  console.log('mtevents production (gzipped) -> ' + gzipSize.sync(productionCode) / 1000 + 'kb')
 }
 
 build()
