@@ -4,7 +4,7 @@
   "description": "Make mobile events user-friendly.",
   "main": "lib/index-npm.js",
   "scripts": {
-    "test": "jest --coverage --forceExit",
+    "test": "jest --coverage --forceExit --detectOpenHandles",
     "codecov": "codecov",
     "test:update": "npm run build && jest --coverage",
     "build": "node build/build.js",

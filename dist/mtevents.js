@@ -363,7 +363,7 @@
   var events = new Events();
 
   
-  var MTEvents = function MTEvents() {
+  var MTEvents = function MTEvents () {
     this.userCallback2Handler = new Map();
   };
   
