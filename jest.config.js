@@ -1,7 +1,7 @@
 module.exports = {
   testURL: 'http://localhost',
   testMatch: ['<rootDir>/test/*.js'],
-  coverageDirectory: '<rootDir>/test/coverage',
+  coverageDirectory: '<rootDir>/logs/coverage',
   coverageThreshold: {
     global: {
       branches: 90,

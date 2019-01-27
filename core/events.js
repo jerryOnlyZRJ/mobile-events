@@ -1,6 +1,6 @@
-const SingleEvent = require('./tools/singleevent.js')
-const Timer = require('./tools/timer.js')
-const Position = require('./tools/position.js')
+import SingleEvent from './tools/singleevent.js'
+import Timer from './tools/timer.js'
+import Position from './tools/position.js'
 
 function getVectorLength (x1, y1, x2, y2) {
   return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2))
@@ -272,4 +272,4 @@ class Events {
   }
 }
 
-module.exports = new Events()
+export default new Events()

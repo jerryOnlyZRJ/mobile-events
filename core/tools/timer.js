@@ -1,18 +1,18 @@
 class Timer {
-  constructor() {
+  constructor () {
     this.timer = null
   }
-  timeoutCreator(delay, callback) {
+  timeoutCreator (delay, callback) {
     this.timer = setTimeout(() => {
       clearTimeout(this.timer)
       this.timer = null
       return callback && callback()
     }, delay)
   }
-  clearTimer() {
+  clearTimer () {
     clearTimeout(this.timer)
     this.timer = null
   }
 }
 
-module.exports = Timer
+export default Timer

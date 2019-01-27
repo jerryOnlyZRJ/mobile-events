@@ -1,6 +1,6 @@
-const delegateProxyCreator = require('./tools/proxy.js')
-const events = require('./events.js')
-const weakMapBinder = require('./tools/weakmap.js')
+import delegateProxyCreator from './tools/proxy.js'
+import events from './events.js'
+import weakMapBinder from './tools/weakmap.js'
 
 /**
  * MTEvents类
@@ -140,8 +140,4 @@ Object.keys(mtEvents).map(keyItem => {
   mtEventsFun[keyItem] = mtEvents[keyItem]
 })
 
-if (process.env.PLATFORM === 'Browser') {
-  window.mtEvents = mtEventsFun
-} else {
-  module.exports = mtEventsFun
-}
+export default mtEventsFun
